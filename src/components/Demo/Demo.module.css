@@ -1,3 +1,5 @@
 .demoComponent {
   color: #fff;
+  font-size: 20px;
+  display: flex;
 }
