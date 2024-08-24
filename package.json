@@ -20,27 +20,13 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --cache src",
-    "lint:fix": "eslint src --fix",
-    "stylelint": "stylelint '**/*.css'",
-    "stylelint:fix": "stylelint '**/*.css' --fix",
-    "format": "prettier --cache --write 'src/**/*.{js,jsx,ts,tsx,css}'",
-    "postinstall": "husky install"
+    "format": "prettier --cache --write 'src/**/*.{js,jsx,ts,tsx,css}'"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "prettier"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error"
-      ]
-    }
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -53,12 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "husky": "^9.1.5",
-    "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard": "^36.0.1"
   }
 }
