@@ -1,5 +1,7 @@
 .demoComponent {
-  color: #fff;
-  font-size: 20px;
   display: flex;
+  color: #fff;
+  background-color: #0f0f0f;
+  font-size: 20px;
+  font-weight: 700;
 }

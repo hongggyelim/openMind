@@ -1,0 +1,30 @@
+{
+  "extends": ["stylelint-config-standard", "stylelint-order"],
+
+  "plugins": ["stylelint-order"],
+
+  "rules": {
+    "no-duplicate-selectors": true,
+    "color-hex-length": "short",
+    "color-named": "never",
+    "selector-attribute-quotes": "always",
+    "declaration-no-important": true,
+    "function-url-quotes": "always",
+    "font-weight-notation": "numeric",
+    "font-family-name-quotes": "always-where-recommended",
+    "selector-class-pattern": null,
+    "order/order": ["custom-properties", "declarations"],
+
+    "order/properties-order": [
+      {
+        "properties": ["position", "top", "right", "bottom", "left"]
+      },
+      {
+        "properties": ["display", "flex", "grid"]
+      },
+      {
+        "properties": ["color", "background", "border"]
+      }
+    ]
+  }
+}
