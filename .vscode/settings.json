@@ -4,12 +4,11 @@
   "editor.insertSpaces": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
   },
   "css.validate": false,
   "stylelint.enable": true,
   "javascript.format.enable": false,
-  "eslint.alwaysShowStatus": true,
   "files.autoSave": "onFocusChange"
 }

@@ -1,5 +1,14 @@
 {
+  "extends": "stylelint-config-standard",
   "rules": {
-    "no-descending-specificity": null
+    "no-duplicate-selectors": true,
+    "color-hex-length": "short",
+    "color-named": "never",
+    "selector-attribute-quotes": "always",
+    "declaration-no-important": true,
+    "function-url-quotes": "always",
+    "font-weight-notation": "numeric",
+    "font-family-name-quotes": "always-where-recommended",
+    "selector-class-pattern": null
   }
 }
