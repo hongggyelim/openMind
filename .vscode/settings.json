@@ -10,5 +10,6 @@
   "css.validate": false,
   "stylelint.enable": true,
   "javascript.format.enable": false,
-  "files.autoSave": "onFocusChange"
+  "files.autoSave": "onFocusChange",
+  "git.ignoreLimitWarning": true
 }
