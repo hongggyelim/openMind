@@ -26,5 +26,6 @@ module.exports = {
   extends: [
     'react-app', // Create React App의 ESLint 규칙
     'plugin:prettier/recommended', // Prettier와 ESLint 통합
+    'eslint:recommended',
   ],
 };
