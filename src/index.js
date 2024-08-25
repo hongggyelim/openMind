@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { MainPage } from "./pages/MainPage";
-import { QuestionListPage } from "./pages/QuestionListPage";
-import { FeedPage } from "./pages/FeedPage";
-import { AnswerPage } from "./pages/AnswerPage";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { MainPage } from './pages/MainPage';
+import { QuestionListPage } from './pages/QuestionListPage';
+import { FeedPage } from './pages/FeedPage';
+import { AnswerPage } from './pages/AnswerPage';
 
 function MainRouter() {
   return (
@@ -19,5 +19,5 @@ function MainRouter() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<MainRouter />);

@@ -19,6 +19,7 @@ module.exports = {
     'react/no-direct-mutation-state': 'warn', // state 직접 수정 금지
     'react/no-unused-state': 'warn', // 사용되지 않는 state
     'react/jsx-curly-brace-presence': 'warn', // JSX 내 불필요한 중괄호 금지
+    'arrow-parens': ['error', 'always'], // 화살표 함수의 매개변수에 항상 소괄호 사용
   },
   eslintConfig: {
     extends: ['react-app', 'react-app/jest'],
