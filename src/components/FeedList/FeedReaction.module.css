@@ -1,0 +1,28 @@
+.btn-reaction {
+  display: flex;
+  gap: 32px;
+  padding-top: 24px;
+  margin-top: 32px;
+  border-top: 1px solid var(--grayscale-30);
+}
+
+button {
+  padding: 0;
+  background: transparent;
+}
+
+.btn {
+  padding-left: 32px;
+  color: var(--grayscale-40);
+  font-size: 0.875rem;
+}
+
+.btn.btn-like {
+  background: url('../../assets/icon/ic-thumbs-up.svg') no-repeat left
+    center/16px auto;
+}
+
+.btn.btn-dislike {
+  background: url('../../assets/icon/ic-thumbs-down.svg') no-repeat left
+    center/16px auto;
+}
