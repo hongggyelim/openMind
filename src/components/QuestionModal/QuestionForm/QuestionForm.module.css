@@ -1,5 +1,11 @@
+.questionForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .questionTextarea {
-  width: 532px;
+  width: 100%;
   height: 180px;
   border-radius: 8px;
   padding: 16px;
@@ -8,4 +14,10 @@
 }
 .questionTextarea ::placeholder {
   color: var(--grayscale-40);
+}
+.submitBtn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: var(--brown-30);
+  color: #fff;
 }
