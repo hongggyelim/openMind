@@ -1,0 +1,21 @@
+.modalWrapper {
+  padding: 40px;
+  padding-bottom: 70px;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  line-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.modalTo {
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+.modalUserName {
+  line-height: 22px;
+  margin-bottom: 12px;
+}
