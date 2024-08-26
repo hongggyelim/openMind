@@ -5,6 +5,8 @@ import { MainPage } from './pages/MainPage';
 import { QuestionListPage } from './pages/QuestionListPage';
 import { FeedPage } from './pages/FeedPage';
 import { AnswerPage } from './pages/AnswerPage';
+import './style/reset.css';
+import './style/common.css';
 
 function MainRouter() {
   return (
