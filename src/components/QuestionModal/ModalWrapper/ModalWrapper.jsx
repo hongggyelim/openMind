@@ -1,7 +1,14 @@
+import { useState } from 'react';
 import { QuestionForm } from '../QuestionForm/QuestionForm';
 import styles from './ModalWrapper.module.css';
 
 export function ModalWrapper() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleClickExitBtn = () => {
+    setModalOpen(true);
+  };
+
   return (
     <div className={styles.modalWrapper}>
       <div className={styles.modalHeader}>
@@ -9,7 +16,11 @@ export function ModalWrapper() {
           <span className={styles.modalIcon}></span>
           질문을 작성하세요
         </div>
-        <button className={styles.modalExitBtn}></button>
+        <button
+          type="button"
+          onClick={handleClickExitBtn}
+          className={styles.modalExitBtn}
+        ></button>
       </div>
 
       {/* 나중에 유저 프로필 이미지, 이름 prop으로 받아오기 */}
