@@ -1,5 +1,10 @@
-import { Demo } from "../components/Demo/DemoComponent";
+import UserProfileList from '../components/Demo/UserProfileList';
 
 export function QuestionListPage() {
-  return <Demo />;
+  return (
+    <div className="wrap-inner">
+      짠
+      <UserProfileList />
+    </div>
+  );
 }
