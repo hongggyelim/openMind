@@ -5,6 +5,7 @@ html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
   /* stylelint-disable-next-line order/order */
+
   --grayscale-20: #f9f9f9;
   --grayscale-30: #cfcfcf;
   --grayscale-40: #818181;

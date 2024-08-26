@@ -1,0 +1,11 @@
+.questionTextarea {
+  width: 532px;
+  height: 180px;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: var(--grayscale-20);
+  resize: none;
+}
+.questionTextarea ::placeholder {
+  color: var(--grayscale-40);
+}
