@@ -1,12 +1,16 @@
 body {
   background-color: #fff;
 }
+
+.modalSpacer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
 .modalWrapper {
   position: absolute;
   top: 172px;
   bottom: 206px;
-  left: 294px;
-  right: 294px;
   width: 612px;
   height: 454px;
   padding: 40px;
