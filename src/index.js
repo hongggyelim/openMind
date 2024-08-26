@@ -6,7 +6,7 @@ import { FeedPage } from './pages/FeedPage';
 import { AnswerPage } from './pages/AnswerPage';
 import './style/reset.css';
 import './style/common.css';
-import { TestPage } from './pages/TestPage';
+import { TestPage } from './pages/modalTestPage/TestPage';
 
 function MainRouter() {
   return (
