@@ -17,7 +17,13 @@ export function QuestionForm() {
 
   return (
     <form className={styles.questionForm}>
+      <label htmlFor="question" className={styles.blind}>
+        질문을 작성하세요
+      </label>
       <textarea
+        id="question"
+        name="question"
+        type="text"
         className={styles.questionTextarea}
         placeholder="질문을 입력해주세요"
         onChange={handleChangeContent}

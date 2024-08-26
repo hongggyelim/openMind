@@ -24,6 +24,16 @@ body {
   background: var(--grayscale-20);
 }
 
+/* .blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+} */
+
 /* .shadow-1 {
   border: 1px solid var(--grayscale-30, rgba(207 207 207 1));
   box-shadow: 0 4px 4px 0 rgba(140, 140, 140, 0.25);
