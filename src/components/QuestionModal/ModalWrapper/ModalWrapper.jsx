@@ -1,14 +1,7 @@
-import { useState } from 'react';
 import { QuestionForm } from '../QuestionForm/QuestionForm';
 import styles from './ModalWrapper.module.css';
 
-export function ModalWrapper() {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const handleClickExitBtn = () => {
-    setModalOpen(false);
-  };
-
+export function ModalWrapper(onClick) {
   return (
     <div className={styles['modal-spacer']}>
       <div className={styles['modal-wrapper']}>
@@ -19,7 +12,7 @@ export function ModalWrapper() {
           </div>
           <button
             type="button"
-            onClick={handleClickExitBtn}
+            onClick={onClick}
             className={styles['modal-exit-btn']}
           ></button>
         </div>

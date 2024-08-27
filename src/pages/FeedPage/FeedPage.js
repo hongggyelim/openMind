@@ -1,7 +1,19 @@
-import styles from '../style/FeedPage.module.css';
-import { FeedList } from '../components/FeedList/FeedList';
+import styles from './FeedPage.module.css';
+import { FeedList } from '../../components/FeedList/FeedList';
+import { ModalWrapper } from '../../components/QuestionModal/ModalWrapper/ModalWrapper';
+import { useState } from 'react';
 
 export function FeedPage() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleClickExitBtn = () => {
+    setModalOpen(false);
+  };
+
+  const handleClickQuestion = () => {
+    setModalOpen(!modalOpen);
+  };
+
   return (
     <>
       <div className={styles.feed}>
@@ -33,10 +45,12 @@ export function FeedPage() {
             <FeedList />
           </div>
         </div>
-        {/* link to 변경 */}
         <span className={styles['btn-link']}>
-          <button type="button">질문 작성하기</button>
+          <button type="button" onClick={handleClickQuestion}>
+            질문 작성하기
+          </button>
         </span>
+        {modalOpen && <ModalWrapper onClick={handleClickExitBtn} />}
       </div>
     </>
   );
