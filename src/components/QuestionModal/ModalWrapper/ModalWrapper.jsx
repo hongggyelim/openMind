@@ -25,7 +25,7 @@ export function ModalWrapper() {
         </div>
 
         {/* 나중에 유저 프로필 이미지, 이름 prop으로 받아오기 */}
-        <div className={styles.modalToWhon}>
+        <div className={styles.modalToWhom}>
           <span className={styles.modalTo}>To.</span>
           <span className={styles.modalUserProfile}></span>
           아초는 고양이

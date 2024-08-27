@@ -7,6 +7,7 @@ body {
   justify-content: center;
   width: 100%;
 }
+
 .modalWrapper {
   position: absolute;
   top: 172px;
@@ -17,7 +18,7 @@ body {
   padding-bottom: 70px;
   border-radius: 24px;
   border: 1px solid var(--grayscale-30, rgba(207 207 207 1));
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
 }
 
 .modalHeader {
@@ -26,6 +27,7 @@ body {
   align-items: center;
   margin-bottom: 40px;
 }
+
 .modalTitle {
   display: flex;
   align-items: center;
@@ -33,6 +35,7 @@ body {
   font-size: 1.5rem;
   line-height: 30px;
 }
+
 .modalIcon {
   display: inline-block;
   width: 28px;
@@ -42,6 +45,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .modalExitBtn {
   background-color: transparent;
   width: 28px;
@@ -51,21 +55,23 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .modalTo {
   font-size: 1.125rem;
   line-height: 24px;
 }
+
 .modalUserProfile {
   display: inline-block;
   width: 28px;
   height: 28px;
-
   background-image: url('/src/assets/images/user-profile.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.modalToWhon {
+
+.modalToWhom {
   display: flex;
   align-items: center;
   gap: 4px;
