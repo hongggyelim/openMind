@@ -1,7 +1,7 @@
 import { QuestionForm } from '../QuestionForm/QuestionForm';
 import styles from './ModalWrapper.module.css';
 
-export function ModalWrapper(onClick) {
+export function ModalWrapper({ onClick }) {
   return (
     <div className={styles['modal-spacer']}>
       <div className={styles['modal-wrapper']}>
