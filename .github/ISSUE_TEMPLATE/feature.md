@@ -9,9 +9,9 @@ assignees: ''
 
 ## To do 
 
-- [ ] to do 
-- [ ] to do 
+- [ ] to do  디테일 적어주세요
+- [ ] to do  
 
-## ETC 
--
+## Schedule
+- 예상 일정을 여기에 적어주세요 
 -

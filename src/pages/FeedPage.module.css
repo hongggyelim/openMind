@@ -23,7 +23,7 @@
   text-align: center;
 }
 
-.btn-link > button {
+.btn-link > a {
   display: block;
   width: 208px;
   height: 54px;

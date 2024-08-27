@@ -1,9 +1,10 @@
-import UserProfileList from '../components/Demo/UserProfileList';
+import UserProfileList from '../components/List/UserProfileList/UserProfileList';
+import { Gnb } from '../components/List/Gnb/Gnb';
 
 export function QuestionListPage() {
   return (
     <div className="wrap-inner">
-      짠
+      <Gnb />
       <UserProfileList />
     </div>
   );

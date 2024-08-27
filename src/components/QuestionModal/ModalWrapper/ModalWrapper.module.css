@@ -75,7 +75,7 @@
   background-size: cover;
 }
 
-.modal-addressee {
+.modal-receiver {
   display: flex;
   align-items: center;
   gap: 4px;

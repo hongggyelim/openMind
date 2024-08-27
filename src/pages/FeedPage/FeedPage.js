@@ -1,16 +1,27 @@
 import styles from './FeedPage.module.css';
 import { FeedList } from '../../components/FeedList/FeedList';
 import { ModalWrapper } from '../../components/QuestionModal/ModalWrapper/ModalWrapper';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { ContentContext } from '../../context/ContentContext';
 import { postQuestion } from '../../api/postQuestion';
+import { getQuestion } from '../../api/api';
+import ShareSNS from '../../components/ShareSNS/ShareSNS';
 
 export function FeedPage() {
-  const INITAIL_VALUE = '';
+  const INITIAL_VALUE = '';
   const [modalOpen, setModalOpen] = useState(false);
-  const [content, setContent] = useState(INITAIL_VALUE);
+  const [content, setContent] = useState(INITIAL_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
+  const [feedList, setFeedList] = useState([]);
+
+  useEffect(() => {
+    async function fetchList() {
+      const { results } = await getQuestion();
+      setFeedList(results);
+    }
+    fetchList();
+  }, []);
 
   const handleClickModal = () => {
     setModalOpen(!modalOpen);
@@ -21,7 +32,7 @@ export function FeedPage() {
 
     const data = content;
     postQuestion(data); //나중에 페이지 주소에서 subject_id 받아와야함
-    setContent(INITAIL_VALUE);
+    setContent(INITIAL_VALUE);
   };
 
   const handleChangeContent = e => {
@@ -35,6 +46,7 @@ export function FeedPage() {
       <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
         <div className={styles.feed}>
           <div className="wrap-inner2">
+            <ShareSNS />
             <div className={styles['feed-wrap']}>
               <p className={styles['total-count']}>
                 <svg
@@ -57,16 +69,24 @@ export function FeedPage() {
                     fill="#542f1a"
                   />
                 </svg>
-                3개의 질문이 있습니다.
+                {feedList.length}개의 질문이 있습니다.
               </p>
-              <FeedList />
+              {feedList.map(item => {
+                return (
+                  <div key={item.id}>
+                    <FeedList item={item} />
+                  </div>
+                );
+              })}
             </div>
           </div>
+
           <span className={styles['btn-link']}>
-            <button type="button" onClick={handleClickModal}>
+            <a href="/" onClick={handleClickModal}>
               질문 작성하기
-            </button>
+            </a>
           </span>
+
           {modalOpen && (
             <ModalWrapper
               onClick={handleClickModal}

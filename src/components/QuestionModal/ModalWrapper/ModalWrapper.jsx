@@ -21,7 +21,7 @@ export function ModalWrapper({ onClick, onSubmit, onChange }) {
           </div>
 
           {/* 나중에 유저 프로필 이미지, 이름 prop으로 받아오기 */}
-          <div className={styles['modal-addressee']}>
+          <div className={styles['modal-receiver']}>
             <span className={styles['modal-to']}>To.</span>
             <span className={styles['modal-profile']}></span>
             아초는 고양이
