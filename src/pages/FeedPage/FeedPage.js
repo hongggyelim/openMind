@@ -25,6 +25,7 @@ export function FeedPage() {
 
   const handleClickModal = () => {
     setModalOpen(!modalOpen);
+    setContent('');
   };
 
   const handleSubmitQuestion = e => {
