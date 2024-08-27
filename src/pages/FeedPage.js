@@ -1,10 +1,12 @@
 import styles from './FeedPage.module.css';
 import { FeedList } from '../components/FeedList/FeedList';
 import ShareSNS from '../components/ShareSNS/ShareSNS';
+import Header from '../components/Header/Header';
 
 export function FeedPage() {
   return (
     <>
+      <Header />
       <div className={styles.feed}>
         <div className="wrap-inner2">
           <ShareSNS />
