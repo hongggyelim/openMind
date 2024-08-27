@@ -1,17 +1,40 @@
 import userProfile from '../../assets/images/user-profile.png';
 import styles from '../FeedList/FeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
-export function FeedList() {
+
+// utils/timeAgo.js (또는 다른 파일)
+export function timeAgo(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffInMs = now - date;
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+
+  if (diffInDays < 1) {
+    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+    if (diffInHours < 1) {
+      const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+      if (diffInMinutes < 1) {
+        return '방금 전';
+      }
+      return `${diffInMinutes}분 전`;
+    }
+    return `${diffInHours}시간 전`;
+  }
+
+  return `${diffInDays}일 전`;
+}
+
+export function FeedList({ item }) {
   return (
     <>
       <div className={styles['feed-box']}>
         <span className={styles['badge']}>미답변</span>
         <div className={styles['feed-contents']}>
           <div className={styles['question-box']}>
-            <span className={styles['question-date']}>질문 · 2주전</span>
-            <p className={styles['question']}>
-              좋아하는 동물은?좋아하는 동물은?좋아하는 동물은? 좋아하는 동물은?
-            </p>
+            <span className={styles['question-date']}>
+              질문 · {timeAgo(item.createdAt)}
+            </span>
+            <p className={styles['question']}>{item.content}</p>
           </div>
           <div className={styles['answer-box']}>
             <span className={styles['user-img']}>
@@ -19,7 +42,8 @@ export function FeedList() {
             </span>
             <div className={styles['user-answer']}>
               <p className={styles.nickname}>
-                아초는고양이<span>2주전</span>
+                아초는고양이
+                <span className={styles['user-date']}></span>
               </p>
               <p className={styles.contents}>
                 그들을 불러 귀는 이상의 오직 피고, 가슴이 이상, 못할 봄바람이다.

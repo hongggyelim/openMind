@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MainPage } from './pages/MainPage';
 import { QuestionListPage } from './pages/QuestionListPage';
-import { FeedPage } from './pages/FeedPage';
+import { FeedPage } from './pages/FeedPage/FeedPage';
 import { AnswerPage } from './pages/AnswerPage';
 import './style/reset.css';
 import './style/common.css';
@@ -16,7 +16,7 @@ function MainRouter() {
         <Route path="/" element={<MainPage />}></Route>
         <Route path="/list" element={<QuestionListPage />}></Route>
         <Route path="/post/:id/answer" element={<AnswerPage />}></Route>
-        <Route path="/post/:id" element={<FeedPage />}></Route>
+        <Route path="/post/:subjectId" element={<FeedPage />}></Route>
         <Route path="/test" element={<TestPage />}></Route>
       </Routes>
     </BrowserRouter>

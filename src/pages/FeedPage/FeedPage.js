@@ -1,7 +1,21 @@
-import styles from '../style/FeedPage.module.css';
-import { FeedList } from '../components/FeedList/FeedList';
+import styles from '../FeedPage/FeedPage.module.css';
+import { FeedList } from '../../components/FeedList/FeedList';
+//import { useParams } from 'react-router';
+import { useState, useEffect } from 'react';
+import { getProfile } from './FeedPageApi';
 
 export function FeedPage() {
+  // /const { subjectId } = useParams();
+  const [feedList, setFeedList] = useState([]);
+
+  useEffect(() => {
+    async function fetchList() {
+      const { results } = await getProfile();
+      setFeedList(results);
+    }
+    fetchList();
+  }, []);
+
   return (
     <>
       <div className={styles.feed}>
@@ -28,9 +42,15 @@ export function FeedPage() {
                   fill="#542f1a"
                 />
               </svg>
-              3개의 질문이 있습니다.
+              {feedList.length}개의 질문이 있습니다.
             </p>
-            <FeedList />
+            {feedList.map(item => {
+              return (
+                <div key={item.id}>
+                  <FeedList item={item} />
+                </div>
+              );
+            })}
           </div>
         </div>
         {/* link to 변경 */}
