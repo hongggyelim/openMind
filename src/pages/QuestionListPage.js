@@ -1,10 +1,10 @@
-import UserProfileList from '../components/Demo/UserProfileList';
-import { Header } from '../components/Demo/Header';
+import UserProfileList from '../components/UserProfileList/UserProfileList';
+import { Gnb } from '../components/Gnb/Gnb';
 
 export function QuestionListPage() {
   return (
     <div className="wrap-inner">
-      <Header />
+      <Gnb />
       <UserProfileList />
     </div>
   );

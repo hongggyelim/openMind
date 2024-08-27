@@ -17,12 +17,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
   margin-bottom: 40px;
 }
 
 .profile-card {
-  width: 220px;
-  height: 187px;
+  min-width: 186px;
   border: 1px solid var(--grayscale-40);
   border-radius: 16px;
   padding: 20px;

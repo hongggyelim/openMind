@@ -5,7 +5,7 @@ function DropdownMenu() {
     <div className={styles['order-wrap']}>
       <div>
         <button className={styles['order-btn']}>이름순</button>
-        <div className={styles['order-box']}>
+        <div className={`${styles['order-box']} ${styles['shadow-1']}`}>
           <div className={styles.order}>이름순</div>
           <div className={styles.order}>최신순</div>
         </div>
