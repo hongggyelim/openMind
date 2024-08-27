@@ -1,4 +1,4 @@
-import { FeedPage } from './FeedPage';
+import { FeedPage } from './FeedPage/FeedPage';
 
 export function MainPage() {
   return (
