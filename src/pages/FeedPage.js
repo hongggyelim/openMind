@@ -1,11 +1,13 @@
-import styles from '../style/FeedPage.module.css';
+import styles from './FeedPage.module.css';
 import { FeedList } from '../components/FeedList/FeedList';
+import ShareSNS from '../components/ShareSNS/ShareSNS';
 
 export function FeedPage() {
   return (
     <>
       <div className={styles.feed}>
         <div className="wrap-inner2">
+          <ShareSNS />
           <div className={styles['feed-wrap']}>
             <p className={styles['total-count']}>
               <svg

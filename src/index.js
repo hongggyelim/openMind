@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { MainPage } from './pages/MainPage';
@@ -13,11 +12,11 @@ function MainRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainPage />}></Route>
-        <Route path="/list" element={<QuestionListPage />}></Route>
-        <Route path="/post/:id/answer" element={<AnswerPage />}></Route>
-        <Route path="/post/:id" element={<FeedPage />}></Route>
-        <Route path="/test" element={<TestPage />}></Route>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/list" element={<QuestionListPage />} />
+        <Route path="/post/:id/answer" element={<AnswerPage />} />
+        <Route path="/post/:id" element={<FeedPage />} />
+        <Route path="/test" element={<TestPage />} />
       </Routes>
     </BrowserRouter>
   );
