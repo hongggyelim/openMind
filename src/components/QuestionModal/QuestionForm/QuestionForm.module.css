@@ -1,0 +1,52 @@
+.questionForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.questionTextarea {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: var(--grayscale-20);
+  resize: none;
+  color: #000;
+}
+
+.questionTextarea ::placeholder {
+  color: var(--grayscale-40);
+  line-height: 22px;
+}
+
+.questionTextarea:focus {
+  outline: none;
+  border: 1px solid var(--brown-40);
+}
+
+.activeBtn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: var(--brown-40);
+  color: #fff;
+  line-height: 22px;
+}
+
+.disabledBtn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: var(--brown-30);
+  color: #fff;
+  line-height: 22px;
+  cursor: not-allowed;
+}
+
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+}
