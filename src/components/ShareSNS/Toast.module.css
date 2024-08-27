@@ -10,7 +10,5 @@
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 18px;
-
-  /* 박스 쉐도우 안먹히는거같음 */
   box-shadow: 0 16px 20px 0 rgb(48 48 48 / 62%);
 }
