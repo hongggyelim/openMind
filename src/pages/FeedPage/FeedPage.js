@@ -20,7 +20,7 @@ export function FeedPage() {
     e.preventDefault();
 
     const data = content;
-    postQuestion(13522, data); //나중에 페이지 주소에서 subject_id 받아와야함
+    postQuestion(data); //나중에 페이지 주소에서 subject_id 받아와야함
     setContent(INITAIL_VALUE);
   };
 
