@@ -4,7 +4,8 @@ import styles from './ModalWrapper.module.css';
 export function ModalWrapper({ onClick, onSubmit }) {
   return (
     <>
-      <div className={styles['modal-bg']}>모달 배경</div>
+      <div className={styles['modal-layer']} onClick={onClick}></div>
+
       <div className={styles['modal-spacer']}>
         <div className={styles['modal-wrapper']}>
           <div className={styles['modal-header']}>
