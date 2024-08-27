@@ -24,20 +24,20 @@
   border: 1px solid var(--brown-40);
 }
 
-.active-btn {
+.active-btn,
+.disabled-btn {
+  display: flex;
+  justify-content: center;
   padding: 12px 24px;
   border-radius: 8px;
   background-color: var(--brown-40);
   color: #fff;
   line-height: 22px;
+  text-align: center;
 }
 
 .disabled-btn {
-  padding: 12px 24px;
-  border-radius: 8px;
   background-color: var(--brown-30);
-  color: #fff;
-  line-height: 22px;
   cursor: not-allowed;
 }
 
