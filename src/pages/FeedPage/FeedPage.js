@@ -14,6 +14,8 @@ export function FeedPage() {
     setModalOpen(!modalOpen);
   };
 
+  const handleSubmitQuestion = () => {};
+
   return (
     <>
       <div className={styles.feed}>
@@ -50,7 +52,12 @@ export function FeedPage() {
             질문 작성하기
           </button>
         </span>
-        {modalOpen && <ModalWrapper onClick={handleClickExitBtn} />}
+        {modalOpen && (
+          <ModalWrapper
+            onClick={handleClickExitBtn}
+            onSubmit={handleSubmitQuestion}
+          />
+        )}
       </div>
     </>
   );

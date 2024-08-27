@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './QuestionForm.module.css';
-export function QuestionForm() {
+export function QuestionForm({ onSubmit }) {
   const [content, setContent] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
 
@@ -33,6 +33,7 @@ export function QuestionForm() {
         disabled={isEmpty}
         type="submit"
         className={isEmpty ? styles['disabled-btn'] : styles['active-btn']}
+        onSubmit={onSubmit}
       >
         질문 보내기
       </button>
