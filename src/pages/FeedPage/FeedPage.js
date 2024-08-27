@@ -28,10 +28,11 @@ export function FeedPage() {
   };
 
   const handleSubmitQuestion = e => {
-    e.preventDefault();
-
     const data = content;
-    postQuestion(data); //나중에 페이지 주소에서 subject_id 받아와야함
+    e.preventDefault();
+    //나중에 페이지 URL에서 subject_id 받아오는 함수 필요
+    //   const subjectId = getSubjectIdFromUrl();
+    postQuestion(data);
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
   };

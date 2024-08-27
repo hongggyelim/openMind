@@ -3,7 +3,7 @@ const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
 export function postQuestion(subjectId, data) {
   fetch(`${BASE_URL}subjects/${subjectId}/questions/`, {
     method: 'POST',
-    headers: { 'content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
   })
     .then(response => {
