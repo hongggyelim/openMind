@@ -1,7 +1,7 @@
 import { QuestionForm } from '../QuestionForm/QuestionForm';
 import styles from './ModalWrapper.module.css';
 
-export function ModalWrapper({ onClick, onSubmit }) {
+export function ModalWrapper({ onClick, onSubmit, onChange }) {
   return (
     <>
       <div className={styles['modal-layer']} onClick={onClick}></div>
@@ -15,8 +15,8 @@ export function ModalWrapper({ onClick, onSubmit }) {
             </div>
             <button
               type="button"
-              onClick={onClick}
               className={styles['modal-exit-btn']}
+              onClick={onClick}
             ></button>
           </div>
 
@@ -26,7 +26,7 @@ export function ModalWrapper({ onClick, onSubmit }) {
             <span className={styles['modal-profile']}></span>
             아초는 고양이
           </div>
-          <QuestionForm onSubmit={onSubmit} />
+          <QuestionForm onSubmit={onSubmit} onChange={onChange} />
         </div>
       </div>
     </>

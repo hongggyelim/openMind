@@ -1,22 +1,14 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import styles from './QuestionForm.module.css';
-export function QuestionForm({ onSubmit }) {
-  const [content, setContent] = useState('');
-  const [isEmpty, setIsEmpty] = useState(true);
+import { ContentContext } from '../../../context/ContentContext';
+import { IsEmptyContext } from '../../../context/IsEmptyContext';
 
-  const handleChangeContent = e => {
-    const nextContent = e.target.value;
-    setContent(() => nextContent);
-
-    if (nextContent !== '') {
-      setIsEmpty(false);
-    } else {
-      setIsEmpty(true);
-    }
-  };
+export function QuestionForm({ onSubmit, onChange }) {
+  const { content } = useContext(ContentContext);
+  const { isEmpty } = useContext(IsEmptyContext);
 
   return (
-    <form className={styles['question-form']}>
+    <form className={styles['question-form']} onSubmit={onSubmit}>
       <label htmlFor="question" className={styles['blind']}>
         질문을 작성하세요
       </label>
@@ -26,14 +18,13 @@ export function QuestionForm({ onSubmit }) {
         type="text"
         className={styles['question-textarea']}
         placeholder="질문을 입력해주세요"
-        onChange={handleChangeContent}
+        onChange={onChange}
         value={content}
       ></textarea>
       <button
         disabled={isEmpty}
         type="submit"
         className={isEmpty ? styles['disabled-btn'] : styles['active-btn']}
-        onSubmit={onSubmit}
       >
         질문 보내기
       </button>
