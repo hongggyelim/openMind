@@ -3,6 +3,8 @@
   padding: 32px;
   background: #fff;
   border-radius: 16px;
+  border: 1px solid var(#8c8c8c, rgba(207 207 207 1));
+  box-shadow: 0 4px 4px 0 rgba(140, 140, 140, 0.25);
 }
 
 .badge {
@@ -40,6 +42,7 @@
   padding-top: 4px;
   color: #000;
   font-size: 1.125rem;
+  line-height: 22px;
 }
 
 .answer-box {
@@ -68,4 +71,23 @@
   color: #000;
   line-height: 22px;
   word-break: keep-all;
+}
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 768px) {
+  .feed-box {
+    padding: 24px;
+  }
+
+  .question {
+    font-size: 1rem;
+  }
+
+  .user-img {
+    flex: 0 0 32px;
+  }
+
+  .nickname {
+    font-size: 0.875rem;
+  }
 }

@@ -1,5 +1,6 @@
 .btn-reaction {
   display: flex;
+  align-items: center;
   gap: 32px;
   padding-top: 24px;
   margin-top: 32px;
@@ -7,22 +8,27 @@
 }
 
 button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 0;
   background: transparent;
 }
 
 .btn {
-  padding-left: 32px;
   color: var(--grayscale-40);
   font-size: 0.875rem;
 }
 
-.btn.btn-like {
-  background: url('../../assets/icon/ic-thumbs-up.svg') no-repeat left
-    center/16px auto;
+.btn > svg,
+.btn > svg path {
+  fill: var(--grayscale-40);
 }
 
-.btn.btn-dislike {
-  background: url('../../assets/icon/ic-thumbs-down.svg') no-repeat left
-    center/16px auto;
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 768px) {
+  .btn-reaction {
+    padding-top: 24px;
+    margin-top: 24px;
+  }
 }

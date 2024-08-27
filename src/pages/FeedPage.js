@@ -33,6 +33,10 @@ export function FeedPage() {
             <FeedList />
           </div>
         </div>
+        {/* link to 변경 */}
+        <span className={styles['btn-link']}>
+          <a href="/">질문 작성하기</a>
+        </span>
       </div>
     </>
   );
