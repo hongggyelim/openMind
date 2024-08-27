@@ -67,11 +67,22 @@
   line-height: 24px;
 }
 
+.user-date {
+  padding-left: 8px;
+  color: var(--grayscale-40);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
 .contents {
   padding-top: 4px;
   color: #000;
   line-height: 22px;
   word-break: keep-all;
+}
+
+.contents.rejected {
+  color: var(--red);
 }
 
 /* stylelint-disable-next-line media-feature-range-notation */

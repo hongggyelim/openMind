@@ -7,7 +7,7 @@
   border-top: 1px solid var(--grayscale-30);
 }
 
-button {
+.btn-reaction > button {
   display: flex;
   align-items: center;
   gap: 6px;
