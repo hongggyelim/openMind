@@ -1,9 +1,10 @@
 import UserProfileList from '../components/Demo/UserProfileList';
+import { Header } from '../components/Demo/Header';
 
 export function QuestionListPage() {
   return (
     <div className="wrap-inner">
-      짠
+      <Header />
       <UserProfileList />
     </div>
   );
