@@ -2,7 +2,7 @@ import styles from './FeedPage.module.css';
 import { FeedList } from '../../components/FeedList/FeedList';
 //import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
-import { getProfile } from './FeedPageApi';
+import { getQuestion } from '../../api/api';
 import ShareSNS from '../../components/ShareSNS/ShareSNS';
 
 export function FeedPage() {
@@ -11,7 +11,7 @@ export function FeedPage() {
 
   useEffect(() => {
     async function fetchList() {
-      const { results } = await getProfile();
+      const { results } = await getQuestion();
       setFeedList(results);
     }
     fetchList();
