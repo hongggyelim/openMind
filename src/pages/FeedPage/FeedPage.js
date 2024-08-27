@@ -33,6 +33,7 @@ export function FeedPage() {
     const data = content;
     postQuestion(data); //나중에 페이지 주소에서 subject_id 받아와야함
     setContent(INITIAL_VALUE);
+    setModalOpen(!modalOpen);
   };
 
   const handleChangeContent = e => {
@@ -82,9 +83,9 @@ export function FeedPage() {
           </div>
 
           <span className={styles['btn-link']}>
-            <a href="/" onClick={handleClickModal}>
+            <button type="button" onClick={handleClickModal}>
               질문 작성하기
-            </a>
+            </button>
           </span>
 
           {modalOpen && (
