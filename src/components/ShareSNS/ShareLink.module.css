@@ -1,0 +1,9 @@
+.share-link-button {
+  background-color: transparent;
+  padding: 0;
+}
+
+.share-link-img {
+  display: inline-block;
+  vertical-align: top;
+}

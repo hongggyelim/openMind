@@ -1,8 +1,9 @@
-import styles from '../FeedPage/FeedPage.module.css';
-import { FeedList } from '../../components/FeedList/FeedList';
+import styles from './FeedPage.module.css';
+import { FeedList } from '../components/FeedList/FeedList';
 //import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { getProfile } from './FeedPageApi';
+import ShareSNS from '../components/ShareSNS/ShareSNS';
 
 export function FeedPage() {
   // /const { subjectId } = useParams();
@@ -20,6 +21,7 @@ export function FeedPage() {
     <>
       <div className={styles.feed}>
         <div className="wrap-inner2">
+          <ShareSNS />
           <div className={styles['feed-wrap']}>
             <p className={styles['total-count']}>
               <svg

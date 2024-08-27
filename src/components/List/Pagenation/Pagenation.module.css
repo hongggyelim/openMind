@@ -1,7 +1,7 @@
 .btn-box {
   display: flex;
   align-items: center;
-  font-family:;
+  justify-content: center;
 }
 
 .pagenation-btn {

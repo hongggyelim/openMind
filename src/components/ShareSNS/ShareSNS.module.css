@@ -1,0 +1,15 @@
+.shareSNS-container {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.share-button {
+  background-color: transparent;
+  padding: 0;
+}
+
+.share-img {
+  display: inline-block;
+  vertical-align: top;
+}
