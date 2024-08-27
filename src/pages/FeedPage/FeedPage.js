@@ -1,9 +1,9 @@
 import styles from './FeedPage.module.css';
-import { FeedList } from '../components/FeedList/FeedList';
+import { FeedList } from '../../components/FeedList/FeedList';
 //import { useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { getProfile } from './FeedPageApi';
-import ShareSNS from '../components/ShareSNS/ShareSNS';
+import ShareSNS from '../../components/ShareSNS/ShareSNS';
 
 export function FeedPage() {
   // /const { subjectId } = useParams();
