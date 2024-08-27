@@ -16,15 +16,15 @@ export function QuestionForm() {
   };
 
   return (
-    <form className={styles.questionForm}>
-      <label htmlFor="question" className={styles.blind}>
+    <form className={styles['question-form']}>
+      <label htmlFor="question" className={styles['blind']}>
         질문을 작성하세요
       </label>
       <textarea
         id="question"
         name="question"
         type="text"
-        className={styles.questionTextarea}
+        className={styles['question-textarea']}
         placeholder="질문을 입력해주세요"
         onChange={handleChangeContent}
         value={content}
@@ -32,7 +32,7 @@ export function QuestionForm() {
       <button
         disabled={isEmpty}
         type="submit"
-        className={isEmpty ? styles.disabledBtn : styles.activeBtn}
+        className={isEmpty ? styles['disabled-btn'] : styles['active-btn']}
       >
         질문 보내기
       </button>
