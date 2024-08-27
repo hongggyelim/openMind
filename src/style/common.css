@@ -65,7 +65,7 @@ body {
 /* stylelint-disable-next-line media-feature-range-notation */
 @media (max-width: 1200px) {
   .wrap-inner {
-    padding: 0 50px;
+    padding: 0 32px;
   }
 
   .wrap-inner2 {
