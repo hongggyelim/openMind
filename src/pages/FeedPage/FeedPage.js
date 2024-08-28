@@ -15,6 +15,7 @@ export function FeedPage() {
   const [content, setContent] = useState(INITIAL_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
+  const [toast, setToast] = useState(false);
 
   const questionRef = useRef();
 
@@ -49,6 +50,19 @@ export function FeedPage() {
     const nextContent = e.target.value;
     setContent(() => nextContent);
     setIsEmpty(nextContent === '');
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setToast(false);
+    }, 3000);
+    return () => {
+      clearTimeout(timer);
+    };
+  });
+
+  const handleSubmitSuccess = () => {
+    setToast(true);
   };
 
   return (
@@ -104,6 +118,7 @@ export function FeedPage() {
               onClick={handleClickModal}
               onSubmit={handleSubmitQuestion}
               onChange={handleChangeContent}
+              onSubmitSuccess={handleSubmitSuccess}
             />
           )}
         </div>
