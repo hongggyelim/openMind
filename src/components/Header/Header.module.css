@@ -1,3 +1,7 @@
+.header-container {
+  background-color: #fff;
+}
+
 .header {
   display: flex;
   background: url('../../assets/images/main-bnr.png') no-repeat center/ cover;

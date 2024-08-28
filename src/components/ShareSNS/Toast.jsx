@@ -11,7 +11,7 @@ function Toast({ setToast, text }) {
     };
   }, [setToast]);
 
-  return <strong className={styles['toast']}>{text}</strong>;
+  return <strong className={`${styles['toast']}`}>{text}</strong>;
 }
 
 export default Toast;
