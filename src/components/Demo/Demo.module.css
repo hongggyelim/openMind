@@ -1,0 +1,23 @@
+.demoComponent {
+  display: flex;
+  color: #fff;
+  background-color: #0f0f0f;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.demoComponent2 {
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--grayscale-50);
+}
+
+.box-content {
+  display: inline-block;
+  width: 100px;
+  height: 45px;
+  background-color: var(--brown-40);
+  color: #fff;
+  line-height: 45px;
+  font-weight: 400;
+}
