@@ -1,28 +1,7 @@
 import userProfile from '../../assets/images/user-profile.png';
 import styles from '../FeedList/FeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
-
-// utils/timeAgo.js (또는 다른 파일에 생성 필요)
-export function timeAgo(dateString) {
-  const date = new Date(dateString);
-  const now = new Date();
-  const diffInMs = now - date;
-  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-
-  if (diffInDays < 1) {
-    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
-    if (diffInHours < 1) {
-      const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
-      if (diffInMinutes < 1) {
-        return '방금 전';
-      }
-      return `${diffInMinutes}분 전`;
-    }
-    return `${diffInHours}시간 전`;
-  }
-  return `${diffInDays}일 전`;
-}
-
+import { timeAgo } from '../../utils/timeAgo';
 export function FeedList({ item }) {
   const answer = item.answer || '';
   return (
