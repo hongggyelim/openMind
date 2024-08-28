@@ -31,8 +31,6 @@ export function FeedPage() {
   const handleSubmitQuestion = e => {
     const data = content;
     e.preventDefault();
-    //나중에 페이지 URL에서 subject_id 받아오는 함수 필요
-    //   const subjectId = getSubjectIdFromUrl();
     postQuestion(data);
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);

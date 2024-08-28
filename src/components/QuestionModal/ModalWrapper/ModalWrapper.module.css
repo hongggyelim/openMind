@@ -14,7 +14,7 @@
 
 .modal-wrapper {
   background-color: #fff;
-  position: absolute;
+  position: fixed;
   top: 172px;
   bottom: 206px;
   border: 1px solid var(--grayscale-30, rgba(207 207 207 1));
