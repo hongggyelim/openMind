@@ -5,22 +5,81 @@ import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import { getProfile } from '../../../api/api';
 import { useEffect, useState } from 'react';
 
+const getLimit = () => {
+  const width = window.innerWidth;
+  if (width < 1200) {
+    return 6;
+  } else {
+    return 8;
+  }
+};
+
 function UserProfileList() {
   const [profiles, setProfile] = useState([]);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [count, setCount] = useState(); // 전체 데이터 개수
+  const [offset, setOffset] = useState(0);
+  const [totalPage, setTotalPage] = useState();
+  const [limit, setLimit] = useState(getLimit());
+  const [order, setOder] = useState('최신순');
 
-  const getProfileList = async () => {
-    const { results } = await getProfile();
+  const getProfileList = async queryOption => {
+    const { count, results } = await getProfile(queryOption);
+    setCount(count);
     setProfile(results);
-    console.log(results);
+    setTotalPage(Math.ceil(count / limit));
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleNameClick = e => {
+    const sortedName = profiles.sort((a, b) => (a.name > b.name ? 1 : -1));
+    setProfile([...sortedName]);
+    setOder(e.target.textContent);
+    setIsDropdownVisible(false);
+  };
+
+  const handleNewestClick = e => {
+    const sortedNewest = profiles.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+    );
+    setProfile([...sortedNewest]);
+    setOder(e.target.textContent);
+    setIsDropdownVisible(false);
+  };
+
+  const onChange = offsetNum => {
+    setOffset(offsetNum);
   };
 
   useEffect(() => {
-    getProfileList();
-  }, []);
+    getProfileList({ offset, limit });
+
+    const handleResize = () => {
+      setLimit(getLimit());
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.addEventListener('resize', handleResize);
+    }; // eslint-disable-next-line
+  }, [offset, limit]);
+
   return (
     <>
-      <h2 className={styles.title}>누구에게 질문할까요?</h2>
-      <DropdownMenu />
+      <div className={styles['title-box']}>
+        <h2 className={styles.title}>누구에게 질문할까요?</h2>
+        <DropdownMenu
+          dropdown={isDropdownVisible}
+          toggleDropdown={toggleDropdown}
+          handleNewestClick={handleNewestClick}
+          handleNameClick={handleNameClick}
+          order={order}
+        />
+      </div>
       <div className={styles['list-box']}>
         <ul className={styles['profile-card-list']}>
           {profiles.map(profile => (
@@ -39,7 +98,13 @@ function UserProfileList() {
             </li>
           ))}
         </ul>
-        <Pagenation />
+        <Pagenation
+          count={count}
+          offset={offset}
+          totalPage={totalPage}
+          onChange={onChange}
+          limit={limit}
+        />
       </div>
     </>
   );
