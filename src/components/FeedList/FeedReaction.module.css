@@ -25,6 +25,24 @@
   fill: var(--grayscale-40);
 }
 
+.btn.btn-like.active {
+  color: var(--blue);
+}
+
+.btn.btn-like.active > svg,
+.btn.btn-like.active > svg path {
+  fill: var(--blue);
+}
+
+.btn.btn-dislike.active {
+  color: var(--red);
+}
+
+.btn.btn-dislike.active > svg,
+.btn.btn-dislike.active > svg path {
+  fill: var(--red);
+}
+
 /* stylelint-disable-next-line media-feature-range-notation */
 @media (max-width: 768px) {
   .btn-reaction {
