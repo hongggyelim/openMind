@@ -1,0 +1,16 @@
+.empty-box {
+  padding: 35px 0 65px;
+  text-align: center;
+}
+
+.empty-box > img {
+  width: 150px;
+  height: auto;
+}
+
+@media (width <= 768px) {
+  .empty-box > img {
+    width: 114px;
+    height: auto;
+  }
+}

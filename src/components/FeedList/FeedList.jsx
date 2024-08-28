@@ -2,6 +2,7 @@ import userProfile from '../../assets/images/user-profile.png';
 import styles from '../FeedList/FeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
+
 export function FeedList({ item }) {
   const answer = item.answer || '';
   return (

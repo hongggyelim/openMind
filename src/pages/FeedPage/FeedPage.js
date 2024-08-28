@@ -6,7 +6,7 @@ import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { ContentContext } from '../../context/ContentContext';
 import { postQuestion } from '../../api/postQuestion';
 import { getQuestion } from '../../api/api';
-import ShareSNS from '../../components/ShareSNS/ShareSNS';
+import { EmptyFeedList } from '../../components/FeedList/EmptyFeedList';
 import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
@@ -61,7 +61,6 @@ export function FeedPage() {
         <Header />
         <div className={styles.feed}>
           <div className="wrap-inner2">
-            <ShareSNS />
             <div className={styles['feed-wrap']}>
               <p className={styles['total-count']}>
                 <Message fill={'var(--brown-40)'} />
@@ -70,9 +69,7 @@ export function FeedPage() {
                   : `${feedList.length}개의 질문이 있습니다.`}
               </p>
               {feedList.length === 0 ? (
-                <p className={styles['empty-message']}>
-                  질문이 없습니다. 새로운 질문을 작성해보세요!
-                </p>
+                <EmptyFeedList />
               ) : (
                 feedList.map(item => (
                   <div key={item.id}>
