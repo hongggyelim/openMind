@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { forwardRef, useContext } from 'react';
 import styles from './QuestionForm.module.css';
 import { ContentContext } from '../../../context/ContentContext';
 import { IsEmptyContext } from '../../../context/IsEmptyContext';
 
-export function QuestionForm({ onSubmit, onChange }) {
+export const QuestionForm = forwardRef(({ onSubmit, onChange }, ref) => {
   const { content } = useContext(ContentContext);
   const { isEmpty } = useContext(IsEmptyContext);
 
@@ -13,6 +13,7 @@ export function QuestionForm({ onSubmit, onChange }) {
         질문을 작성하세요
       </label>
       <textarea
+        ref={ref}
         id="question"
         name="question"
         type="text"
@@ -30,4 +31,4 @@ export function QuestionForm({ onSubmit, onChange }) {
       </button>
     </form>
   );
-}
+});

@@ -1,7 +1,7 @@
 import styles from './FeedPage.module.css';
 import { FeedList } from '../../components/FeedList/FeedList';
 import { ModalWrapper } from '../../components/QuestionModal/ModalWrapper/ModalWrapper';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { ContentContext } from '../../context/ContentContext';
 import { postQuestion } from '../../api/postQuestion';
@@ -15,6 +15,8 @@ export function FeedPage() {
   const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
 
+  const questionRef = useRef();
+
   useEffect(() => {
     async function fetchList() {
       const { results } = await getQuestion();
@@ -23,9 +25,15 @@ export function FeedPage() {
     fetchList();
   }, []);
 
+  useEffect(() => {
+    if (modalOpen) {
+      questionRef.current.focus();
+    }
+  }, [modalOpen]);
+
   const handleClickModal = () => {
+    setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
-    setContent('');
   };
 
   const handleSubmitQuestion = e => {
@@ -90,6 +98,7 @@ export function FeedPage() {
 
           {modalOpen && (
             <ModalWrapper
+              ref={questionRef}
               onClick={handleClickModal}
               onSubmit={handleSubmitQuestion}
               onChange={handleChangeContent}
