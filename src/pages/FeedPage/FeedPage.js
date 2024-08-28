@@ -36,14 +36,15 @@ export function FeedPage() {
   const handleClickModal = () => {
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
+    setIsEmpty(true);
   };
 
   const handleSubmitQuestion = e => {
-    const data = content;
     e.preventDefault();
-    postQuestion(data);
+    postQuestion(content);
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
+    // setToast;
   };
 
   const handleChangeContent = e => {

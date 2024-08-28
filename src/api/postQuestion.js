@@ -1,10 +1,22 @@
 const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
 
-export function postQuestion(subjectId, data) {
-  fetch(`${BASE_URL}subjects/${subjectId}/questions/`, {
+export function postQuestion(content) {
+  const payload = {
+    subjectId: 7964, // url에서 받아와야함
+    content: content,
+    like: 0,
+    dislike: 0,
+    team: '9-1',
+    answer: {
+      content: '',
+      isRejected: null,
+    },
+  };
+
+  fetch(`${BASE_URL}subjects/7964/questions/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    body: JSON.stringify(payload),
   })
     .then(response => {
       if (!response.ok) {
