@@ -4,7 +4,8 @@
   background: #fff;
   border-radius: 16px;
   border: 1px solid var(#8c8c8c, rgba(207 207 207 1));
-  box-shadow: 0 4px 4px 0 rgba(140, 140, 140, 0.25);
+  /* stylelint-disable-next-line color-function-notation */
+  box-shadow: 0 4px 4px 0 rgba(140, 140, 140, 25%);
 }
 
 .badge {
@@ -66,11 +67,22 @@
   line-height: 24px;
 }
 
+.user-date {
+  padding-left: 8px;
+  color: var(--grayscale-40);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
 .contents {
   padding-top: 4px;
   color: #000;
   line-height: 22px;
   word-break: keep-all;
+}
+
+.contents.rejected {
+  color: var(--red);
 }
 
 /* stylelint-disable-next-line media-feature-range-notation */

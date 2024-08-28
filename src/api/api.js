@@ -6,3 +6,10 @@ export async function getProfile({ offset = 0, limit = 8 }) {
   const data = await response.json();
   return data;
 }
+
+// FeedPage fetch
+export async function getQuestion() {
+  const response = await fetch(`${BASE_URL}subjects/7964/questions/`);
+  const data = await response.json();
+  return data;
+}

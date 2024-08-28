@@ -19,5 +19,5 @@
 -
 
 [참고]
-resolve:#2
+resolve:#
 이슈 넘버를 내용에 입력하면 해당 PR merge 시 연결된 이슈가 자동으로 close됩니다. 
