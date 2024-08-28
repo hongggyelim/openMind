@@ -73,7 +73,7 @@ export function FeedList({ item }) {
             ''
           )}
         </div>
-        <FeedReaction />
+        <FeedReaction like={item.like} dislike={item.dislike} />
       </div>
     </>
   );
