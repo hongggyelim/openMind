@@ -26,16 +26,15 @@ export function FeedPage() {
   const handleClickModal = () => {
     setModalOpen(!modalOpen);
     setContent('');
+    setIsEmpty(true);
   };
 
   const handleSubmitQuestion = e => {
-    const data = content;
     e.preventDefault();
-    //나중에 페이지 URL에서 subject_id 받아오는 함수 필요
-    //   const subjectId = getSubjectIdFromUrl();
-    postQuestion(data);
+    postQuestion(content);
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
+    // setToast;
   };
 
   const handleChangeContent = e => {
