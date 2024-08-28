@@ -83,3 +83,16 @@
   line-height: 22px;
   margin-bottom: 12px;
 }
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 768px) {
+  .modal-wrapper {
+    background-color: #fff;
+    position: fixed;
+    top: 122px;
+    bottom: 122px;
+    width: 327px;
+    height: 568px;
+    padding: 24px;
+  }
+}
