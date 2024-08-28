@@ -9,6 +9,7 @@ import { getQuestion } from '../../api/api';
 import ShareSNS from '../../components/ShareSNS/ShareSNS';
 import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
+import InfiniteScroll from '../../components/InfiniteScroll/InfiniteScroll';
 
 export function FeedPage() {
   const INITIAL_VALUE = '';
@@ -17,16 +18,21 @@ export function FeedPage() {
   const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
   const [toast, setToast] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(false);
 
   const questionRef = useRef();
+  const limit = 8;
 
   useEffect(() => {
     async function fetchList() {
-      const { results } = await getQuestion();
-      setFeedList(results);
+      const { results, next } = await getQuestion({ offset, limit });
+      setFeedList(prev => [...prev, ...results]);
+      setHasMore(next !== null);
     }
+
     fetchList();
-  }, []);
+  }, [offset]);
 
   useEffect(() => {
     if (modalOpen) {
@@ -111,6 +117,10 @@ export function FeedPage() {
           )}
 
           {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}
+          <InfiniteScroll
+            loadMore={() => setOffset(prevOffset => prevOffset + limit)}
+            hasMore={hasMore}
+          />
         </div>
       </IsEmptyContext.Provider>
     </ContentContext.Provider>
