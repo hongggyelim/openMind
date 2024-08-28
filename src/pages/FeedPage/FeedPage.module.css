@@ -1,3 +1,7 @@
+.feed {
+  margin-top: 95px;
+}
+
 .feed-wrap {
   margin-top: 54px;
   padding: 16px;
@@ -36,8 +40,16 @@
   line-height: 54px;
 }
 
+.share-sns {
+  z-index: 1;
+}
+
 /* stylelint-disable-next-line media-feature-range-notation */
 @media (max-width: 768px) {
+  .feed {
+    margin-top: 82px;
+  }
+
   .total-count {
     font-size: 1.125rem;
   }

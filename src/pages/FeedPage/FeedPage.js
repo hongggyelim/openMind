@@ -7,6 +7,7 @@ import { ContentContext } from '../../context/ContentContext';
 import { postQuestion } from '../../api/postQuestion';
 import { getQuestion } from '../../api/api';
 import ShareSNS from '../../components/ShareSNS/ShareSNS';
+import Header from '../../components/Header/Header';
 
 export function FeedPage() {
   const INITIAL_VALUE = '';
@@ -47,6 +48,7 @@ export function FeedPage() {
   return (
     <ContentContext.Provider value={{ content, setContent }}>
       <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
+        <Header />
         <div className={styles.feed}>
           <div className="wrap-inner2">
             <ShareSNS />
