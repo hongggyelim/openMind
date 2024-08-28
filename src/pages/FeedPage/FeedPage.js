@@ -8,6 +8,7 @@ import { postQuestion } from '../../api/postQuestion';
 import { getQuestion } from '../../api/api';
 import ShareSNS from '../../components/ShareSNS/ShareSNS';
 import Header from '../../components/Header/Header';
+import Toast from '../../components/ShareSNS/Toast';
 
 export function FeedPage() {
   const INITIAL_VALUE = '';
@@ -44,26 +45,13 @@ export function FeedPage() {
     postQuestion(content);
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
-    // setToast;
+    setToast(true);
   };
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;
     setContent(() => nextContent);
     setIsEmpty(nextContent === '');
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setToast(false);
-    }, 3000);
-    return () => {
-      clearTimeout(timer);
-    };
-  });
-
-  const handleSubmitSuccess = () => {
-    setToast(true);
   };
 
   return (
@@ -119,9 +107,10 @@ export function FeedPage() {
               onClick={handleClickModal}
               onSubmit={handleSubmitQuestion}
               onChange={handleChangeContent}
-              onSubmitSuccess={handleSubmitSuccess}
             />
           )}
+
+          {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}
         </div>
       </IsEmptyContext.Provider>
     </ContentContext.Provider>
