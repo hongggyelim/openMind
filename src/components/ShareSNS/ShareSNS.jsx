@@ -100,8 +100,8 @@ function ShareSNS() {
   return (
     <div className={styles['shareSNS-container']}>
       <ShareLink />
-      <ShareButton onClick={shareFacebook} src={facebook} alt={'페이스북'} />
       <ShareButton onClick={shareKakao} src={kakao} alt={'카카오'} />
+      <ShareButton onClick={shareFacebook} src={facebook} alt={'페이스북'} />
     </div>
   );
 }
