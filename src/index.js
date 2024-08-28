@@ -6,7 +6,6 @@ import { FeedPage } from './pages/FeedPage/FeedPage';
 import { AnswerPage } from './pages/AnswerPage';
 import './style/reset.css';
 import './style/common.css';
-import { TestPage } from './pages/modalTestPage/TestPage';
 
 function MainRouter() {
   return (
@@ -16,7 +15,6 @@ function MainRouter() {
         <Route path="/list" element={<QuestionListPage />} />
         <Route path="/post/:id/answer" element={<AnswerPage />} />
         <Route path="/post/:sujectId" element={<FeedPage />} />
-        <Route path="/test" element={<TestPage />} />
       </Routes>
     </BrowserRouter>
   );

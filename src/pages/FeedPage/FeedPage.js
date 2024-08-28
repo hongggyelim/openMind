@@ -1,13 +1,14 @@
 import styles from './FeedPage.module.css';
 import { FeedList } from '../../components/FeedList/FeedList';
 import { ModalWrapper } from '../../components/QuestionModal/ModalWrapper/ModalWrapper';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { ContentContext } from '../../context/ContentContext';
 import { postQuestion } from '../../api/postQuestion';
 import { getQuestion } from '../../api/api';
 import ShareSNS from '../../components/ShareSNS/ShareSNS';
 import Header from '../../components/Header/Header';
+import Toast from '../../components/ShareSNS/Toast';
 
 export function FeedPage() {
   const INITIAL_VALUE = '';
@@ -15,6 +16,9 @@ export function FeedPage() {
   const [content, setContent] = useState(INITIAL_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
+  const [toast, setToast] = useState(false);
+
+  const questionRef = useRef();
 
   useEffect(() => {
     async function fetchList() {
@@ -24,19 +28,24 @@ export function FeedPage() {
     fetchList();
   }, []);
 
+  useEffect(() => {
+    if (modalOpen) {
+      questionRef.current.focus();
+    }
+  }, [modalOpen]);
+
   const handleClickModal = () => {
+    setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
-    setContent('');
+    setIsEmpty(true);
   };
 
   const handleSubmitQuestion = e => {
-    const data = content;
     e.preventDefault();
-    //나중에 페이지 URL에서 subject_id 받아오는 함수 필요
-    //   const subjectId = getSubjectIdFromUrl();
-    postQuestion(data);
+    postQuestion(content);
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
+    setToast(true);
   };
 
   const handleChangeContent = e => {
@@ -94,11 +103,14 @@ export function FeedPage() {
 
           {modalOpen && (
             <ModalWrapper
+              ref={questionRef}
               onClick={handleClickModal}
               onSubmit={handleSubmitQuestion}
               onChange={handleChangeContent}
             />
           )}
+
+          {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}
         </div>
       </IsEmptyContext.Provider>
     </ContentContext.Provider>

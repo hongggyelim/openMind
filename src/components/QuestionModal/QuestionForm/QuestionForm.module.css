@@ -50,3 +50,11 @@
   clip: rect(0, 0, 0, 0);
   clip-path: inset(50%);
 }
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (width <= 768px) {
+  .question-textarea {
+    height: 358px;
+    padding: 16px;
+  }
+}
