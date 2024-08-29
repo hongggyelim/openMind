@@ -1,21 +1,31 @@
+import { postReaction } from '../../api/post';
 import styles from '../FeedList/FeedReaction.module.css';
 import { useState } from 'react';
 
-export function FeedReaction({ like }) {
-  const [count, setCount] = useState(like);
+export function FeedReaction({ like, dislike }) {
+  const [countLike, setCountLike] = useState(like);
+  const [countDislike, setCountDislike] = useState(dislike);
   const [activeButton, setActiveButton] = useState(null);
 
+  // 낙관적 업데이트 유지 & 서버에 해당하는 question ID 에 like, dislike 추가 (POST)
   const onClickLike = () => {
     if (activeButton === 'like') {
-      setCount(prevCount => prevCount + 1);
+      return;
     } else {
       setActiveButton('like');
-      setCount(prevCount => prevCount + 1);
+      setCountLike(prevCount => prevCount + 1);
+      postReaction('like');
     }
   };
 
   const onClickDislike = () => {
-    setActiveButton('dislike');
+    if (activeButton === 'dislike') {
+      return;
+    } else {
+      setActiveButton('dislike');
+      setCountDislike(prevCount => prevCount + 1);
+      postReaction('dislike');
+    }
   };
 
   return (
@@ -39,7 +49,7 @@ export function FeedReaction({ like }) {
             fill="black"
           />
         </svg>
-        좋아요 {activeButton === 'like' && count}
+        좋아요 {countLike !== 0 && countLike}
       </button>
       <button
         type="button"
@@ -60,7 +70,7 @@ export function FeedReaction({ like }) {
             fill="black"
           />
         </svg>
-        싫어요
+        싫어요 {countDislike !== 0 && countDislike}
       </button>
     </div>
   );
