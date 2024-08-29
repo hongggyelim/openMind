@@ -5,6 +5,7 @@ export function FeedReaction({ like }) {
   const [count, setCount] = useState(like);
   const [activeButton, setActiveButton] = useState(null);
 
+  // 낙관적 업데이트 유지 & 서버에 해당하는 question ID 에 like, dislike 정보 업데이트하기 (PATCH)
   const onClickLike = () => {
     if (activeButton === 'like') {
       setCount(prevCount => prevCount + 1);
@@ -39,7 +40,7 @@ export function FeedReaction({ like }) {
             fill="black"
           />
         </svg>
-        좋아요 {activeButton === 'like' && count}
+        좋아요 {count !== 0 && count}
       </button>
       <button
         type="button"
