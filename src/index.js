@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { MainPage } from './pages/MainPage';
+import MainPage from './pages/MainPage';
 import { QuestionListPage } from './pages/QuestionListPage';
 import { FeedPage } from './pages/FeedPage';
 import { AnswerPage } from './pages/AnswerPage';
