@@ -10,8 +10,12 @@ import { EmptyFeedList } from '../../components/FeedList/EmptyFeedList';
 import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
+import { useParams } from 'react-router';
+import { useLocation } from 'react-router';
 
 export function FeedPage() {
+  const { subjectId } = useParams();
+
   const INITIAL_VALUE = '';
   const [modalOpen, setModalOpen] = useState(false);
   const [content, setContent] = useState(INITIAL_VALUE);
@@ -28,6 +32,10 @@ export function FeedPage() {
   const observer = useRef();
   const limit = 8;
 
+  //useLocation hook
+  const location = useLocation();
+  const { imageSource, name } = location.state || {};
+
   useEffect(() => {
     async function fetchList() {
       if (isLoading) return;
@@ -35,6 +43,7 @@ export function FeedPage() {
       setIsLoading(true);
       try {
         const { results, next, count } = await getQuestion({
+          subjectId,
           offset,
           limit,
         });
@@ -48,7 +57,7 @@ export function FeedPage() {
       }
     }
     fetchList();
-  }, [offset]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [offset, subjectId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //무한스크롤
   useEffect(() => {
@@ -100,7 +109,7 @@ export function FeedPage() {
   return (
     <ContentContext.Provider value={{ content, setContent }}>
       <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
-        <Header />
+        <Header userImg={imageSource} userName={name} />
         <div className={styles.feed}>
           <div className="wrap-inner2">
             <div className={styles['feed-wrap']}>

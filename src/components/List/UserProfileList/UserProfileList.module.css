@@ -33,6 +33,15 @@
   padding: 20px;
 }
 
+.profile-card a,
+.profile-card a:hover,
+.profile-card a:active,
+.profile-card a:focus {
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+}
+
 .question-box {
   margin-top: 28px;
   display: flex;

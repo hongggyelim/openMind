@@ -13,6 +13,7 @@ function ShareButton({ src, alt, onClick }) {
         alt={alt}
         width={40}
         height={40}
+        type="button"
       />
     </button>
   );

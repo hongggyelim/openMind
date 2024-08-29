@@ -1,3 +1,7 @@
+.feed {
+  margin-top: 190px;
+}
+
 .feed-wrap {
   padding: 16px;
   background: var(--brown-10);
@@ -43,7 +47,7 @@
 
 @media (width <= 768px) {
   .feed {
-    margin-top: 82px;
+    margin-top: 175px;
   }
 
   .total-count {
