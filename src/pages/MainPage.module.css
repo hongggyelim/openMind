@@ -177,4 +177,9 @@
     width: 100%;
     font-size: 16px;
   }
+
+  .container {
+    background: url('../assets/images/background.png') no-repeat center bottom;
+    background-size: 456px auto; /* 모바일 배경 사이즈 */
+  }
 }

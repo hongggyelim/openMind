@@ -15,7 +15,6 @@ export default function MainPage() {
     <div className={styles.container}>
       <img src={logo} alt="Logo" className={styles.logo} />
 
-      {/* AskForm 컴포넌트를 메인 페이지에 포함 */}
       <AskForm />
 
       <button
