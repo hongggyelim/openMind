@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 const userId = window.localStorage.getItem('id');
 
-console.log(userId);
-
 export function AnswerLinkButton({ children }) {
   return (
     <Link
