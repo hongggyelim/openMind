@@ -2,6 +2,7 @@ import styles from './Header.module.css';
 import logo from '../../assets/images/logo.svg';
 import userProfile from '../../assets/images/user-profile.png';
 import { Link } from 'react-router-dom';
+import ShareSNS from '../ShareSNS/ShareSNS';
 
 //유저 데이터 가져오기전까지 고정 데이터로 대체
 function Header() {
@@ -20,6 +21,7 @@ function Header() {
             alt="유저프로필"
           />
           <strong className={styles['user-nickname']}>아초는고양이</strong>
+          <ShareSNS />
         </div>
       </div>
     </div>
