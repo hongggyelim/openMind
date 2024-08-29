@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
 import { FeedList } from '../components/FeedList/FeedList';
 import Header from '../components/Header/Header';
@@ -6,18 +6,17 @@ import { ContentContext } from '../context/ContentContext';
 import { IsEmptyContext } from '../context/IsEmptyContext';
 import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
-import { postQuestion } from '../api/post';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 
 export function AnswerPage() {
   const INITIAL_VALUE = '';
-  const [modalOpen, setModalOpen] = useState(false);
   const [content, setContent] = useState(INITIAL_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
-  const [toast, setToast] = useState(false);
 
-  const questionRef = useRef();
+  const handleClickDelete = () => {
+    //
+  };
 
   useEffect(() => {
     async function fetchList() {
@@ -27,32 +26,6 @@ export function AnswerPage() {
     fetchList();
   }, []);
 
-  useEffect(() => {
-    if (modalOpen) {
-      questionRef.current.focus();
-    }
-  }, [modalOpen]);
-
-  const handleClickModal = () => {
-    setContent(INITIAL_VALUE);
-    setModalOpen(!modalOpen);
-    setIsEmpty(true);
-  };
-
-  const handleSubmitQuestion = e => {
-    e.preventDefault();
-    postQuestion(content);
-    setContent(INITIAL_VALUE);
-    setModalOpen(!modalOpen);
-    setToast(true);
-  };
-
-  const handleChangeContent = e => {
-    const nextContent = e.target.value;
-    setContent(() => nextContent);
-    setIsEmpty(nextContent === '');
-  };
-
   return (
     <ContentContext.Provider value={{ content, setContent }}>
       <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
@@ -60,7 +33,7 @@ export function AnswerPage() {
         <div className={styles.feed}>
           <div className="wrap-inner2">
             <div className={styles['btn-link']}>
-              <button type="button" onClick={handleClickModal}>
+              <button type="button" onClick={handleClickDelete}>
                 삭제하기
               </button>
             </div>
