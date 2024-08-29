@@ -23,7 +23,6 @@ function UserProfileList() {
   const [totalPage, setTotalPage] = useState();
   const [limit, setLimit] = useState(getLimit());
   const [order, setOder] = useState('최신순');
-
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);
   };
@@ -84,7 +83,13 @@ function UserProfileList() {
         <ul className={styles['profile-card-list']}>
           {profiles.map(profile => (
             <li key={profile.id} className={styles['profile-card']}>
-              <Link to={`/post/${profile.id}`} state={profile.name}>
+              <Link
+                to={`/post/${profile.id}`}
+                state={{
+                  imageSource: profile.imageSource,
+                  name: profile.name,
+                }}
+              >
                 <UserProfile
                   src={profile.imageSource}
                   alt={profile.name}

@@ -1,11 +1,10 @@
 import styles from './Header.module.css';
 import logo from '../../assets/images/logo.svg';
-import userProfile from '../../assets/images/user-profile.png';
 import { Link } from 'react-router-dom';
 import ShareSNS from '../ShareSNS/ShareSNS';
 
 //유저 데이터 가져오기전까지 고정 데이터로 대체
-function Header({ userName }) {
+function Header({ userImg, userName }) {
   return (
     <div className={styles['header-container']}>
       <div className={styles['header']}>
@@ -15,10 +14,10 @@ function Header({ userName }) {
           </Link>
           <img
             className={styles['user-profile']}
-            src={userProfile}
+            src={userImg}
             width={136}
             height={136}
-            alt="유저프로필"
+            alt={`${userName} 프로필`}
           />
           <strong className={styles['user-nickname']}>{userName}</strong>
           <ShareSNS />
