@@ -14,7 +14,7 @@ function MainRouter() {
         <Route path="/" element={<MainPage />} />
         <Route path="/list" element={<QuestionListPage />} />
         <Route path="/post/:id/answer" element={<AnswerPage />} />
-        <Route path="/post/:sujectId" element={<FeedPage />} />
+        <Route path="/post/:subjectId" element={<FeedPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -20,12 +20,14 @@ function Pagenation({ offset, totalPage, onChange, limit }) {
   return (
     <div className={styles['btn-box']}>
       <button
+        type="button"
         disabled={offsetPage === 1}
         className={`${styles['pagenation-btn']} ${styles['left-arrow']}`}
         onClick={() => onChange(offset - limit)}
       ></button>
       {pageArr.map(page => (
         <button
+          type="button"
           key={page}
           className={`${styles['pagenation-btn']} ${offsetPage === page ? styles['selected'] : styles['']}`}
           onClick={() => onChange((page - 1) * limit)}
@@ -34,6 +36,7 @@ function Pagenation({ offset, totalPage, onChange, limit }) {
         </button>
       ))}
       <button
+        type="button"
         disabled={offsetPage === totalPage}
         className={`${styles['pagenation-btn']} ${styles['right-arrow']}`}
         onClick={() => onChange(offset + limit)}
