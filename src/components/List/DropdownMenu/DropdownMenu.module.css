@@ -9,9 +9,13 @@
 }
 
 .order-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #000;
+  width: 80px;
   font-size: 14px;
   line-height: 18px;
-  border: 1px solid #000;
   border-radius: 8px;
   padding: 8px 12px;
   margin-bottom: 30px;
@@ -19,6 +23,7 @@
 }
 
 .order-btn .icon {
+  display: inline-block;
   width: 14px;
   height: 14px;
   background-image: url('../../../assets/icon/ic-arrow-up.png');

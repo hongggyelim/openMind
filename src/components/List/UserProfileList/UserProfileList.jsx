@@ -4,6 +4,7 @@ import UserProfile from '../UserProfile/UserProfile';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import { getProfile } from '../../../api/api';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const getLimit = () => {
   const width = window.innerWidth;
@@ -22,13 +23,6 @@ function UserProfileList() {
   const [totalPage, setTotalPage] = useState();
   const [limit, setLimit] = useState(getLimit());
   const [order, setOder] = useState('최신순');
-
-  const getProfileList = async queryOption => {
-    const { count, results } = await getProfile(queryOption);
-    setCount(count);
-    setProfile(results);
-    setTotalPage(Math.ceil(count / limit));
-  };
 
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);
@@ -55,6 +49,12 @@ function UserProfileList() {
   };
 
   useEffect(() => {
+    const getProfileList = async queryOption => {
+      const { count, results } = await getProfile(queryOption);
+      setCount(count);
+      setProfile(results);
+      setTotalPage(Math.ceil(count / limit));
+    };
     getProfileList({ offset, limit });
 
     const handleResize = () => {
@@ -65,7 +65,7 @@ function UserProfileList() {
 
     return () => {
       window.addEventListener('resize', handleResize);
-    }; // eslint-disable-next-line
+    };
   }, [offset, limit]);
 
   return (
@@ -84,17 +84,19 @@ function UserProfileList() {
         <ul className={styles['profile-card-list']}>
           {profiles.map(profile => (
             <li key={profile.id} className={styles['profile-card']}>
-              <UserProfile
-                src={profile.imageSource}
-                alt={profile.name}
-                name={profile.name}
-              />
-              <div className={styles['question-box']}>
-                <div>
-                  <span className={styles['msg-text']}>받은 질문</span>
+              <Link to="/post/:id/answer">
+                <UserProfile
+                  src={profile.imageSource}
+                  alt={profile.name}
+                  name={profile.name}
+                />
+                <div className={styles['question-box']}>
+                  <div>
+                    <span className={styles['msg-text']}>받은 질문</span>
+                  </div>
+                  <span>{profile.questionCount}개</span>
                 </div>
-                <span>{profile.questionCount}개</span>
-              </div>
+              </Link>
             </li>
           ))}
         </ul>
