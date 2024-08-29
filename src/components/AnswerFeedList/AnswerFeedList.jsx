@@ -4,7 +4,7 @@ import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
 import { QuestionForm } from '../QuestionModal/QuestionForm/QuestionForm';
 
-export function AnswerFeedList({ item }) {
+export function AnswerFeedList({ id, item }) {
   const answer = item.answer || '';
   return (
     <>
@@ -72,7 +72,7 @@ export function AnswerFeedList({ item }) {
             </div>
           )}
         </div>
-        <FeedReaction like={item.like} dislike={item.dislike} />
+        <FeedReaction id={id} like={item.like} dislike={item.dislike} />
       </div>
     </>
   );

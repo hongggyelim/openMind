@@ -10,16 +10,12 @@ import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
 import { useParams } from 'react-router';
 
 export function AnswerPage() {
-  const { id } = useParams();
-
   const INITIAL_VALUE = '';
   const [content, setContent] = useState(INITIAL_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
 
-  const handleClickDelete = () => {
-    //
-  };
+  const { id } = useParams(); // subject id
 
   useEffect(() => {
     async function fetchList() {
@@ -36,9 +32,7 @@ export function AnswerPage() {
         <div className={styles.feed}>
           <div className="wrap-inner2">
             <div className={styles['btn-link']}>
-              <button type="button" onClick={handleClickDelete}>
-                삭제하기
-              </button>
+              <button type="button">삭제하기</button>
             </div>
             <div className={styles['feed-wrap']}>
               <p className={styles['total-count']}>
@@ -52,7 +46,7 @@ export function AnswerPage() {
               ) : (
                 feedList.map(item => (
                   <div key={item.id}>
-                    <AnswerFeedList item={item} />
+                    <AnswerFeedList id={item.id} item={item} />
                   </div>
                 ))
               )}
