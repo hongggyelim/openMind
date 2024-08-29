@@ -66,6 +66,7 @@ export function AnswerFeedList({ item }) {
                 <QuestionForm
                   className={styles['answerForm']}
                   placeholder="답변을 입력해주세요"
+                  btnText="답변 완료"
                 />
               </div>
             </div>

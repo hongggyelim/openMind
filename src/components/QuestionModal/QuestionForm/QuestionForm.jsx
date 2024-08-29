@@ -4,7 +4,7 @@ import { ContentContext } from '../../../context/ContentContext';
 import { IsEmptyContext } from '../../../context/IsEmptyContext';
 
 export const QuestionForm = forwardRef(
-  ({ onSubmit, onChange, placeholder }, ref) => {
+  ({ onSubmit, onChange, placeholder, btnText }, ref) => {
     const { content } = useContext(ContentContext);
     const { isEmpty } = useContext(IsEmptyContext);
 
@@ -28,7 +28,7 @@ export const QuestionForm = forwardRef(
           type="submit"
           className={isEmpty ? styles['disabled-btn'] : styles['active-btn']}
         >
-          질문 보내기
+          {btnText}
         </button>
       </form>
     );
