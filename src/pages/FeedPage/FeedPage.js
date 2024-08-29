@@ -13,16 +13,14 @@ import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 import { useParams } from 'react-router';
 
 export function FeedPage() {
-  const { subjectId } = useParams();
-
   const INITIAL_VALUE = '';
   const [modalOpen, setModalOpen] = useState(false);
   const [content, setContent] = useState(INITIAL_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
   const [toast, setToast] = useState(false);
-
   const questionRef = useRef();
+  const { subjectId } = useParams();
 
   useEffect(() => {
     async function fetchList() {

@@ -9,6 +9,7 @@
 }
 
 .order-btn {
+  min-width: 79px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -17,7 +18,7 @@
   font-size: 14px;
   line-height: 18px;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 8px 11px;
   margin-bottom: 30px;
   background-color: #fff;
 }

@@ -15,3 +15,5 @@ export async function getQuestion(subjectId) {
   const data = await response.json();
   return data;
 }
+
+// Answer fetch
