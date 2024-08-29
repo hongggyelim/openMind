@@ -10,8 +10,11 @@ import { EmptyFeedList } from '../../components/FeedList/EmptyFeedList';
 import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
+import { useParams } from 'react-router';
 
 export function FeedPage() {
+  const { subjectId } = useParams();
+
   const INITIAL_VALUE = '';
   const [modalOpen, setModalOpen] = useState(false);
   const [content, setContent] = useState(INITIAL_VALUE);
@@ -23,11 +26,11 @@ export function FeedPage() {
 
   useEffect(() => {
     async function fetchList() {
-      const { results } = await getQuestion();
+      const { results } = await getQuestion(subjectId);
       setFeedList(results);
     }
     fetchList();
-  }, []);
+  }, [subjectId]);
 
   useEffect(() => {
     if (modalOpen) {
