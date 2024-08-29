@@ -10,8 +10,7 @@ export function FeedReaction({ like, dislike }) {
   // 낙관적 업데이트 유지 & 서버에 해당하는 question ID 에 like, dislike 추가 (POST)
   const onClickLike = () => {
     if (activeButton === 'like') {
-      setCountLike(prevCount => prevCount + 1);
-      postReaction('like');
+      return;
     } else {
       setActiveButton('like');
       setCountLike(prevCount => prevCount + 1);
@@ -21,8 +20,7 @@ export function FeedReaction({ like, dislike }) {
 
   const onClickDislike = () => {
     if (activeButton === 'dislike') {
-      setCountDislike(prevCount => prevCount + 1);
-      postReaction('dislike');
+      return;
     } else {
       setActiveButton('dislike');
       setCountDislike(prevCount => prevCount + 1);
