@@ -4,12 +4,11 @@ import { ModalWrapper } from '../../components/QuestionModal/ModalWrapper/ModalW
 import { useEffect, useRef, useState } from 'react';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { ContentContext } from '../../context/ContentContext';
-import { postQuestion } from '../../api/postQuestion';
+import { postQuestion } from '../../api/post';
 import { getQuestion } from '../../api/api';
 import { EmptyFeedList } from '../../components/FeedList/EmptyFeedList';
 import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
-import InfiniteScroll from '../../components/InfiniteScroll/InfiniteScroll';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 
 export function FeedPage() {
@@ -20,20 +19,57 @@ export function FeedPage() {
   const [feedList, setFeedList] = useState([]);
   const [toast, setToast] = useState(false);
   const [offset, setOffset] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [totalCount, setTotalCount] = useState(0);
 
   const questionRef = useRef();
+  const lastElementRef = useRef(null);
+  const observer = useRef();
   const limit = 8;
 
   useEffect(() => {
     async function fetchList() {
-      const { results, next } = await getQuestion({ offset, limit });
-      setFeedList(prev => [...prev, ...results]);
-      setHasMore(next !== null);
+      if (isLoading) return;
+
+      setIsLoading(true);
+      try {
+        const { results, next, count } = await getQuestion({
+          offset,
+          limit,
+        });
+        setFeedList(prev => [...prev, ...results]);
+        setHasMore(next !== null);
+        setTotalCount(count);
+      } catch (error) {
+        console.error('Error fetching questions:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchList();
+  }, [offset]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  //무한스크롤
+  useEffect(() => {
+    if (isLoading) return;
+
+    if (observer.current) observer.current.disconnect();
+
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setOffset(prevOffset => prevOffset + limit);
+      }
+    });
+
+    if (lastElementRef.current) {
+      observer.current.observe(lastElementRef.current);
     }
 
-    fetchList();
-  }, [offset]);
+    return () => {
+      if (observer.current) observer.current.disconnect();
+    };
+  }, [isLoading, hasMore]);
 
   useEffect(() => {
     if (modalOpen) {
@@ -70,15 +106,18 @@ export function FeedPage() {
             <div className={styles['feed-wrap']}>
               <p className={styles['total-count']}>
                 <Message fill={'var(--brown-40)'} />
-                {feedList.length === 0
+                {totalCount === 0
                   ? '아직 질문이 없습니다'
-                  : `${feedList.length}개의 질문이 있습니다.`}
+                  : `${totalCount}개의 질문이 있습니다.`}
               </p>
               {feedList.length === 0 ? (
                 <EmptyFeedList />
               ) : (
-                feedList.map(item => (
-                  <div key={item.id}>
+                feedList.map((item, index) => (
+                  <div
+                    key={item.id}
+                    ref={index === feedList.length - 1 ? lastElementRef : null}
+                  >
                     <FeedList item={item} />
                   </div>
                 ))
@@ -99,10 +138,6 @@ export function FeedPage() {
             />
           )}
           {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}
-          <InfiniteScroll
-            loadMore={() => setOffset(prevOffset => prevOffset + limit)}
-            hasMore={hasMore}
-          />
         </div>
       </IsEmptyContext.Provider>
     </ContentContext.Provider>
