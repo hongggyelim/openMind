@@ -76,7 +76,7 @@ export function FeedPage() {
               ) : (
                 feedList.map(item => (
                   <div key={item.id}>
-                    <FeedList item={item} />
+                    <FeedList id={item.id} item={item} />
                   </div>
                 ))
               )}
