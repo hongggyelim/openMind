@@ -4,7 +4,7 @@ import { ModalWrapper } from '../../components/QuestionModal/ModalWrapper/ModalW
 import { useEffect, useRef, useState } from 'react';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { ContentContext } from '../../context/ContentContext';
-import { postQuestion } from '../../api/postQuestion';
+import { postQuestion } from '../../api/post';
 import { getQuestion } from '../../api/api';
 import { EmptyFeedList } from '../../components/FeedList/EmptyFeedList';
 import Header from '../../components/Header/Header';
