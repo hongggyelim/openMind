@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
-import { FeedList } from '../components/FeedList/FeedList';
 import Header from '../components/Header/Header';
 import { ContentContext } from '../context/ContentContext';
 import { IsEmptyContext } from '../context/IsEmptyContext';
 import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
+import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
 
 export function AnswerPage() {
   const INITIAL_VALUE = '';
@@ -49,7 +49,7 @@ export function AnswerPage() {
               ) : (
                 feedList.map(item => (
                   <div key={item.id}>
-                    <FeedList item={item} />
+                    <AnswerFeedList item={item} />
                   </div>
                 ))
               )}

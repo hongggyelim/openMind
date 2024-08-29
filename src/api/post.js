@@ -14,7 +14,7 @@ export function postQuestion(content) {
     },
   };
 
-  fetch(`${BASE_URL}subjects/7964/questions/`, {
+  fetch(`${BASE_URL}subjects/8054/questions/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),

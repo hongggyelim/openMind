@@ -90,6 +90,7 @@ export function FeedPage() {
               onClick={handleClickModal}
               onSubmit={handleSubmitQuestion}
               onChange={handleChangeContent}
+              placehorder="질문을 입력해주세요"
             />
           )}
           {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}
