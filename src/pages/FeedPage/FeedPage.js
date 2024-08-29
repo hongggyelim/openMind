@@ -11,6 +11,7 @@ import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 import { useParams } from 'react-router';
+import { useLocation } from 'react-router';
 
 export function FeedPage() {
   const { subjectId } = useParams();
@@ -23,6 +24,9 @@ export function FeedPage() {
   const [toast, setToast] = useState(false);
 
   const questionRef = useRef();
+
+  const location = useLocation();
+  const userName = location.state;
 
   useEffect(() => {
     async function fetchList() {
@@ -61,7 +65,7 @@ export function FeedPage() {
   return (
     <ContentContext.Provider value={{ content, setContent }}>
       <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
-        <Header />
+        <Header userName={userName} />
         <div className={styles.feed}>
           <div className="wrap-inner2">
             <div className={styles['feed-wrap']}>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import ShareSNS from '../ShareSNS/ShareSNS';
 
 //유저 데이터 가져오기전까지 고정 데이터로 대체
-function Header() {
+function Header({ userName }) {
   return (
     <div className={styles['header-container']}>
       <div className={styles['header']}>
@@ -20,7 +20,7 @@ function Header() {
             height={136}
             alt="유저프로필"
           />
-          <strong className={styles['user-nickname']}>아초는고양이</strong>
+          <strong className={styles['user-nickname']}>{userName}</strong>
           <ShareSNS />
         </div>
       </div>

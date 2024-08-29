@@ -84,7 +84,7 @@ function UserProfileList() {
         <ul className={styles['profile-card-list']}>
           {profiles.map(profile => (
             <li key={profile.id} className={styles['profile-card']}>
-              <Link to={`/post/${profile.id}`}>
+              <Link to={`/post/${profile.id}`} state={profile.name}>
                 <UserProfile
                   src={profile.imageSource}
                   alt={profile.name}
