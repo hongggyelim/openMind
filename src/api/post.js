@@ -1,9 +1,9 @@
 const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
 
 // 질문 등록하기
-export function postQuestion(content) {
+export function postQuestion(subjectId, content) {
   const payload = {
-    subjectId: 7964, // url에서 받아와야함
+    subjectId: subjectId, // url에서 받아와야함
     content: content,
     like: 0,
     dislike: 0,
@@ -14,7 +14,7 @@ export function postQuestion(content) {
     },
   };
 
-  fetch(`${BASE_URL}subjects/8054/questions/`, {
+  fetch(`${BASE_URL}subjects/${subjectId}/questions/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),

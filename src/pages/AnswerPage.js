@@ -7,8 +7,11 @@ import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
+import { useParams } from 'react-router';
 
 export function AnswerPage() {
+  const { id } = useParams();
+
   const INITIAL_VALUE = '';
   const [content, setContent] = useState(INITIAL_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -20,11 +23,11 @@ export function AnswerPage() {
 
   useEffect(() => {
     async function fetchList() {
-      const { results } = await getQuestion();
+      const { results } = await getQuestion(id);
       setFeedList(results);
     }
     fetchList();
-  }, []);
+  }, [id]);
 
   return (
     <ContentContext.Provider value={{ content, setContent }}>

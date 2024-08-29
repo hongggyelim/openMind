@@ -46,7 +46,7 @@ export function FeedPage() {
 
   const handleSubmitQuestion = e => {
     e.preventDefault();
-    postQuestion(content);
+    postQuestion(subjectId, content);
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
     setToast(true);
