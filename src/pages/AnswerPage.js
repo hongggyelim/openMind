@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
 import { FeedList } from '../components/FeedList/FeedList';
 import Header from '../components/Header/Header';
-import { ModalWrapper } from '../components/QuestionModal/ModalWrapper/ModalWrapper';
-import Toast from '../components/ShareSNS/Toast';
 import { ContentContext } from '../context/ContentContext';
 import { IsEmptyContext } from '../context/IsEmptyContext';
 import styles from './AnswerPage.module.css';
@@ -61,6 +59,11 @@ export function AnswerPage() {
         <Header />
         <div className={styles.feed}>
           <div className="wrap-inner2">
+            <div className={styles['btn-link']}>
+              <button type="button" onClick={handleClickModal}>
+                삭제하기
+              </button>
+            </div>
             <div className={styles['feed-wrap']}>
               <p className={styles['total-count']}>
                 <Message fill={'var(--brown-40)'} />
@@ -79,20 +82,6 @@ export function AnswerPage() {
               )}
             </div>
           </div>
-          <span className={styles['btn-link']}>
-            <button type="button" onClick={handleClickModal}>
-              질문 작성하기
-            </button>
-          </span>
-          {modalOpen && (
-            <ModalWrapper
-              ref={questionRef}
-              onClick={handleClickModal}
-              onSubmit={handleSubmitQuestion}
-              onChange={handleChangeContent}
-            />
-          )}
-          {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}
         </div>
       </IsEmptyContext.Provider>
     </ContentContext.Provider>
