@@ -30,8 +30,14 @@ export function AskForm() {
 
         const data = await response.json();
         const feedId = data.id; // 생성된 질문 대상의 id 사용
-
-        navigate(`/post/${feedId}/answer`);
+        const imageSource = data.imageSource;
+        const username = data.name;
+        navigate(`/post/${feedId}/answer`, {
+          state: {
+            imageSource: imageSource,
+            name: username,
+          },
+        });
       } catch (error) {
         console.error('Error creating subject:', error);
         alert('질문 대상 생성 중 오류가 발생했습니다.');
