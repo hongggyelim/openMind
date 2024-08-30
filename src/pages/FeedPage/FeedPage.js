@@ -14,8 +14,6 @@ import { useParams } from 'react-router';
 import { useLocation } from 'react-router';
 
 export function FeedPage() {
-  const { subjectId } = useParams();
-
   const INITIAL_VALUE = '';
   const [modalOpen, setModalOpen] = useState(false);
   const [content, setContent] = useState(INITIAL_VALUE);
@@ -31,6 +29,8 @@ export function FeedPage() {
   const lastElementRef = useRef(null);
   const observer = useRef();
   const limit = 8;
+
+  const { subjectId } = useParams();
 
   //useLocation hook
   const location = useLocation();
