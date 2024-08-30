@@ -30,8 +30,9 @@ export function AskForm() {
 
         const data = await response.json();
         const feedId = data.id; // 생성된 질문 대상의 id 사용
+        window.localStorage.setItem('id', feedId);
 
-        navigate(`/post/${feedId}/answer`);
+        // navigate(`/post/${feedId}/answer`);
       } catch (error) {
         console.error('Error creating subject:', error);
         alert('질문 대상 생성 중 오류가 발생했습니다.');

@@ -7,14 +7,15 @@ import { IsEmptyContext } from '../context/IsEmptyContext';
 import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
-// import { useParams } from 'react-router';
+import { useParams } from 'react-router';
 
 export function AnswerPage() {
   const INITIAL_VALUE = '';
   const [content, setContent] = useState(INITIAL_VALUE);
   const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
-  // const { id } = useParams();
+  const { id } = useParams();
+  const subjectId = id;
 
   const handleClickDelete = () => {
     //
@@ -22,7 +23,8 @@ export function AnswerPage() {
 
   useEffect(() => {
     async function fetchList() {
-      const { results } = await getQuestion();
+      const { results } = await getQuestion({ subjectId });
+      console.log(results);
       setFeedList(results);
     }
     fetchList();
