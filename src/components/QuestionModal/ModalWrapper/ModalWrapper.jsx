@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import { QuestionForm } from '../QuestionForm/QuestionForm';
 import styles from './ModalWrapper.module.css';
+import { ReactComponent as Message } from '../../../assets/icon/ic-messages.svg';
 
 export const ModalWrapper = forwardRef(
   ({ onClick, onSubmit, onChange, placehorder, btnText }, ref) => {
@@ -12,16 +13,9 @@ export const ModalWrapper = forwardRef(
           <div className={styles['modal-wrapper']}>
             <div className={styles['modal-header']}>
               <div className={styles['modal-title']}>
-                <span className={styles['modal-icon']}></span>
+                <Message fill={'#000'} />
                 질문을 작성하세요
               </div>
-              <button
-                type="button"
-                className={styles['modal-exit-btn']}
-                onClick={onClick}
-              >
-                <span className={styles['blind']}>질문 등록창 닫기</span>
-              </button>
             </div>
 
             <div className={styles['modal-receiver']}>
@@ -36,6 +30,13 @@ export const ModalWrapper = forwardRef(
               placehorder={placehorder}
               btnText={btnText}
             />
+            <button
+              type="button"
+              className={styles['modal-exit-btn']}
+              onClick={onClick}
+            >
+              <span className={styles['blind']}>질문 등록창 닫기</span>
+            </button>
           </div>
         </div>
       </>
