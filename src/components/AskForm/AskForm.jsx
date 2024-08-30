@@ -30,6 +30,7 @@ export function AskForm() {
 
         const data = await response.json();
         const feedId = data.id; // 생성된 질문 대상의 id 사용
+        window.localStorage.setItem('id', feedId);
 
         navigate(`/post/${feedId}/answer`);
       } catch (error) {
