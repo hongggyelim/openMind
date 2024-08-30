@@ -22,7 +22,7 @@ export function AnswerPage() {
 
   //useLocation hook
   const location = useLocation();
-  const { imageSource, name } = location.state || {};
+  const { imageSource, name } = location.state || {}; //답변페이지에서 렌더 안됨
 
   useEffect(() => {
     async function fetchList() {
