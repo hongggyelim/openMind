@@ -109,9 +109,8 @@ export function FeedPage() {
 
   return (
     <>
-      {' '}
       <Header userImg={imageSource} userName={name} />
-      <div className={styles.feed}>
+      <main className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['feed-wrap']}>
             <p className={styles['total-count']}>
@@ -134,7 +133,7 @@ export function FeedPage() {
             )}
           </div>
         </div>
-      </div>
+      </main>
       <span className={styles['btn-link']}>
         <button type="button" onClick={handleClickModal}>
           질문 작성하기
