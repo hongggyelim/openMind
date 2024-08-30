@@ -33,6 +33,19 @@ export function FeedPage() {
 
   const { subjectId } = useParams();
 
+  // 모달 열렸을때 body에 overflow : hidden 스타일 지정
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [modalOpen]);
+
   //useLocation hook
   const location = useLocation();
   const { imageSource, name } = location.state || {};
