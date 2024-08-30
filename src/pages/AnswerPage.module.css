@@ -38,6 +38,17 @@
   line-height: 25px;
 }
 
+.to-list-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  text-align: center;
+}
+
+.to-list-btn a {
+  display: block;
+}
+
 .share-sns {
   z-index: 1;
 }
