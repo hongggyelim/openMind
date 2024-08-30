@@ -19,7 +19,9 @@ export const ModalWrapper = forwardRef(
                 type="button"
                 className={styles['modal-exit-btn']}
                 onClick={onClick}
-              ></button>
+              >
+                <span className={styles['blind']}>질문 등록창 닫기</span>
+              </button>
             </div>
 
             <div className={styles['modal-receiver']}>
