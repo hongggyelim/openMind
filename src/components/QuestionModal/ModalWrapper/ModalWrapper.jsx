@@ -3,7 +3,7 @@ import { QuestionForm } from '../QuestionForm/QuestionForm';
 import styles from './ModalWrapper.module.css';
 
 export const ModalWrapper = forwardRef(
-  ({ onClick, onSubmit, onChange }, ref) => {
+  ({ onClick, onSubmit, onChange, placehorder, btnText }, ref) => {
     return (
       <>
         <div className={styles['modal-layer']} onClick={onClick}></div>
@@ -27,7 +27,13 @@ export const ModalWrapper = forwardRef(
               <span className={styles['modal-profile']}></span>
               아초는 고양이
             </div>
-            <QuestionForm ref={ref} onSubmit={onSubmit} onChange={onChange} />
+            <QuestionForm
+              ref={ref}
+              onSubmit={onSubmit}
+              onChange={onChange}
+              placehorder={placehorder}
+              btnText={btnText}
+            />
           </div>
         </div>
       </>
