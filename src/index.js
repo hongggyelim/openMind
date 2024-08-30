@@ -9,6 +9,7 @@ import './style/common.css';
 import { ContentContext } from './context/ContentContext';
 import { IsEmptyContext } from './context/IsEmptyContext';
 import { useState } from 'react';
+import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 
 function MainRouter() {
   const [content, setContent] = useState('');
@@ -23,6 +24,7 @@ function MainRouter() {
             <Route path="/list" element={<QuestionListPage />} />
             <Route path="/post/:id/answer" element={<AnswerPage />} />
             <Route path="/post/:subjectId" element={<FeedPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </IsEmptyContext.Provider>

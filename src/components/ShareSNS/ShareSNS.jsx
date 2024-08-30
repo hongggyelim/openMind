@@ -6,13 +6,14 @@ import ShareLink from './ShareLink';
 
 function ShareButton({ src, alt, onClick }) {
   return (
-    <button className={styles['share-button']} onClick={onClick}>
+    <button className={styles['share-button']} onClick={onClick} type="button">
       <img
         className={styles['share-img']}
         src={src}
         alt={alt}
         width={40}
         height={40}
+        type="button"
       />
     </button>
   );

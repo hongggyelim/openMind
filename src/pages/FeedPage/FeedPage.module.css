@@ -1,5 +1,8 @@
+.feed {
+  margin-top: 190px;
+}
+
 .feed-wrap {
-  margin-top: 54px;
   padding: 16px;
   background: var(--brown-10);
   border-radius: 16px;
@@ -33,6 +36,7 @@
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
   border-radius: 200px;
   line-height: 54px;
+  transition: all 0.3s ease;
 }
 
 .share-sns {
@@ -41,7 +45,7 @@
 
 @media (width <= 768px) {
   .feed {
-    margin-top: 82px;
+    margin-top: 175px;
   }
 
   .total-count {
