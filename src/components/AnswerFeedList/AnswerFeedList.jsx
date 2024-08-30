@@ -1,10 +1,32 @@
 import userProfile from '../../assets/images/user-profile.png';
-import styles from '../FeedList/FeedList.module.css';
+import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
+import { QuestionForm } from '../QuestionModal/QuestionForm/QuestionForm';
+import { useContext } from 'react';
+import { ContentContext } from '../../context/ContentContext';
+import { IsEmptyContext } from '../../context/IsEmptyContext';
 
-export function FeedList({ id, item }) {
+export function AnswerFeedList({ id, item }) {
+  //question id 를 받아옴
+  const { setContent } = useContext(ContentContext);
+  const { setIsEmpty } = useContext(IsEmptyContext);
+
   const answer = item.answer || '';
+
+  const handleChangeContent = e => {
+    const nextContent = e.target.value;
+    setContent(() => nextContent);
+    setIsEmpty(false);
+  };
+
+  const handleSubmitAnswer = e => {
+    e.preventDefault();
+    //postAnswer(content)
+    //답변 보여주기 1)optimism update 2) useEffect 의존성 배열에 answer 넣기
+    //
+  };
+
   return (
     <>
       <div className={styles['feed-box']}>
@@ -50,7 +72,27 @@ export function FeedList({ id, item }) {
               </div>
             </div>
           ) : (
-            ''
+            // 답변 없는 경우 답변창 보여주기
+            <div className={styles['answer-box']}>
+              <span className={styles['user-img']}>
+                <img
+                  src={userProfile}
+                  width={48}
+                  height={48}
+                  alt={userProfile}
+                />
+              </span>
+              <div className={styles['user-answer']}>
+                <p className={styles.nickname}>아초는고양이</p>
+                <QuestionForm
+                  className={styles['answerForm']}
+                  placeholder="답변을 입력해주세요"
+                  btnText="답변 완료"
+                  onChange={handleChangeContent}
+                  onSubmit={handleSubmitAnswer}
+                />
+              </div>
+            </div>
           )}
         </div>
         <FeedReaction id={id} like={item.like} dislike={item.dislike} />

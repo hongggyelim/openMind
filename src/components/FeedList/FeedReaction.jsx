@@ -2,7 +2,7 @@ import { postReaction } from '../../api/post';
 import styles from '../FeedList/FeedReaction.module.css';
 import { useState } from 'react';
 
-export function FeedReaction({ like, dislike }) {
+export function FeedReaction({ id, like, dislike }) {
   const [countLike, setCountLike] = useState(like);
   const [countDislike, setCountDislike] = useState(dislike);
   const [activeButton, setActiveButton] = useState(null);
@@ -14,7 +14,7 @@ export function FeedReaction({ like, dislike }) {
     } else {
       setActiveButton('like');
       setCountLike(prevCount => prevCount + 1);
-      postReaction('like');
+      postReaction(id, 'like');
     }
   };
 
@@ -24,7 +24,7 @@ export function FeedReaction({ like, dislike }) {
     } else {
       setActiveButton('dislike');
       setCountDislike(prevCount => prevCount + 1);
-      postReaction('dislike');
+      postReaction(id, 'dislike');
     }
   };
 

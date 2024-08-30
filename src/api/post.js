@@ -1,9 +1,9 @@
 const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
 
 // 질문 등록하기
-export function postQuestion(content) {
+export function postQuestion(subjectId, content) {
   const payload = {
-    subjectId: 7964, // url에서 받아와야함
+    subjectId: subjectId, // url에서 받아와야함
     content: content,
     like: 0,
     dislike: 0,
@@ -14,7 +14,7 @@ export function postQuestion(content) {
     },
   };
 
-  fetch(`${BASE_URL}subjects/7964/questions/`, {
+  fetch(`${BASE_URL}subjects/${subjectId}/questions/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -35,13 +35,13 @@ export function postQuestion(content) {
 }
 
 // question id에 like 상태 등록
-export async function postReaction(type) {
+export async function postReaction(id, type) {
   //전송되는 type에 + 1이 됨
   const payload = {
     type,
   };
 
-  fetch(`${BASE_URL}questions/13553/reaction/`, {
+  fetch(`${BASE_URL}questions/${id}/reaction/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -49,7 +49,7 @@ export async function postReaction(type) {
     .then(response => {
       if (!response.ok) {
         // 요청이 성공하지 않은 경우 처리
-        throw new Error(` ${type} 실패했습니다.`);
+        throw new Error(`댓글 반응 남기기에 실패했습니다.`);
       }
       return response.json(); // 서버에서 JSON 응답을 받을 것으로 가정
     })
