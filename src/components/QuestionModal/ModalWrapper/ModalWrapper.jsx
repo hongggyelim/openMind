@@ -4,7 +4,7 @@ import styles from './ModalWrapper.module.css';
 import { ReactComponent as Message } from '../../../assets/icon/ic-messages.svg';
 
 export const ModalWrapper = forwardRef(
-  ({ onClick, onSubmit, onChange, placehorder, btnText }, ref) => {
+  ({ onClick, onSubmit, onChange, placehorder, btnText, image, name }, ref) => {
     return (
       <>
         <div className={styles['modal-layer']} onClick={onClick}></div>
@@ -20,8 +20,8 @@ export const ModalWrapper = forwardRef(
 
             <div className={styles['modal-receiver']}>
               <span className={styles['modal-to']}>To.</span>
-              <span className={styles['modal-profile']}></span>
-              아초는 고양이
+              <img src={image} className={styles['modal-profile']} alt=""></img>
+              {name}
             </div>
             <QuestionForm
               ref={ref}

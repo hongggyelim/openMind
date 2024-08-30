@@ -160,6 +160,8 @@ export function FeedPage() {
           onChange={handleChangeContent}
           placehorder="질문을 입력해주세요"
           btnText="질문 보내기"
+          name={name}
+          image={imageSource}
         />
       )}
       {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}
