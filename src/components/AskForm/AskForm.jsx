@@ -30,8 +30,12 @@ export function AskForm() {
 
         const data = await response.json();
         const feedId = data.id; // 생성된 질문 대상의 id 사용
+
+        window.localStorage.setItem('id', feedId); // localstorage에 img&name도 저장 필요(추후 작업)
+
         const imageSource = data.imageSource;
         const userName = data.name;
+
         navigate(`/post/${feedId}/answer`, {
           state: {
             imageSource: imageSource,
