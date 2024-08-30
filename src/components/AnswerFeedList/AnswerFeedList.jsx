@@ -2,26 +2,27 @@ import userProfile from '../../assets/images/user-profile.png';
 import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
-import { QuestionForm } from '../QuestionModal/QuestionForm/QuestionForm';
-import { useContext } from 'react';
-import { ContentContext } from '../../context/ContentContext';
-import { IsEmptyContext } from '../../context/IsEmptyContext';
+import { AnswerForm } from './AnswerForm';
+import { AnswerDropdown } from './AnswerDropdown';
+import { useState } from 'react';
 
 export function AnswerFeedList({ id, item }) {
   //question id 를 받아옴
-  const { setContent } = useContext(ContentContext);
-  const { setIsEmpty } = useContext(IsEmptyContext);
+  const [content, setContent] = useState(''); // 개별 상태 추가
+  const [isEmpty, setIsEmpty] = useState(true); // 개별 상태 추가
 
   const answer = item.answer || '';
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;
-    setContent(() => nextContent);
-    setIsEmpty(false);
+    setContent(nextContent);
+    setIsEmpty(nextContent.trim() === ''); // 공백 체크 추가
   };
 
   const handleSubmitAnswer = e => {
     e.preventDefault();
+    console.log('Answer submitted:', content);
+
     //postAnswer(content)
     //답변 보여주기 1)optimism update 2) useEffect 의존성 배열에 answer 넣기
     //
@@ -30,6 +31,7 @@ export function AnswerFeedList({ id, item }) {
   return (
     <>
       <div className={styles['feed-box']}>
+        <AnswerDropdown />
         {item.answer === null ? (
           <span className={styles['badge']}>미답변</span>
         ) : (
@@ -84,12 +86,11 @@ export function AnswerFeedList({ id, item }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>아초는고양이</p>
-                <QuestionForm
-                  className={styles['answerForm']}
-                  placeholder="답변을 입력해주세요"
-                  btnText="답변 완료"
+                <AnswerForm
                   onChange={handleChangeContent}
                   onSubmit={handleSubmitAnswer}
+                  content={content}
+                  isEmpty={isEmpty}
                 />
               </div>
             </div>

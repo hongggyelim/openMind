@@ -21,8 +21,9 @@ export function AnswerPage() {
   const { id } = useParams(); // subject id
 
   //useLocation hook
+  //답변페이지에서 렌더 안됨
   const location = useLocation();
-  const { imageSource, name } = location.state || {}; //답변페이지에서 렌더 안됨
+  const { imageSource, name } = location.state || {};
 
   useEffect(() => {
     async function fetchList() {
