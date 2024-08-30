@@ -87,7 +87,7 @@ function UserProfileList() {
                 to={`/post/${profile.id}`}
                 state={{
                   imageSource: profile.imageSource,
-                  username: profile.name,
+                  name: profile.name,
                 }}
               >
                 <UserProfile

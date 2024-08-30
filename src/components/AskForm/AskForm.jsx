@@ -31,11 +31,11 @@ export function AskForm() {
         const data = await response.json();
         const feedId = data.id; // 생성된 질문 대상의 id 사용
         const imageSource = data.imageSource;
-        const username = data.name;
+        const userName = data.name;
         navigate(`/post/${feedId}/answer`, {
           state: {
             imageSource: imageSource,
-            name: username,
+            name: userName,
           },
         });
       } catch (error) {

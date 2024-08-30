@@ -35,7 +35,7 @@ export function FeedPage() {
 
   //useLocation hook
   const location = useLocation();
-  const { imageSource, username } = location.state || {};
+  const { imageSource, name } = location.state || {};
 
   useEffect(() => {
     async function fetchList() {
@@ -109,8 +109,7 @@ export function FeedPage() {
 
   return (
     <>
-      {' '}
-      <Header userImg={imageSource} userName={username} />
+      <Header userImg={imageSource} userName={name} />
       <div className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['feed-wrap']}>
