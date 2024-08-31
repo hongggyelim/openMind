@@ -19,7 +19,7 @@ function ListDropdownMenu({ selectOptionList }) {
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -34,7 +34,7 @@ function ListDropdownMenu({ selectOptionList }) {
   return (
     <>
       <div className={styels.wrap}>
-        <div>
+        <div ref={dropdownRef}>
           <button
             ref={dropdownRef}
             type="button"
