@@ -4,19 +4,19 @@ import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
 import { QuestionForm } from '../QuestionModal/QuestionForm/QuestionForm';
 import { useContext } from 'react';
-import { ContentContext } from '../../context/ContentContext';
+import { QuestionValueContext } from '../../context/QuestionValueContext';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 
 export function AnswerFeedList({ id, item }) {
   //question id 를 받아옴
-  const { setContent } = useContext(ContentContext);
+  const { setQuestionValue } = useContext(QuestionValueContext);
   const { setIsEmpty } = useContext(IsEmptyContext);
 
   const answer = item.answer || '';
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;
-    setContent(() => nextContent);
+    setQuestionValue(() => nextContent);
     setIsEmpty(false);
   };
 
