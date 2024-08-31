@@ -36,6 +36,7 @@ function ListDropdownMenu({ selectOptionList }) {
       <div className={styels.wrap}>
         <div ref={dropdownRef}>
           <button
+            ref={dropdownRef}
             type="button"
             className={`${styels['order-btn']} ${isDropdownVisible ? styels['sorted'] : styels['']}`}
             onClick={toggleDropdown}

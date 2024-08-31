@@ -1,11 +1,11 @@
 import { forwardRef, useContext } from 'react';
 import styles from './QuestionForm.module.css';
-import { ContentContext } from '../../../context/ContentContext';
+import { QuestionValueContext } from '../../../context/QuestionValueContext';
 import { IsEmptyContext } from '../../../context/IsEmptyContext';
 
 export const QuestionForm = forwardRef(
   ({ onSubmit, onChange, placeholder, btnText }, ref) => {
-    const { content } = useContext(ContentContext);
+    const { questionValue } = useContext(QuestionValueContext);
     const { isEmpty } = useContext(IsEmptyContext);
 
     return (
@@ -22,7 +22,7 @@ export const QuestionForm = forwardRef(
             className={styles['question-textarea']}
             placeholder={placeholder}
             onChange={onChange}
-            value={content}
+            value={questionValue}
           ></textarea>
         </div>
         <button
