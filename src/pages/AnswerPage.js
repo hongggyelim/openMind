@@ -7,6 +7,7 @@ import { deleteAnswer } from '../api/delete';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
 import { useLocation, useParams, useNavigate } from 'react-router';
+import { AnswerLinkButton } from '../components/List/Gnb/Gnb';
 
 export function AnswerPage() {
   const [feedList, setFeedList] = useState([]);
@@ -109,6 +110,9 @@ export function AnswerPage() {
           </div>
         </div>
       </div>
+      <span className={styles['to-list-btn']}>
+        <AnswerLinkButton btnLink={'/list'}>질문하러 가기</AnswerLinkButton>
+      </span>
     </>
   );
 }
