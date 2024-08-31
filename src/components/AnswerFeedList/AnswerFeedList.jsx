@@ -2,22 +2,24 @@ import userProfile from '../../assets/images/user-profile.png';
 import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
-import { QuestionForm } from '../QuestionModal/QuestionForm/QuestionForm';
-import { useContext } from 'react';
-import { QuestionValueContext } from '../../context/QuestionValueContext';
-import { IsEmptyContext } from '../../context/IsEmptyContext';
+import { AnswerForm } from './AnswerForm';
+import { AnswerDropdown } from './AnswerDropdown';
+import { useState } from 'react';
+import { postAnswer } from '../../api/post';
 
 export function AnswerFeedList({ id, item }) {
   //question id 를 받아옴
-  const { setQuestionValue } = useContext(QuestionValueContext);
-  const { setIsEmpty } = useContext(IsEmptyContext);
+  const [content, setContent] = useState('');
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [answer, setAnswer] = useState(item.answer || null);
 
-  const answer = item.answer || '';
+  const userInfo = JSON.parse(localStorage.getItem('info'));
 
+  console.log(userInfo.name);
   const handleChangeContent = e => {
     const nextContent = e.target.value;
-    setQuestionValue(() => nextContent);
-    setIsEmpty(false);
+    setContent(nextContent);
+    setIsEmpty(nextContent.trim() === '');
   };
 
   const handleSubmitAnswer = async e => {
@@ -60,7 +62,7 @@ export function AnswerFeedList({ id, item }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userProfile}
+                  src={userInfo.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
@@ -68,7 +70,7 @@ export function AnswerFeedList({ id, item }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-                  아초는고양이
+                  {userInfo.name}
                   <span className={styles['user-date']}>
                     {timeAgo(answer.createdAt)}
                   </span>
@@ -87,14 +89,14 @@ export function AnswerFeedList({ id, item }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userProfile}
+                  src={userInfo.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
                 />
               </span>
               <div className={styles['user-answer']}>
-                <p className={styles.nickname}>아초는고양이</p>
+                <p className={styles.nickname}>{userInfo.name}</p>
                 <AnswerForm
                   onChange={handleChangeContent}
                   onSubmit={handleSubmitAnswer}

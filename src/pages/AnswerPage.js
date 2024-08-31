@@ -79,7 +79,6 @@ export function AnswerPage() {
       setToTop(false);
     }
   };
-
   const throttleHandleScroll = throttle(handleScroll, 200);
 
   useEffect(() => {
@@ -87,7 +86,7 @@ export function AnswerPage() {
     return () => {
       window.removeEventListener('scroll', throttleHandleScroll);
     };
-  }, []);
+  }, [throttleHandleScroll]);
 
   //위로가기 버튼 동작
   const handleClickTop = () => {
@@ -97,8 +96,7 @@ export function AnswerPage() {
   return (
     <>
       <Header userImg={userInfo.imageSource} userName={userInfo.name} />
-      <div className={styles.feed}>
-
+      <main className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['btn-link']}>
             <button type="button">삭제하기</button>
