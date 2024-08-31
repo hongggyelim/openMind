@@ -3,9 +3,10 @@ import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
 import Header from '../components/Header/Header';
 import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
+import { deleteAnswer } from '../api/delete';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
-import { useLocation, useParams } from 'react-router';
+import { useLocation, useParams, useNavigate } from 'react-router';
 
 export function AnswerPage() {
   const [feedList, setFeedList] = useState([]);
@@ -17,8 +18,8 @@ export function AnswerPage() {
   const lastElementRef = useRef(null);
   const observer = useRef();
   const limit = 8;
-
   const { id } = useParams(); // subject id
+  const navigate = useNavigate();
 
   //useLocation hook
   const location = useLocation();
@@ -68,13 +69,26 @@ export function AnswerPage() {
     };
   }, [isLoading, hasMore]);
 
+  const handleDelete = async () => {
+    try {
+      await deleteAnswer(id);
+      navigate('/');
+    } catch (error) {
+      console.error('삭제 중 오류가 발생했습니다:', error);
+    } finally {
+      navigate('/');
+    }
+  };
+
   return (
     <>
       <Header userImg={imageSource} userName={name} />
       <div className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['btn-link']}>
-            <button type="button">삭제하기</button>
+            <button onClick={handleDelete} type="button">
+              삭제하기
+            </button>
           </div>
           <div className={styles['feed-wrap']}>
             <p className={styles['total-count']}>
