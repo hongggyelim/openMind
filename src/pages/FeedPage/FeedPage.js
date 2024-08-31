@@ -7,11 +7,14 @@ import { getQuestion } from '../../api/api';
 import { EmptyFeedList } from '../../components/FeedList/EmptyFeedList';
 import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
-import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 import { useParams } from 'react-router';
 import { QuestionValueContext } from '../../context/QuestionValueContext';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { useLocation } from 'react-router';
+import { ScrollTop } from '../../components/ScrollTop/ScrollTop';
+import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
+import { ReactComponent as Top } from '../../assets/icon/ic-arrow-up-copy.svg';
+import { throttle } from '../../utils/throttle';
 
 export function FeedPage() {
   const INITIAL_VALUE = '';
@@ -22,6 +25,7 @@ export function FeedPage() {
   const [hasMore, setHasMore] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
+  const [toTop, setToTop] = useState(false);
 
   const { questionValue, setQuestionValue } = useContext(QuestionValueContext);
   const { setIsEmpty } = useContext(IsEmptyContext);
@@ -94,6 +98,7 @@ export function FeedPage() {
     };
   }, [isLoading, hasMore]);
 
+  // 모달창 열렸을때 인풋에 포커스
   useEffect(() => {
     if (modalOpen) {
       questionRef.current.focus();
@@ -120,6 +125,29 @@ export function FeedPage() {
     setIsEmpty(nextContent === '');
   };
 
+  //위로가기 버튼 렌더 (스크롤 감지)
+  const handleScroll = () => {
+    if (window.scrollY > 300) {
+      setToTop(true); //버튼 렌더
+    } else {
+      setToTop(false);
+    }
+  };
+
+  const throttleHandleScroll = throttle(handleScroll, 200);
+
+  useEffect(() => {
+    window.addEventListener('scroll', throttleHandleScroll);
+    return () => {
+      window.removeEventListener('scroll', throttleHandleScroll);
+    };
+  }, []);
+
+  //위로가기 버튼 동작
+  const handleClickTop = () => {
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <>
       <Header userImg={imageSource} userName={name} />
@@ -137,7 +165,7 @@ export function FeedPage() {
             ) : (
               feedList.map((item, index) => (
                 <div
-                  key={item.id}
+                  key={index} //FeedList와 동일 id 쓰면 콘솔에서 충돌 된다고해서 수정
                   ref={index === feedList.length - 1 ? lastElementRef : null}
                 >
                   <FeedList id={item.id} item={item} />
@@ -146,7 +174,13 @@ export function FeedPage() {
             )}
           </div>
         </div>
+        {toTop && (
+          <ScrollTop onClick={handleClickTop}>
+            <Top fill="#542f1a" width="36" height="36" />
+          </ScrollTop>
+        )}
       </main>
+
       <span className={styles['btn-link']}>
         <button type="button" onClick={handleClickModal}>
           질문 작성하기
