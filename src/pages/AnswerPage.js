@@ -7,6 +7,9 @@ import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
 import { useLocation, useParams } from 'react-router';
 import { AnswerLinkButton } from '../components/List/Gnb/Gnb';
+import { throttle } from '../utils/throttle';
+import { ScrollTop } from '../components/ScrollTop/ScrollTop';
+import { ReactComponent as Top } from '../assets/icon/ic-arrow-up-copy.svg';
 
 export function AnswerPage() {
   const [feedList, setFeedList] = useState([]);
@@ -14,6 +17,7 @@ export function AnswerPage() {
   const [offset, setOffset] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [hasMore, setHasMore] = useState(false);
+  const [toTop, setToTop] = useState(false);
 
   const lastElementRef = useRef(null);
   const observer = useRef();
@@ -70,10 +74,33 @@ export function AnswerPage() {
     };
   }, [isLoading, hasMore]);
 
+  //위로가기 버튼 렌더 (스크롤 감지)
+  const handleScroll = () => {
+    if (window.scrollY > 300) {
+      setToTop(true); //버튼 렌더
+    } else {
+      setToTop(false);
+    }
+  };
+
+  const throttleHandleScroll = throttle(handleScroll, 200);
+
+  useEffect(() => {
+    window.addEventListener('scroll', throttleHandleScroll);
+    return () => {
+      window.removeEventListener('scroll', throttleHandleScroll);
+    };
+  }, []);
+
+  //위로가기 버튼 동작
+  const handleClickTop = () => {
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <>
       <Header userImg={imageSource} userName={name} />
-      <div className={styles.feed}>
+      <main className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['btn-link']}>
             <button type="button">삭제하기</button>
@@ -96,7 +123,12 @@ export function AnswerPage() {
             )}
           </div>
         </div>
-      </div>
+        {toTop && (
+          <ScrollTop onClick={handleClickTop}>
+            <Top fill="#542f1a" width="36" height="36" />
+          </ScrollTop>
+        )}
+      </main>
       <span className={styles['to-list-btn']}>
         <AnswerLinkButton btnLink={'/list'}>질문하러 가기</AnswerLinkButton>
       </span>
