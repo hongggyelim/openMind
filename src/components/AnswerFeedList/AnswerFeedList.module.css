@@ -1,11 +1,11 @@
 .feed-box {
+  position: relative;
   margin-bottom: 20px;
   padding: 32px;
   background: #fff;
   border-radius: 16px;
-  border: 1px solid var(#8c8c8c, rgba(207 207 207 1));
-  /* stylelint-disable-next-line color-function-notation */
-  box-shadow: 0 4px 4px 0 rgba(140, 140, 140, 25%);
+  border: 1px solid #fff;
+  box-shadow: 0 4px 4px 0 rgba(140 140 140 / 25%);
 }
 
 .badge {
