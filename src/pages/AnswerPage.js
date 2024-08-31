@@ -5,7 +5,7 @@ import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
-import { useLocation, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { AnswerLinkButton } from '../components/List/Gnb/Gnb';
 
 export function AnswerPage() {
@@ -21,9 +21,7 @@ export function AnswerPage() {
 
   const { id } = useParams(); // subject id
 
-  //useLocation hook
-  const location = useLocation();
-  const { imageSource, name } = location.state || {}; //답변페이지에서 렌더 안됨
+  const userInfo = JSON.parse(localStorage.getItem('info'));
 
   useEffect(() => {
     async function fetchList() {
@@ -71,7 +69,7 @@ export function AnswerPage() {
 
   return (
     <>
-      <Header userImg={imageSource} userName={name} />
+      <Header userImg={userInfo.imageSource} userName={userInfo.name} />
       <div className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['btn-link']}>

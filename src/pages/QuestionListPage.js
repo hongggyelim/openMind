@@ -2,7 +2,6 @@ import UserProfileList from '../components/List/UserProfileList/UserProfileList'
 import { Gnb } from '../components/List/Gnb/Gnb';
 
 const feedId = window.localStorage.getItem('id');
-console.log(feedId);
 
 export function QuestionListPage() {
   return (

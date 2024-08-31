@@ -27,7 +27,8 @@ export function postQuestion(subjectId, content) {
       return response.json(); // 서버에서 JSON 응답을 받을 것으로 가정
     })
     .then(data => {
-      console.log('Success:', data); // 성공적인 요청에 대한 응답 데이터 처리
+      console.log('Success:', data);
+      return data; // 성공적인 요청에 대한 응답 데이터 처리
     })
     .catch(error => {
       console.error('Error:', error); // 에러 처리
