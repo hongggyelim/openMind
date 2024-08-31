@@ -9,7 +9,7 @@ import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 import { useParams } from 'react-router';
-import { ContentContext } from '../../context/ContentContext';
+import { QuestionValueContext } from '../../context/QuestionValueContext';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { useLocation } from 'react-router';
 
@@ -23,7 +23,7 @@ export function FeedPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
 
-  const { content, setContent } = useContext(ContentContext);
+  const { questionValue, setQuestionValue } = useContext(QuestionValueContext);
   const { setIsEmpty } = useContext(IsEmptyContext);
 
   const questionRef = useRef();
@@ -101,22 +101,22 @@ export function FeedPage() {
   }, [modalOpen]);
 
   const handleClickModal = () => {
-    setContent(INITIAL_VALUE);
+    setQuestionValue(INITIAL_VALUE);
     setModalOpen(!modalOpen);
     setIsEmpty(true);
   };
 
   const handleSubmitQuestion = e => {
     e.preventDefault();
-    postQuestion(subjectId, content);
-    setContent(INITIAL_VALUE);
+    postQuestion(subjectId, questionValue);
+    setQuestionValue(INITIAL_VALUE);
     setModalOpen(!modalOpen);
     setToast(true);
   };
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;
-    setContent(() => nextContent);
+    setQuestionValue(() => nextContent);
     setIsEmpty(nextContent === '');
   };
 
