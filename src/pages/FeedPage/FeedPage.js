@@ -7,11 +7,13 @@ import { getQuestion } from '../../api/api';
 import { EmptyFeedList } from '../../components/FeedList/EmptyFeedList';
 import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
-import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 import { useParams } from 'react-router';
 import { ContentContext } from '../../context/ContentContext';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
 import { useLocation } from 'react-router';
+import { ScrollTop } from '../../components/ScrollTop/ScrollTop';
+import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
+import { ReactComponent as Top } from '../../assets/icon/ic-arrow-up-copy.svg';
 
 export function FeedPage() {
   const INITIAL_VALUE = '';
@@ -22,6 +24,7 @@ export function FeedPage() {
   const [hasMore, setHasMore] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
+  const [toTop, setToTop] = useState(false);
 
   const { content, setContent } = useContext(ContentContext);
   const { setIsEmpty } = useContext(IsEmptyContext);
@@ -94,11 +97,14 @@ export function FeedPage() {
     };
   }, [isLoading, hasMore]);
 
+  // 모달창 열렸을때 인풋에 포커스
   useEffect(() => {
     if (modalOpen) {
       questionRef.current.focus();
     }
   }, [modalOpen]);
+
+  // 특정 스크롤 위치에서 toTop 버튼 렌더링
 
   const handleClickModal = () => {
     setContent(INITIAL_VALUE);
@@ -146,7 +152,11 @@ export function FeedPage() {
             )}
           </div>
         </div>
+        <ScrollTop>
+          <Top fill="#542f1a" width="36" height="36" />
+        </ScrollTop>
       </main>
+
       <span className={styles['btn-link']}>
         <button type="button" onClick={handleClickModal}>
           질문 작성하기
