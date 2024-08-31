@@ -73,10 +73,10 @@ export function AnswerPage() {
   const handleDelete = async () => {
     try {
       await deleteAnswer(id);
-      navigate('/');
     } catch (error) {
       console.error('삭제 중 오류가 발생했습니다:', error);
     } finally {
+      alert('모든 질문이 삭제되었습니다.');
       navigate('/');
     }
   };
