@@ -60,3 +60,30 @@ export async function postReaction(id, type) {
       console.error('Error:', error); // 에러 처리
     });
 }
+
+// postAnswer - questionId
+export async function postAnswer(id, content) {
+  const payload = {
+    questionId: id,
+    content: content,
+    isRejected: true,
+    team: '9-1',
+  };
+
+  try {
+    const response = await fetch(`${BASE_URL}questions/${id}/answers/`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error('서버에 답변을 제출하는 데 실패했습니다.');
+    }
+
+    return await response.json(); // 서버에서 JSON 응답을 받음
+  } catch (error) {
+    console.error('Error:', error);
+    throw error; // 에러를 호출자에게 전달
+  }
+}
