@@ -62,11 +62,11 @@ export async function postReaction(id, type) {
 }
 
 // postAnswer - questionId
-export async function postAnswer(id, content) {
+export async function postAnswer(id, content, isRejected = false) {
   const payload = {
     questionId: id,
     content: content,
-    isRejected: true,
+    isRejected: isRejected,
     team: '9-1',
   };
 
@@ -84,6 +84,6 @@ export async function postAnswer(id, content) {
     return await response.json(); // 서버에서 JSON 응답을 받음
   } catch (error) {
     console.error('Error:', error);
-    throw error; // 에러를 호출자에게 전달
+    throw error;
   }
 }
