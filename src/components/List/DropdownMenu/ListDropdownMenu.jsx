@@ -19,7 +19,7 @@ function ListDropdownMenu({ selectOptionList }) {
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -33,8 +33,8 @@ function ListDropdownMenu({ selectOptionList }) {
 
   return (
     <>
-      <div ref={dropdownRef} className={styels.wrap}>
-        <div>
+      <div className={styels.wrap}>
+        <div ref={dropdownRef}>
           <button
             type="button"
             className={`${styels['order-btn']} ${isDropdownVisible ? styels['sorted'] : styels['']}`}
