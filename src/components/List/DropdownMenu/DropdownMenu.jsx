@@ -11,7 +11,7 @@ function DropdownMenu({
     <div className={styles['order-wrap']}>
       <div>
         <button
-        type='button'
+          type="button"
           onClick={toggleDropdown}
           className={`${styles['order-btn']} ${dropdown ? styles['sorted'] : styles['']}`}
         >
