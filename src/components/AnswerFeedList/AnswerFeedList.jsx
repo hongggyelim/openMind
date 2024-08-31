@@ -2,40 +2,47 @@ import userProfile from '../../assets/images/user-profile.png';
 import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
-import { QuestionForm } from '../QuestionModal/QuestionForm/QuestionForm';
-import { useContext } from 'react';
-import { ContentContext } from '../../context/ContentContext';
-import { IsEmptyContext } from '../../context/IsEmptyContext';
+import { AnswerForm } from './AnswerForm';
+import { AnswerDropdown } from './AnswerDropdown';
+import { useState } from 'react';
+import { postAnswer } from '../../api/post';
 
 export function AnswerFeedList({ id, item }) {
   //question id 를 받아옴
-  const { setContent } = useContext(ContentContext);
-  const { setIsEmpty } = useContext(IsEmptyContext);
-
-  const answer = item.answer || '';
+  const [content, setContent] = useState('');
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [answer, setAnswer] = useState(item.answer || null);
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;
-    setContent(() => nextContent);
-    setIsEmpty(false);
+    setContent(nextContent);
+    setIsEmpty(nextContent.trim() === '');
   };
 
-  const handleSubmitAnswer = e => {
+  const handleSubmitAnswer = async e => {
     e.preventDefault();
-    //postAnswer(content)
-    //답변 보여주기 1)optimism update 2) useEffect 의존성 배열에 answer 넣기
-    //
+
+    try {
+      const result = await postAnswer(id, content);
+
+      // 서버 응답에서 받은 데이터로 상태를 업데이트
+      setAnswer(result);
+    } catch (error) {
+      console.error('답변 제출 중 오류 발생:', error);
+      alert('답변 제출 중 오류가 발생했습니다.');
+    }
   };
 
   return (
     <>
       <div className={styles['feed-box']}>
-        {item.answer === null ? (
-          <span className={styles['badge']}>미답변</span>
-        ) : (
+        <AnswerDropdown />
+        {answer ? (
           <span className={`${styles['badge']} ${styles['answered']}`}>
             답변완료
           </span>
+        ) : (
+          <span className={styles['badge']}>미답변</span>
         )}
         <div className={styles['feed-contents']}>
           <div className={styles['question-box']}>
@@ -44,7 +51,7 @@ export function AnswerFeedList({ id, item }) {
             </span>
             <p className={styles['question']}>{item.content}</p>
           </div>
-          {answer.content ? (
+          {answer && answer.content ? (
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
@@ -84,12 +91,11 @@ export function AnswerFeedList({ id, item }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>아초는고양이</p>
-                <QuestionForm
-                  className={styles['answerForm']}
-                  placeholder="답변을 입력해주세요"
-                  btnText="답변 완료"
+                <AnswerForm
                   onChange={handleChangeContent}
                   onSubmit={handleSubmitAnswer}
+                  content={content}
+                  isEmpty={isEmpty}
                 />
               </div>
             </div>
