@@ -1,62 +1,105 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
-import { FeedList } from '../components/FeedList/FeedList';
 import Header from '../components/Header/Header';
-import { ContentContext } from '../context/ContentContext';
-import { IsEmptyContext } from '../context/IsEmptyContext';
 import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
+import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
+import { useLocation, useParams } from 'react-router';
+import { AnswerLinkButton } from '../components/List/Gnb/Gnb';
 
 export function AnswerPage() {
-  const INITIAL_VALUE = '';
-  const [content, setContent] = useState(INITIAL_VALUE);
-  const [isEmpty, setIsEmpty] = useState(true);
   const [feedList, setFeedList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+  const [hasMore, setHasMore] = useState(false);
 
-  const handleClickDelete = () => {
-    //
-  };
+  const lastElementRef = useRef(null);
+  const observer = useRef();
+  const limit = 8;
+
+  const { id } = useParams(); // subject id
+
+  //useLocation hook
+  //답변페이지에서 렌더 안됨
+  const location = useLocation();
+  const { imageSource, name } = location.state || {};
 
   useEffect(() => {
     async function fetchList() {
-      const { results } = await getQuestion();
-      setFeedList(results);
+      if (isLoading) return;
+
+      setIsLoading(true);
+      try {
+        const { results, next, count } = await getQuestion({
+          subjectId: id,
+          offset,
+          limit,
+        });
+        setFeedList(prev => [...prev, ...results]);
+        setHasMore(next !== null);
+        setTotalCount(count);
+      } catch (error) {
+        console.error('Error fetching questions:', error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchList();
-  }, []);
+  }, [offset, id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  //무한스크롤
+  useEffect(() => {
+    if (isLoading) return;
+
+    if (observer.current) observer.current.disconnect();
+
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setOffset(prevOffset => prevOffset + limit);
+      }
+    });
+
+    if (lastElementRef.current) {
+      observer.current.observe(lastElementRef.current);
+    }
+
+    return () => {
+      if (observer.current) observer.current.disconnect();
+    };
+  }, [isLoading, hasMore]);
 
   return (
-    <ContentContext.Provider value={{ content, setContent }}>
-      <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
-        <Header />
-        <div className={styles.feed}>
-          <div className="wrap-inner2">
-            <div className={styles['btn-link']}>
-              <button type="button" onClick={handleClickDelete}>
-                삭제하기
-              </button>
-            </div>
-            <div className={styles['feed-wrap']}>
-              <p className={styles['total-count']}>
-                <Message fill={'var(--brown-40)'} />
-                {feedList.length === 0
-                  ? '아직 질문이 없습니다'
-                  : `${feedList.length}개의 질문이 있습니다.`}
-              </p>
-              {feedList.length === 0 ? (
-                <EmptyFeedList />
-              ) : (
-                feedList.map(item => (
-                  <div key={item.id}>
-                    <FeedList item={item} />
-                  </div>
-                ))
-              )}
-            </div>
+    <>
+      <Header userImg={imageSource} userName={name} />
+      <div className={styles.feed}>
+        <div className="wrap-inner2">
+          <div className={styles['btn-link']}>
+            <button type="button">삭제하기</button>
+          </div>
+          <div className={styles['feed-wrap']}>
+            <p className={styles['total-count']}>
+              <Message fill={'var(--brown-40)'} />
+              {totalCount === 0
+                ? '아직 질문이 없습니다'
+                : `${totalCount}개의 질문이 있습니다.`}
+            </p>
+            {feedList.length === 0 ? (
+              <EmptyFeedList />
+            ) : (
+              feedList.map(item => (
+                <div key={item.id}>
+                  <AnswerFeedList id={item.id} item={item} />
+                </div>
+              ))
+            )}
           </div>
         </div>
-      </IsEmptyContext.Provider>
-    </ContentContext.Provider>
+      </div>
+      <span className={styles['to-list-btn']}>
+        <AnswerLinkButton btnLink={'/list'}>질문하러 가기</AnswerLinkButton>
+      </span>
+    </>
   );
 }

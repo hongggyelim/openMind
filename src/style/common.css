@@ -35,7 +35,7 @@ body {
 
 /* .shadow-1 {
   border: 1px solid var(--grayscale-30, rgba(207 207 207 1));
-  box-shadow: 0 4px 4px 0 rgba(140, 140, 140, 0.25);
+  box-shadow: 0 4px 4px 0 rgba(140 140 140 /25%);
 }
 
 .shadow-2 {

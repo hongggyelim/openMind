@@ -8,10 +8,13 @@ export async function getProfile({ offset = 0, limit = 8 }) {
 }
 
 // FeedPage fetch
-export async function getQuestion(subjectId) {
+
+export async function getQuestion({ subjectId, offset = 0, limit = 8 }) {
   const response = await fetch(
-    `${BASE_URL}subjects/${subjectId}/questions/?limit=100`,
+    `${BASE_URL}subjects/${subjectId}/questions/?limit=${limit}&offset=${offset}`,
   );
   const data = await response.json();
   return data;
 }
+
+// Answer fetch

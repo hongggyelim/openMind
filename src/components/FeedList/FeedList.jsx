@@ -3,7 +3,7 @@ import styles from '../FeedList/FeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
 
-export function FeedList({ item }) {
+export function FeedList({ id, item }) {
   const answer = item.answer || '';
   return (
     <>
@@ -53,7 +53,7 @@ export function FeedList({ item }) {
             ''
           )}
         </div>
-        <FeedReaction like={item.like} dislike={item.dislike} />
+        <FeedReaction id={id} like={item.like} dislike={item.dislike} />
       </div>
     </>
   );

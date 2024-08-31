@@ -9,9 +9,11 @@ function Header({ userImg, userName }) {
     <div className={styles['header-container']}>
       <div className={styles['header']}>
         <div className={styles['user-container']}>
-          <Link to="/">
-            <img className={styles['logo']} src={logo} alt="로고" />
-          </Link>
+          <h1>
+            <Link to="/">
+              <img className={styles['logo']} src={logo} alt="오픈마인드" />
+            </Link>
+          </h1>
           <img
             className={styles['user-profile']}
             src={userImg}

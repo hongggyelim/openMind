@@ -1,0 +1,47 @@
+.wrap-inner {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.box {
+  display: flex;
+  border: 1px solid var(--brown-30);
+  margin: 0 auto;
+  width: 612px;
+  height: 454px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  background-color: var(--brown-10);
+  background-image: url('/src/assets/images/feed-box-noquestion.png');
+  background-repeat: no-repeat;
+  background-position: 50% 20%;
+  background-size: 150px 150px;
+  border-radius: 16px;
+  padding-bottom: 100px;
+}
+
+.not-found {
+  margin-bottom: 50px;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 40px;
+  color: var(--brown-40);
+}
+
+.move-wrap {
+  display: flex;
+  gap: 50px;
+}
+
+.move-btn {
+  display: inline-block;
+  background-color: var(--brown-40);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 200px;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 25px;
+}

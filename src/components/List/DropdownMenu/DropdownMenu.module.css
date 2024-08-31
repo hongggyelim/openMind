@@ -9,6 +9,7 @@
 }
 
 .order-btn {
+  min-width: 79px;
   display: flex;
   align-items: center;
   gap: 4px;

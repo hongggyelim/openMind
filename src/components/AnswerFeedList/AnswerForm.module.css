@@ -1,16 +1,12 @@
-.question-form {
+.answer-form {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.textarea-wrapper {
-  height: 180px;
-}
-
-.question-textarea {
+.answer-textarea {
   width: 100%;
-  height: 100%;
+  height: 180px;
   border-radius: 8px;
   padding: 16px;
   background-color: var(--grayscale-20);
@@ -18,12 +14,12 @@
   color: #000;
 }
 
-.question-textarea ::placeholder {
+.answer-textarea ::placeholder {
   color: var(--grayscale-40);
   line-height: 22px;
 }
 
-.question-textarea:focus {
+.answer-textarea:focus {
   outline: 1px solid var(--brown-40);
 }
 
@@ -42,26 +38,4 @@
 .disabled-btn {
   background-color: var(--brown-30);
   cursor: not-allowed;
-}
-
-.blind {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  clip-path: inset(50%);
-}
-
-/* stylelint-disable-next-line media-feature-range-notation */
-@media (width <= 768px) {
-  .textarea-wrapper {
-    height: 358px;
-  }
-
-  .question-textarea {
-    height: 100%;
-    padding: 16px;
-  }
 }

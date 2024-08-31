@@ -1,4 +1,5 @@
 .feed-box {
+  position: relative;
   margin-bottom: 20px;
   padding: 32px;
   background: #fff;
@@ -26,7 +27,8 @@
 .feed-contents {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+
+  /* align-items: flex-start; */
   gap: 32px;
   padding-top: 32px;
 }
@@ -47,8 +49,11 @@
 
 .answer-box {
   display: flex;
-  align-items: flex-start;
   gap: 12px;
+}
+
+.user-answer {
+  width: 100%;
 }
 
 .user-img {
@@ -64,6 +69,7 @@
   color: #000;
   font-size: 1.125rem;
   line-height: 24px;
+  margin-bottom: 4px;
 }
 
 .user-date {
@@ -82,6 +88,10 @@
 
 .contents.rejected {
   color: var(--red);
+}
+
+.answerForm {
+  width: 100%;
 }
 
 /* stylelint-disable-next-line media-feature-range-notation */
