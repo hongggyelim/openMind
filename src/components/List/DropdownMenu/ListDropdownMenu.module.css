@@ -1,10 +1,10 @@
-.order-wrap {
+.wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.order-wrap > div {
+.wrap > div {
   position: relative;
 }
 
@@ -38,7 +38,7 @@
   transform: rotate(0);
 }
 
-.order-box.shadow-1 {
+.dropdown-box.shadow-1 {
   position: absolute;
   bottom: -44px;
   left: 0;

@@ -43,17 +43,10 @@
   line-height: 30px;
 }
 
-.modal-icon {
-  display: inline-block;
-  width: 28px;
-  height: 28px;
-  background-image: url('/src/assets/icon/ic-messages.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .modal-exit-btn {
+  position: absolute;
+  top: 41px;
+  right: 40px;
   background-color: transparent;
   width: 28px;
   height: 28px;
@@ -61,6 +54,17 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.blind {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
 }
 
 .modal-to {
@@ -76,6 +80,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  border-radius: 999px;
 }
 
 .modal-receiver {
