@@ -14,6 +14,7 @@ import { useLocation } from 'react-router';
 import { ScrollTop } from '../../components/ScrollTop/ScrollTop';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 import { ReactComponent as Top } from '../../assets/icon/ic-arrow-up-copy.svg';
+import { throttle } from '../../utils/throttle';
 
 export function FeedPage() {
   const INITIAL_VALUE = '';
@@ -124,21 +125,28 @@ export function FeedPage() {
     setIsEmpty(nextContent === '');
   };
 
+  //위로가기 버튼 렌더 (스크롤 감지)
   const handleScroll = () => {
-    // console.log(window.scrollY);
     if (window.scrollY > 300) {
-      setToTop(true);
+      setToTop(true); //버튼 렌더
     } else {
       setToTop(false);
     }
   };
 
+  const throttleHandleScroll = throttle(handleScroll, 200);
+
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', throttleHandleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', throttleHandleScroll);
     };
   }, []);
+
+  //위로가기 버튼 동작
+  const handleClickTop = () => {
+    window.scrollTo({ top: 0 });
+  };
 
   return (
     <>
@@ -157,7 +165,7 @@ export function FeedPage() {
             ) : (
               feedList.map((item, index) => (
                 <div
-                  key={item.id}
+                  key={index} //FeedList와 동일 id 쓰면 콘솔에서 충돌 된다고해서 수정
                   ref={index === feedList.length - 1 ? lastElementRef : null}
                 >
                   <FeedList id={item.id} item={item} />
@@ -167,7 +175,7 @@ export function FeedPage() {
           </div>
         </div>
         {toTop && (
-          <ScrollTop>
+          <ScrollTop onClick={handleClickTop}>
             <Top fill="#542f1a" width="36" height="36" />
           </ScrollTop>
         )}
