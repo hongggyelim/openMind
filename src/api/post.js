@@ -1,7 +1,7 @@
 const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
 
 // 질문 등록하기
-export function postQuestion(subjectId, questionValue) {
+export function postQuestion(subjectId, questionValue, setFeedList) {
   const payload = {
     subjectId: subjectId, // url에서 받아와야함
     content: questionValue,
@@ -27,8 +27,8 @@ export function postQuestion(subjectId, questionValue) {
       return response.json(); // 서버에서 JSON 응답을 받을 것으로 가정
     })
     .then(data => {
-      console.log('Success:', data);
-      return data; // 성공적인 요청에 대한 응답 데이터 처리
+      console.log('Success:', data); // 성공적인 요청에 대한 응답 데이터 처리
+      setFeedList(prev => [data, ...prev]);
     })
     .catch(error => {
       console.error('Error:', error); // 에러 처리

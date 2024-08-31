@@ -33,10 +33,10 @@ export function AskForm() {
         localStorage.setItem('info', JSON.stringify(data));
 
         navigate(`/post/${feedId}/answer`, {
-          state: {
-            imageSource: imageSource,
-            name: userName,
-          },
+          // state: {
+          //   imageSource: imageSource,
+          //   name: userName,
+          // },
         });
       } catch (error) {
         console.error('Error creating subject:', error);
