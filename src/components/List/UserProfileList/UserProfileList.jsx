@@ -4,7 +4,7 @@ import UserProfile from '../UserProfile/UserProfile';
 import { getProfile } from '../../../api/api';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ListDropdownMenu from '../DropdownMenu/ListDropdownMenu';
+import ListDropdownMenu from '../ListDropdownMenu/ListDropdownMenu';
 
 const getLimit = () => {
   const width = window.innerWidth;
