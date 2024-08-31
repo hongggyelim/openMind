@@ -33,6 +33,19 @@ export function FeedPage() {
 
   const { subjectId } = useParams();
 
+  // 모달 열렸을때 body에 overflow : hidden 스타일 지정
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [modalOpen]);
+
   //useLocation hook
   const location = useLocation();
   const { imageSource, name } = location.state || {};
@@ -110,7 +123,7 @@ export function FeedPage() {
   return (
     <>
       <Header userImg={imageSource} userName={name} />
-      <div className={styles.feed}>
+      <main className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['feed-wrap']}>
             <p className={styles['total-count']}>
@@ -133,7 +146,7 @@ export function FeedPage() {
             )}
           </div>
         </div>
-      </div>
+      </main>
       <span className={styles['btn-link']}>
         <button type="button" onClick={handleClickModal}>
           질문 작성하기
@@ -147,6 +160,8 @@ export function FeedPage() {
           onChange={handleChangeContent}
           placehorder="질문을 입력해주세요"
           btnText="질문 보내기"
+          name={name}
+          image={imageSource}
         />
       )}
       {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}
