@@ -2,21 +2,22 @@ import userProfile from '../../assets/images/user-profile.png';
 import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
-import { AnswerForm } from './AnswerForm';
-import { AnswerDropdown } from './AnswerDropdown';
-import { useState } from 'react';
-import { postAnswer } from '../../api/post';
+import { QuestionForm } from '../QuestionModal/QuestionForm/QuestionForm';
+import { useContext } from 'react';
+import { QuestionValueContext } from '../../context/QuestionValueContext';
+import { IsEmptyContext } from '../../context/IsEmptyContext';
 
 export function AnswerFeedList({ id, item }) {
   //question id 를 받아옴
-  const [content, setContent] = useState('');
-  const [isEmpty, setIsEmpty] = useState(true);
-  const [answer, setAnswer] = useState(item.answer || null);
+  const { setQuestionValue } = useContext(QuestionValueContext);
+  const { setIsEmpty } = useContext(IsEmptyContext);
+
+  const answer = item.answer || '';
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;
-    setContent(nextContent);
-    setIsEmpty(nextContent.trim() === '');
+    setQuestionValue(() => nextContent);
+    setIsEmpty(false);
   };
 
   const handleSubmitAnswer = async e => {

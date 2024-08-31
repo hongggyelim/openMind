@@ -5,7 +5,7 @@ import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
-import { useLocation, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { AnswerLinkButton } from '../components/List/Gnb/Gnb';
 import { throttle } from '../utils/throttle';
 import { ScrollTop } from '../components/ScrollTop/ScrollTop';
@@ -25,10 +25,7 @@ export function AnswerPage() {
 
   const { id } = useParams(); // subject id
 
-  //useLocation hook
-  //답변페이지에서 렌더 안됨
-  const location = useLocation();
-  const { imageSource, name } = location.state || {};
+  const userInfo = JSON.parse(localStorage.getItem('info'));
 
   useEffect(() => {
     async function fetchList() {
@@ -99,8 +96,9 @@ export function AnswerPage() {
 
   return (
     <>
-      <Header userImg={imageSource} userName={name} />
-      <main className={styles.feed}>
+      <Header userImg={userInfo.imageSource} userName={userInfo.name} />
+      <div className={styles.feed}>
+
         <div className="wrap-inner2">
           <div className={styles['btn-link']}>
             <button type="button">삭제하기</button>
