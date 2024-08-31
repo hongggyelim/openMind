@@ -104,8 +104,6 @@ export function FeedPage() {
     }
   }, [modalOpen]);
 
-  // 특정 스크롤 위치에서 toTop 버튼 렌더링
-
   const handleClickModal = () => {
     setContent(INITIAL_VALUE);
     setModalOpen(!modalOpen);
@@ -125,6 +123,22 @@ export function FeedPage() {
     setContent(() => nextContent);
     setIsEmpty(nextContent === '');
   };
+
+  const handleScroll = () => {
+    // console.log(window.scrollY);
+    if (window.scrollY > 300) {
+      setToTop(true);
+    } else {
+      setToTop(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -152,9 +166,11 @@ export function FeedPage() {
             )}
           </div>
         </div>
-        <ScrollTop>
-          <Top fill="#542f1a" width="36" height="36" />
-        </ScrollTop>
+        {toTop && (
+          <ScrollTop>
+            <Top fill="#542f1a" width="36" height="36" />
+          </ScrollTop>
+        )}
       </main>
 
       <span className={styles['btn-link']}>
