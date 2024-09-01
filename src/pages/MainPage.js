@@ -3,6 +3,7 @@ import styles from './MainPage.module.css'; // MainPage 스타일 파일
 import logo from '../assets/images/logo.png';
 import iconRight from '../assets/icon/ic-arrow-right.svg';
 import { AskForm } from '../components/AskForm/AskForm'; // AskForm 컴포넌트 가져오기
+import Login from '../components/Login/Login';
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -11,11 +12,21 @@ export default function MainPage() {
     navigate('/list');
   };
 
+  const userInfo = JSON.parse(localStorage.getItem('info'));
+  console.log(userInfo);
   return (
     <div className={styles.container}>
       <img src={logo} alt="Logo" className={styles.logo} />
 
-      <AskForm />
+      {userInfo ? (
+        <Login
+          name={userInfo.name}
+          src={userInfo.imageSource}
+          alt={userInfo.name}
+        />
+      ) : (
+        <AskForm />
+      )}
 
       <button
         onClick={handleQuestionListClick}
