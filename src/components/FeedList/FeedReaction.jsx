@@ -1,30 +1,49 @@
-import { postReaction } from '../../api/post';
 import styles from '../FeedList/FeedReaction.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function FeedReaction({ id, like, dislike }) {
-  const [countLike, setCountLike] = useState(like);
-  const [countDislike, setCountDislike] = useState(dislike);
-  const [activeButton, setActiveButton] = useState(null);
+  const [countLike, setCountLike] = useState(() => {
+    const savedLike = localStorage.getItem(`${id}_like`);
+    return savedLike ? parseInt(savedLike) : like;
+  });
+  const [countDislike, setCountDislike] = useState(() => {
+    const savedDislike = localStorage.getItem(`${id}_dislike`);
+    return savedDislike ? parseInt(savedDislike) : dislike;
+  });
+  const [activeButton, setActiveButton] = useState(() => {
+    const savedButton = localStorage.getItem(`${id}_activeButton`);
+    return savedButton ? savedButton : null;
+  });
 
-  // 낙관적 업데이트 유지 & 서버에 해당하는 question ID 에 like, dislike 추가 (POST)
+  useEffect(() => {
+    localStorage.setItem(`${id}_like`, countLike);
+    localStorage.setItem(`${id}_dislike`, countDislike);
+    localStorage.setItem(`${id}_activeButton`, activeButton);
+  }, [countLike, countDislike, activeButton, id]);
+
   const onClickLike = () => {
     if (activeButton === 'like') {
-      return;
+      setActiveButton(null);
+      setCountLike(prevCount => prevCount - 1);
     } else {
+      if (activeButton === 'dislike') {
+        setCountDislike(prevCount => prevCount - 1);
+      }
       setActiveButton('like');
       setCountLike(prevCount => prevCount + 1);
-      postReaction(id, 'like');
     }
   };
 
   const onClickDislike = () => {
     if (activeButton === 'dislike') {
-      return;
+      setActiveButton(null);
+      setCountDislike(prevCount => prevCount - 1);
     } else {
+      if (activeButton === 'like') {
+        setCountLike(prevCount => prevCount - 1);
+      }
       setActiveButton('dislike');
       setCountDislike(prevCount => prevCount + 1);
-      postReaction(id, 'dislike');
     }
   };
 
