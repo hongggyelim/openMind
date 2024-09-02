@@ -35,6 +35,12 @@
     14px auto;
 }
 
+.btn-menu.btn-rejected {
+  padding: 8px 13px 8px 38px;
+  background: url('../../assets/icon/ic-rejection.svg') no-repeat left 16px
+    center / 14px auto;
+}
+
 .btn-menu.btn-delete {
   background: url('../../assets/icon/ic-close.svg') no-repeat left 16px center /
     14px auto;

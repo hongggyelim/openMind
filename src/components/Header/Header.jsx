@@ -3,7 +3,6 @@ import logo from '../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
 import ShareSNS from '../ShareSNS/ShareSNS';
 
-//유저 데이터 가져오기전까지 고정 데이터로 대체
 function Header({ userImg, userName }) {
   return (
     <div className={styles['header-container']}>
