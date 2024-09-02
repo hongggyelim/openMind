@@ -58,7 +58,11 @@ export function AskForm() {
         onChange={handleInputChange}
         className={styles.inputField}
       />
-      <button onClick={handleAskButtonClick} className={styles.askButton}>
+      <button
+        type="button"
+        onClick={handleAskButtonClick}
+        className={styles.askButton}
+      >
         질문받기
       </button>
     </div>
