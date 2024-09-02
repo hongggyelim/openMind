@@ -6,17 +6,17 @@ import { FeedPage } from './pages/FeedPage/FeedPage';
 import { AnswerPage } from './pages/AnswerPage';
 import './style/reset.css';
 import './style/common.css';
-import { ContentContext } from './context/ContentContext';
+import { QuestionValueContext } from './context/QuestionValueContext';
 import { IsEmptyContext } from './context/IsEmptyContext';
 import { useState } from 'react';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
 
 function MainRouter() {
-  const [content, setContent] = useState('');
+  const [questionValue, setQuestionValue] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
 
   return (
-    <ContentContext.Provider value={{ content, setContent }}>
+    <QuestionValueContext.Provider value={{ questionValue, setQuestionValue }}>
       <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
         <BrowserRouter>
           <Routes>
@@ -28,7 +28,7 @@ function MainRouter() {
           </Routes>
         </BrowserRouter>
       </IsEmptyContext.Provider>
-    </ContentContext.Provider>
+    </QuestionValueContext.Provider>
   );
 }
 

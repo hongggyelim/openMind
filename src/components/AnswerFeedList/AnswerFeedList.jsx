@@ -13,6 +13,9 @@ export function AnswerFeedList({ id, item }) {
   const [isEmpty, setIsEmpty] = useState(true);
   const [answer, setAnswer] = useState(item.answer || null);
 
+  const userInfo = JSON.parse(localStorage.getItem('info'));
+
+  console.log(userInfo.name);
   const handleChangeContent = e => {
     const nextContent = e.target.value;
     setContent(nextContent);
@@ -33,10 +36,14 @@ export function AnswerFeedList({ id, item }) {
     }
   };
 
+  // 답변 업데이트 핸들러
+  const handleAnswerUpdate = updatedAnswer => {
+    setAnswer(updatedAnswer);
+  };
   return (
     <>
       <div className={styles['feed-box']}>
-        <AnswerDropdown />
+        <AnswerDropdown id={id} answer={answer} onUpdate={handleAnswerUpdate} />
         {answer ? (
           <span className={`${styles['badge']} ${styles['answered']}`}>
             답변완료
@@ -55,7 +62,7 @@ export function AnswerFeedList({ id, item }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userProfile}
+                  src={userInfo.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
@@ -63,18 +70,17 @@ export function AnswerFeedList({ id, item }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-                  아초는고양이
+                  {userInfo.name}
                   <span className={styles['user-date']}>
                     {timeAgo(answer.createdAt)}
                   </span>
                 </p>
-                {/* 답변 노출을 위해 ture 일때 보이는걸로 임시 변경 */}
                 {answer.isRejected === true ? (
-                  <p className={styles.contents}>{answer.content}</p>
-                ) : (
                   <p className={`${styles['contents']} ${styles['rejected']}`}>
                     답변거절
                   </p>
+                ) : (
+                  <p className={styles.contents}>{answer.content}</p>
                 )}
               </div>
             </div>
@@ -83,14 +89,14 @@ export function AnswerFeedList({ id, item }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userProfile}
+                  src={userInfo.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
                 />
               </span>
               <div className={styles['user-answer']}>
-                <p className={styles.nickname}>아초는고양이</p>
+                <p className={styles.nickname}>{userInfo.name}</p>
                 <AnswerForm
                   onChange={handleChangeContent}
                   onSubmit={handleSubmitAnswer}
