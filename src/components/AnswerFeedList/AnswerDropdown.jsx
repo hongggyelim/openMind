@@ -3,7 +3,7 @@ import styles from './AnswerDropdown.module.css';
 import menu from '../../assets/icon/ic-more.svg';
 import { postAnswer } from '../../api/post';
 
-export function AnswerDropdown({ id, answer, onUpdate }) {
+export function AnswerDropdown({ id, answer, onUpdate, onDelete }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -32,6 +32,10 @@ export function AnswerDropdown({ id, answer, onUpdate }) {
     }
   };
 
+  const handleDeleteQuestion = () => {
+    onDelete(id);
+  };
+
   return (
     <div className={styles.dropdown}>
       <button className={styles['dropdown-button']} onClick={toggleDropdown}>
@@ -58,6 +62,7 @@ export function AnswerDropdown({ id, answer, onUpdate }) {
           <button
             type="button"
             className={`${styles['btn-menu']} ${styles['btn-delete']}`}
+            onClick={handleDeleteQuestion}
           >
             삭제하기
           </button>

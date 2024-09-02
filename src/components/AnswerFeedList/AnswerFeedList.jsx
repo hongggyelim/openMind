@@ -6,8 +6,9 @@ import { AnswerForm } from './AnswerForm';
 import { AnswerDropdown } from './AnswerDropdown';
 import { useState } from 'react';
 import { postAnswer } from '../../api/post';
+import { deleteQuestion } from '../../api/delete';
 
-export function AnswerFeedList({ id, item }) {
+export function AnswerFeedList({ id, item, onDelete }) {
   //question id 를 받아옴
   const [content, setContent] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
@@ -40,10 +41,16 @@ export function AnswerFeedList({ id, item }) {
   const handleAnswerUpdate = updatedAnswer => {
     setAnswer(updatedAnswer);
   };
+
   return (
     <>
       <div className={styles['feed-box']}>
-        <AnswerDropdown id={id} answer={answer} onUpdate={handleAnswerUpdate} />
+        <AnswerDropdown
+          id={id}
+          answer={answer}
+          onUpdate={handleAnswerUpdate}
+          onDelete={onDelete}
+        />
         {answer ? (
           <span className={`${styles['badge']} ${styles['answered']}`}>
             답변완료
