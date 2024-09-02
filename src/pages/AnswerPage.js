@@ -126,8 +126,11 @@ export function AnswerPage() {
             {feedList.length === 0 ? (
               <EmptyFeedList />
             ) : (
-              feedList.map(item => (
-                <div key={item.id}>
+              feedList.map((item, index) => (
+                <div
+                  key={item.id}
+                  ref={index === feedList.length - 1 ? lastElementRef : null}
+                >
                   <AnswerFeedList id={item.id} item={item} />
                 </div>
               ))
