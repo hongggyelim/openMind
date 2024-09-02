@@ -3,9 +3,10 @@ import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
 import Header from '../components/Header/Header';
 import styles from './AnswerPage.module.css';
 import { getQuestion } from '../api/api';
+import { deleteAnswer } from '../api/delete';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { AnswerLinkButton } from '../components/List/Gnb/Gnb';
 import { throttle } from '../utils/throttle';
 import { ScrollTop } from '../components/ScrollTop/ScrollTop';
@@ -22,8 +23,8 @@ export function AnswerPage() {
   const lastElementRef = useRef(null);
   const observer = useRef();
   const limit = 8;
-
   const { id } = useParams(); // subject id
+  const navigate = useNavigate();
 
   const userInfo = JSON.parse(localStorage.getItem('info'));
 
@@ -71,6 +72,17 @@ export function AnswerPage() {
     };
   }, [isLoading, hasMore]);
 
+  const handleDelete = async () => {
+    try {
+      await deleteAnswer(id);
+    } catch (error) {
+      console.error('삭제 중 오류가 발생했습니다:', error);
+    } finally {
+      alert('모든 질문이 삭제되었습니다.');
+      navigate('/');
+    }
+  };
+
   //위로가기 버튼 렌더 (스크롤 감지)
   const handleScroll = () => {
     if (window.scrollY > 300) {
@@ -97,11 +109,12 @@ export function AnswerPage() {
   return (
     <>
       <Header userImg={userInfo.imageSource} userName={userInfo.name} />
-      <div className={styles.feed}>
-
+      <main className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['btn-link']}>
-            <button type="button">삭제하기</button>
+            <button onClick={handleDelete} type="button">
+              삭제하기
+            </button>
           </div>
           <div className={styles['feed-wrap']}>
             <p className={styles['total-count']}>

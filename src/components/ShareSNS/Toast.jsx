@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import styles from './Toast.module.css';
 
 function Toast({ setToast, text }) {
@@ -11,7 +12,10 @@ function Toast({ setToast, text }) {
     };
   }, [setToast]);
 
-  return <strong className={`${styles['toast']}`}>{text}</strong>;
+  return createPortal(
+    <strong className={`${styles['toast']}`}>{text}</strong>,
+    document.body,
+  );
 }
 
 export default Toast;
