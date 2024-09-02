@@ -7,11 +7,13 @@
   background: var(--Grayscale-10, #fff);
   width: 400px;
   height: 172px;
-  padding: 32px 0;
+  padding: 32px;
   gap: 16px;
-  border-radius: 16px 0 0;
+  border-radius: 16px;
   flex-direction: column;
   align-items: center;
+  margin: 24px 0;
+  overflow: hidden;
 }
 
 .inputField {
@@ -39,29 +41,12 @@
   justify-content: center;
 }
 
-@media (width >= 481px) and (width <= 768px) {
-  .formContainer {
-    width: 80%;
-    top: 220px;
-    padding: 24px 0;
-  }
-
-  .inputField {
-    width: 100%;
-  }
-
-  .askButton {
-    width: 100%;
-  }
-}
-
 @media (width <= 480px) {
   .formContainer {
-    width: 257px;
-    top: 180px;
-    padding: 24px 0;
-    gap: 16px;
-    margin: 0 auto; /* 중앙 정렬 */
+    position: relative;
+    top: 60px;
+    margin: 24px 35px 0;
+    width: auto;
   }
 
   .inputField {

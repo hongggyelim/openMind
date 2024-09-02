@@ -15,10 +15,19 @@ export default function MainPage() {
   const userInfo = JSON.parse(localStorage.getItem('info'));
 
   return (
-    <main>
+    <main className={styles.main}>
       <div className={styles.container}>
-        <img src={logo} alt="Logo" className={styles.logo} />
+        <img
+          src={logo}
+          alt="Logo"
+          width={456}
+          height={180}
+          className={styles.logo}
+        />
 
+        {userInfo ? <Login userInfo={userInfo} /> : <AskForm />}
+      </div>
+      <div className={styles['btn-wrap']}>
         <button
           onClick={handleQuestionListClick}
           className={styles.questionButton}
@@ -32,8 +41,6 @@ export default function MainPage() {
             className={styles.iconRight}
           />
         </button>
-
-        {userInfo ? <Login userInfo={userInfo} /> : <AskForm />}
       </div>
     </main>
   );
