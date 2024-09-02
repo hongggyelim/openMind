@@ -21,6 +21,7 @@ function UserProfileList() {
   const [offset, setOffset] = useState(0);
   const [totalPage, setTotalPage] = useState();
   const [limit, setLimit] = useState(getLimit());
+  const [loadingError, setLoadingError] = useState(null);
 
   const selectOptionList = [
     { id: 'option1', option: '최신순', func: handleNameClick },
@@ -45,10 +46,15 @@ function UserProfileList() {
 
   useEffect(() => {
     const getProfileList = async queryOption => {
-      const { count, results } = await getProfile(queryOption);
-      setCount(count);
-      setProfile(results);
-      setTotalPage(Math.ceil(count / limit));
+      try {
+        const { count, results } = await getProfile(queryOption);
+        setCount(count);
+        setProfile(results);
+        setTotalPage(Math.ceil(count / limit));
+      } catch (error) {
+        setLoadingError(error);
+        return;
+      }
     };
     getProfileList({ offset, limit });
 
@@ -70,6 +76,7 @@ function UserProfileList() {
 
         <ListDropdownMenu selectOptionList={selectOptionList} />
       </div>
+      {loadingError?.message && <p>{loadingError.message}</p>}
       <div className={styles['list-box']}>
         <ul className={styles['profile-card-list']}>
           {profiles.map(profile => (
