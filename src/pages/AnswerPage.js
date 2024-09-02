@@ -109,8 +109,7 @@ export function AnswerPage() {
   return (
     <>
       <Header userImg={userInfo.imageSource} userName={userInfo.name} />
-      <div className={styles.feed}>
-
+      <main className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['btn-link']}>
             <button onClick={handleDelete} type="button">
