@@ -27,7 +27,6 @@ export function AnswerPage() {
   const navigate = useNavigate();
   const [userData, setUserDate] = useState();
 
-  // const userInfo = JSON.parse(localStorage.getItem('info'));
   useEffect(() => {
     async function userInfo(id) {
       const data = await getUserInfo(id);

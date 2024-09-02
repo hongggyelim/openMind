@@ -26,7 +26,7 @@ function ListDropdownMenu({ selectOptionList }) {
   const handleClick = (option, index) => {
     setIsDropdownVisible(false);
     setSelectedBtn(option);
-    selectOptionList[index].func();
+    selectOptionList[index].onClickFunc();
   };
 
   return (

@@ -13,8 +13,6 @@ export function AnswerFeedList({ id, item, userData }) {
   const [isEmpty, setIsEmpty] = useState(true);
   const [answer, setAnswer] = useState(item.answer || null);
 
-  // const userInfo = JSON.parse(localStorage.getItem('info'));
-
   const handleChangeContent = e => {
     const nextContent = e.target.value;
     setContent(nextContent);
