@@ -13,20 +13,12 @@ export default function MainPage() {
   };
 
   const userInfo = JSON.parse(localStorage.getItem('info'));
-  console.log(userInfo);
+
   return (
     <div className={styles.container}>
       <img src={logo} alt="Logo" className={styles.logo} />
 
-      {userInfo ? (
-        <Login
-          name={userInfo.name}
-          src={userInfo.imageSource}
-          alt={userInfo.name}
-        />
-      ) : (
-        <AskForm />
-      )}
+      {userInfo ? <Login userInfo={userInfo} /> : <AskForm />}
 
       <button
         onClick={handleQuestionListClick}
