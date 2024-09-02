@@ -1,0 +1,61 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrap > div {
+  position: relative;
+}
+
+.order-btn {
+  min-width: 79px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #000;
+  width: 80px;
+  font-size: 14px;
+  line-height: 18px;
+  border-radius: 8px;
+  padding: 8px 0 8px 12px;
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+
+.order-btn .icon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url('../../../assets/icon/ic-arrow-up.png');
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+  background-position: 85% 50%;
+  transform: rotate(180deg);
+}
+
+.order-btn.sorted .icon {
+  transform: rotate(0);
+}
+
+.dropdown-box.shadow-1 {
+  position: absolute;
+  bottom: -44px;
+  left: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--grayscale-30, rgba(207 207 207 1));
+  box-shadow: 0 4px 4px 0 rgb(140 140 140 / 25%);
+}
+
+.order {
+  padding: 8px 28px 8px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
+  background-color: #fff;
+}
+
+.order.sorting {
+  color: var(--blue);
+}
