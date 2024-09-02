@@ -2,6 +2,10 @@
   margin-top: 190px;
 }
 
+.delete-btn-wrap {
+  position: relative;
+}
+
 .feed-wrap {
   padding: 16px;
   background: var(--brown-10);
@@ -20,6 +24,9 @@
 }
 
 .btn-link {
+  position: absolute;
+  top: -52px;
+  right: 0;
   display: flex;
   justify-content: flex-end;
   text-align: center;
@@ -51,6 +58,12 @@
 
 .share-sns {
   z-index: 1;
+}
+
+@media (width <= 1200px) {
+  .btn-link {
+    right: 32px;
+  }
 }
 
 @media (width <= 768px) {
