@@ -26,11 +26,11 @@ export function FeedReaction({ id, like, dislike }) {
     if (activeButton === 'like') {
       setActiveButton(null);
       setCountLike(prevCount => prevCount - 1);
-      postReaction(id, 'like');
+      // postReaction(id, 'like');
     } else {
       setActiveButton('like');
       setCountLike(prevCount => prevCount + 1);
-      postReaction(id, 'like');
+      // postReaction(id, 'like');
     }
   };
 
@@ -38,11 +38,11 @@ export function FeedReaction({ id, like, dislike }) {
     if (activeButton === 'dislike') {
       setActiveButton(null);
       setCountDislike(prevCount => prevCount - 1);
-      postReaction(id, 'dislike');
+      // postReaction(id, 'dislike');
     } else {
       setActiveButton('dislike');
       setCountDislike(prevCount => prevCount + 1);
-      postReaction(id, 'dislike');
+      //postReaction(id, 'dislike');
     }
   };
 
