@@ -18,13 +18,17 @@
 
 .inputField {
   background: url('../../assets/icon/ic-person.svg') no-repeat 12px center;
-  border: 1px solid var(--Grayscale-40, #818181);
+  outline: 1px solid var(--Grayscale-40, #818181);
   width: 336px;
   height: 46px;
   padding: 12px 16px 12px 40px;
   border-radius: 8px;
   font-size: 16px;
-  background-size: 24px 24px;
+  background-size: 20px;
+}
+
+.inputField:focus {
+  outline: 1px solid var(--Brown-40, #542f1a);
 }
 
 .askButton {

@@ -29,15 +29,16 @@ export default function MainPage() {
       </div>
       <div className={styles['btn-wrap']}>
         <button
+          type="button"
           onClick={handleQuestionListClick}
           className={styles.questionButton}
         >
-          질문하러가기
+          질문하러 가기
           <img
             src={iconRight}
             alt="Arrow Right"
-            width={24}
-            height={24}
+            width={18}
+            height={18}
             className={styles.iconRight}
           />
         </button>
