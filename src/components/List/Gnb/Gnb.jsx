@@ -2,8 +2,6 @@ import styles from './Gnb.module.css';
 import logo from '../../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
 
-// const userId = window.localStorage.getItem('id');
-
 export function AnswerLinkButton({ btnLink, children }) {
   return (
     <Link to={btnLink} className={styles['answer-btn']}>
