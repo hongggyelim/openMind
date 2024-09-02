@@ -1,4 +1,3 @@
-import { postReaction } from '../../api/post';
 import styles from '../FeedList/FeedReaction.module.css';
 import { useState, useEffect } from 'react';
 
@@ -26,11 +25,12 @@ export function FeedReaction({ id, like, dislike }) {
     if (activeButton === 'like') {
       setActiveButton(null);
       setCountLike(prevCount => prevCount - 1);
-      // postReaction(id, 'like');
     } else {
+      if (activeButton === 'dislike') {
+        setCountDislike(prevCount => prevCount - 1);
+      }
       setActiveButton('like');
       setCountLike(prevCount => prevCount + 1);
-      // postReaction(id, 'like');
     }
   };
 
@@ -38,11 +38,12 @@ export function FeedReaction({ id, like, dislike }) {
     if (activeButton === 'dislike') {
       setActiveButton(null);
       setCountDislike(prevCount => prevCount - 1);
-      // postReaction(id, 'dislike');
     } else {
+      if (activeButton === 'like') {
+        setCountLike(prevCount => prevCount - 1);
+      }
       setActiveButton('dislike');
       setCountDislike(prevCount => prevCount + 1);
-      //postReaction(id, 'dislike');
     }
   };
 
