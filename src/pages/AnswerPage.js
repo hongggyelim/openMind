@@ -109,9 +109,7 @@ export function AnswerPage() {
     <>
       <Header userImg={userInfo.imageSource} userName={userInfo.name} />
       <main className={styles.feed}>
-
         <div className={`wrap-inner2 ${styles['delete-btn-wrap']}`}>
-
           <div className={styles['btn-link']}>
             <button onClick={handleDelete} type="button">
               삭제하기
