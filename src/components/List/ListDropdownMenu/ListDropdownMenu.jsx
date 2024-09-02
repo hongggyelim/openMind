@@ -3,7 +3,7 @@ import styels from './ListDropdownMenu.module.css';
 
 function ListDropdownMenu({ selectOptionList }) {
   const dropdownRef = useRef(null);
-  const [selectBtn, setSelectBtn] = useState('최신순');
+  const [selectedBtn, setSelectedBtn] = useState('최신순');
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const toggleDropdown = () => {
@@ -23,12 +23,10 @@ function ListDropdownMenu({ selectOptionList }) {
     };
   }, []);
 
-  const handleClick = option => {
+  const handleClick = (option, index) => {
     setIsDropdownVisible(false);
-    setSelectBtn(option);
-    selectOptionList.forEach(selectOption => {
-      if (selectOption.option === option) selectOption.func();
-    });
+    setSelectedBtn(option);
+    selectOptionList[index].func();
   };
 
   return (
@@ -41,17 +39,17 @@ function ListDropdownMenu({ selectOptionList }) {
             className={`${styels['order-btn']} ${isDropdownVisible ? styels['sorted'] : styels['']}`}
             onClick={toggleDropdown}
           >
-            {selectBtn}
+            {selectedBtn}
             <i className={styels.icon}></i>
           </button>
           {isDropdownVisible && (
             <div className={`${styels['dropdown-box']} ${styels['shadow-1']}`}>
-              {selectOptionList.map(option => (
+              {selectOptionList.map((option, index) => (
                 <button
                   type="button"
                   key={option.id}
-                  className={`${styels.order} ${selectBtn === option.option ? styels['sorting'] : styels['']}`}
-                  onClick={() => handleClick(option.option)}
+                  className={`${styels.order} ${selectedBtn === option.option ? styels['sorting'] : styels['']}`}
+                  onClick={() => handleClick(option.option, index)}
                 >
                   {option.option}
                 </button>

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AskForm.module.css';
+import { setLocalstorage } from '../../utils/localstorageFunc';
+import USER_KEY from '../../constants/localstorage';
 
 export function AskForm() {
   const [name, setName] = useState('');
@@ -30,7 +32,7 @@ export function AskForm() {
 
         const data = await response.json();
         const feedId = data.id; // 생성된 질문 대상의 id 사용
-        localStorage.setItem('info', JSON.stringify(data));
+        setLocalstorage(USER_KEY, data);
 
         navigate(`/post/${feedId}/answer`, {
           // state: {
