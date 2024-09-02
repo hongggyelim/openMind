@@ -18,21 +18,13 @@
 }
 
 .logo {
-  position: absolute;
   width: 456px;
   height: auto;
-  top: 160px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .formContainer {
-  position: absolute;
-  top: 364px;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  background: var(--Grayscale-10, #fff);
+  background: #fff;
   width: 400px;
   height: 172px;
   padding: 32px 0;
@@ -40,31 +32,6 @@
   border-radius: 16px 0 0;
   flex-direction: column;
   align-items: center;
-}
-
-.inputField {
-  background: url('../assets/icon/ic-person.svg') no-repeat 12px center;
-  border: 1px solid var(--Grayscale-40, #818181);
-  width: 336px;
-  height: 46px;
-  padding: 12px 16px 12px 40px;
-  border-radius: 8px;
-  font-size: 16px;
-  background-size: 24px 24px;
-}
-
-.askButton {
-  display: flex;
-  color: #fff;
-  width: 336px;
-  height: 46px;
-  padding: 12px 24px;
-  border-radius: 8px;
-  background-color: var(--Brown-40, #542f1a);
-  font-size: 16px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
 }
 
 .questionButton {
@@ -83,31 +50,10 @@
   cursor: pointer;
 }
 
-.iconRight {
-  width: 24px;
-  height: 24px;
-  background: url('../assets/icon/ic-arrow-right.svg') no-repeat center;
-  background-size: contain;
-}
-
 @media (width >= 481px) and (width <= 768px) {
   .logo {
     width: 356px;
     top: 120px;
-  }
-
-  .formContainer {
-    width: 80%;
-    top: 220px;
-    padding: 24px 0;
-  }
-
-  .inputField {
-    width: 100%;
-  }
-
-  .askButton {
-    width: 100%;
   }
 
   .questionButton {
@@ -138,8 +84,6 @@
 
   .questionButton {
     position: static; /* 중앙 정렬 */
-    display: flex;
-    border: 1px solid var(--Brown-40, #542f1a);
     width: 123px;
     height: 34px;
     margin-top: 10px;
@@ -147,35 +91,13 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 18px;
-    text-align: center;
     border-radius: 8px;
-    background-color: var(--Brown-10, #f5f1ee);
-    justify-content: center;
-    align-items: center;
     margin-left: auto;
     margin-right: auto;
   }
 
   .questionButton span {
     display: block; /* 버튼 텍스트가 한 줄로 보이게 */
-  }
-
-  .formContainer {
-    width: 257px;
-    top: 180px;
-    padding: 24px 0;
-    gap: 16px;
-    margin: 0 auto; /* 중앙 정렬 */
-  }
-
-  .inputField {
-    width: 100%;
-    padding-left: 48px;
-  }
-
-  .askButton {
-    width: 100%;
-    font-size: 16px;
   }
 
   .container {
