@@ -6,8 +6,11 @@ import { getQuestion } from '../api/api';
 import { deleteAnswer } from '../api/delete';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
-import { useLocation, useParams, useNavigate } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { AnswerLinkButton } from '../components/List/Gnb/Gnb';
+import { throttle } from '../utils/throttle';
+import { ScrollTop } from '../components/ScrollTop/ScrollTop';
+import { ReactComponent as Top } from '../assets/icon/ic-arrow-up-copy.svg';
 
 export function AnswerPage() {
   const [feedList, setFeedList] = useState([]);
@@ -15,6 +18,7 @@ export function AnswerPage() {
   const [offset, setOffset] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [hasMore, setHasMore] = useState(false);
+  const [toTop, setToTop] = useState(false);
 
   const lastElementRef = useRef(null);
   const observer = useRef();
@@ -22,9 +26,7 @@ export function AnswerPage() {
   const { id } = useParams(); // subject id
   const navigate = useNavigate();
 
-  //useLocation hook
-  const location = useLocation();
-  const { imageSource, name } = location.state || {}; //답변페이지에서 렌더 안됨
+  const userInfo = JSON.parse(localStorage.getItem('info'));
 
   useEffect(() => {
     async function fetchList() {
@@ -81,10 +83,34 @@ export function AnswerPage() {
     }
   };
 
+  //위로가기 버튼 렌더 (스크롤 감지)
+  const handleScroll = () => {
+    if (window.scrollY > 300) {
+      setToTop(true); //버튼 렌더
+    } else {
+      setToTop(false);
+    }
+  };
+
+  const throttleHandleScroll = throttle(handleScroll, 200);
+
+  useEffect(() => {
+    window.addEventListener('scroll', throttleHandleScroll);
+    return () => {
+      window.removeEventListener('scroll', throttleHandleScroll);
+    };
+  }, []);
+
+  //위로가기 버튼 동작
+  const handleClickTop = () => {
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <>
-      <Header userImg={imageSource} userName={name} />
+      <Header userImg={userInfo.imageSource} userName={userInfo.name} />
       <div className={styles.feed}>
+
         <div className="wrap-inner2">
           <div className={styles['btn-link']}>
             <button onClick={handleDelete} type="button">
@@ -112,7 +138,12 @@ export function AnswerPage() {
             )}
           </div>
         </div>
-      </div>
+        {toTop && (
+          <ScrollTop onClick={handleClickTop}>
+            <Top fill="#542f1a" width="36" height="36" />
+          </ScrollTop>
+        )}
+      </main>
       <span className={styles['to-list-btn']}>
         <AnswerLinkButton btnLink={'/list'}>질문하러 가기</AnswerLinkButton>
       </span>
