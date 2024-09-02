@@ -39,13 +39,12 @@ export function FeedList({ id, item }) {
                     {timeAgo(answer.createdAt)}
                   </span>
                 </p>
-                {/* 답변 노출을 위해 ture 일때 보이는걸로 임시 변경 */}
                 {answer.isRejected === true ? (
-                  <p className={styles.contents}>{answer.content}</p>
-                ) : (
                   <p className={`${styles['contents']} ${styles['rejected']}`}>
                     답변거절
                   </p>
+                ) : (
+                  <p className={styles.contents}>{answer.content}</p>
                 )}
               </div>
             </div>

@@ -91,7 +91,6 @@ export function AnswerPage() {
       setToTop(false);
     }
   };
-
   const throttleHandleScroll = throttle(handleScroll, 200);
 
   useEffect(() => {
@@ -99,7 +98,7 @@ export function AnswerPage() {
     return () => {
       window.removeEventListener('scroll', throttleHandleScroll);
     };
-  }, []);
+  }, [throttleHandleScroll]);
 
   //위로가기 버튼 동작
   const handleClickTop = () => {
