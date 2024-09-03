@@ -3,7 +3,8 @@ import styles from './AnswerDropdown.module.css';
 import menu from '../../assets/icon/ic-more.svg';
 import { postAnswer } from '../../api/post';
 
-export function AnswerDropdown({ id, answer, onUpdate }) {
+export function AnswerDropdown({ id, answer, onUpdate, onEdit }) {
+  // 수정 함수 추가
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -20,9 +21,7 @@ export function AnswerDropdown({ id, answer, onUpdate }) {
     }
 
     try {
-      // API 호출로 답변 거절 처리
-      const result = await postAnswer(id, '답변 거절', true); // `true`를 전달하여 거절 처리
-      // 부모 컴포넌트에 상태 업데이트 알림
+      const result = await postAnswer(id, '답변 거절', true); // true를 전달하여 거절 처리
       if (onUpdate) {
         onUpdate(result);
       }
@@ -30,6 +29,14 @@ export function AnswerDropdown({ id, answer, onUpdate }) {
     } catch (error) {
       console.error('답변 거절 실패:', error);
     }
+  };
+
+  // 답변 수정 모드 활성화
+  const handleEdit = () => {
+    if (onEdit) {
+      onEdit(true); // 수정 모드 활성화
+    }
+    setIsOpen(false);
   };
 
   return (
@@ -40,12 +47,21 @@ export function AnswerDropdown({ id, answer, onUpdate }) {
       {isOpen && (
         <div className={styles['dropdown-content']}>
           {hasContent ? (
-            <button
-              type="button"
-              className={`${styles['btn-menu']} ${styles['btn-edit']}`}
-            >
-              수정하기
-            </button>
+            <>
+              <button
+                type="button"
+                className={`${styles['btn-menu']} ${styles['btn-edit']}`}
+                onClick={handleEdit}
+              >
+                수정하기
+              </button>
+              <button
+                type="button"
+                className={`${styles['btn-menu']} ${styles['btn-delete']}`}
+              >
+                삭제하기
+              </button>
+            </>
           ) : (
             <button
               type="button"
@@ -55,12 +71,6 @@ export function AnswerDropdown({ id, answer, onUpdate }) {
               답변 거절
             </button>
           )}
-          <button
-            type="button"
-            className={`${styles['btn-menu']} ${styles['btn-delete']}`}
-          >
-            삭제하기
-          </button>
         </div>
       )}
     </div>
