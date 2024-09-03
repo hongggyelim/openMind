@@ -147,15 +147,15 @@ export function AnswerPage() {
             )}
           </div>
         </div>
-        {toTop && (
-          <ScrollTop onClick={handleClickTop}>
-            <Top fill="#542f1a" width="36" height="36" />
-          </ScrollTop>
-        )}
       </main>
       <span className={styles['to-list-btn']}>
         <AnswerLinkButton btnLink={'/list'}>질문하러 가기</AnswerLinkButton>
       </span>
+      {toTop && (
+        <ScrollTop onClick={handleClickTop}>
+          <Top fill="#542f1a" width="36" height="36" />
+        </ScrollTop>
+      )}
     </>
   );
 }
