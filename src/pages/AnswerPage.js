@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
 import Header from '../components/Header/Header';
 import styles from './AnswerPage.module.css';
-import { getQuestion } from '../api/api';
+
+import { getQuestion, getUserInfo } from '../api/api';
 import { deleteAnswer, deleteQuestion } from '../api/delete';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
@@ -27,8 +28,15 @@ export function AnswerPage() {
   const limit = 8;
   const { id } = useParams(); // subject id
   const navigate = useNavigate();
+  const [userData, setUserDate] = useState();
 
-  const userInfo = JSON.parse(localStorage.getItem('info'));
+  useEffect(() => {
+    async function userInfo(id) {
+      const data = await getUserInfo(id);
+      setUserDate(data);
+    }
+    userInfo(id);
+  }, [id]);
 
   useEffect(() => {
     async function fetchList() {
@@ -124,7 +132,7 @@ export function AnswerPage() {
 
   return (
     <>
-      <Header userImg={userInfo.imageSource} userName={userInfo.name} />
+      <Header userImg={userData?.imageSource} userName={userData?.name} />
       <main className={styles.feed}>
         <div className={`wrap-inner2 ${styles['delete-btn-wrap']}`}>
           <div className={styles['btn-link']}>
@@ -150,6 +158,7 @@ export function AnswerPage() {
                   <AnswerFeedList
                     id={item.id}
                     item={item}
+                    userData={userData}
                     onDelete={handleDeleteQuestion}
                   />
                 </div>
@@ -157,15 +166,16 @@ export function AnswerPage() {
             )}
           </div>
         </div>
-        {toTop && (
-          <ScrollTop onClick={handleClickTop}>
-            <Top fill="#542f1a" width="36" height="36" />
-          </ScrollTop>
-        )}
       </main>
       <span className={styles['to-list-btn']}>
         <AnswerLinkButton btnLink={'/list'}>질문하러 가기</AnswerLinkButton>
       </span>
+
+      {toTop && (
+        <ScrollTop onClick={handleClickTop}>
+          <Top fill="#542f1a" width="36" height="36" />
+        </ScrollTop>
+      )}
       {toast && <Toast setToast={setToast} text="질문이 삭제되었습니다" />}
     </>
   );

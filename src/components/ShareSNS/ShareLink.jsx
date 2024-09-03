@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Toast from './Toast';
 import shareLink from '../../assets/button/share-link.svg';
 import styles from './ShareLink.module.css';
