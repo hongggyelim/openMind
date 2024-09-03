@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AskForm.module.css';
 import { setLocalstorage } from '../../utils/localstorageFunc';
-import USER_KEY from '../../constants/localstorage';
+import { USER_KEY } from '../../constants/localstorage';
 
 export function AskForm() {
   const [name, setName] = useState('');

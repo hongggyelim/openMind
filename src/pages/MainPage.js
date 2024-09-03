@@ -5,7 +5,7 @@ import iconRight from '../assets/icon/ic-arrow-right.png';
 import { AskForm } from '../components/AskForm/AskForm'; // AskForm 컴포넌트 가져오기
 import Login from '../components/Login/Login';
 import { getLocalstoage } from '../utils/localstorageFunc';
-import USER_KEY from '../constants/localstorage';
+import { USER_KEY } from '../constants/localstorage';
 
 export default function MainPage() {
   const navigate = useNavigate();
