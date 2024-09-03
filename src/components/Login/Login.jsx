@@ -1,7 +1,7 @@
 import { removeLocalstarage } from '../../utils/localstorageFunc';
 import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
-import USER_KEY from '../../constants/localstorage';
+import { USER_KEY } from '../../constants/localstorage';
 
 function Login({ userInfo }) {
   const logout = () => {

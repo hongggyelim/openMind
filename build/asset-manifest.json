@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3deca26b.css",
+    "main.js": "/static/js/main.e5d4ffcc.js",
+    "static/media/background.png": "/static/media/background.e2efec4a94a1d1ba10cb.png",
+    "static/media/main-bnr.png": "/static/media/main-bnr.a3772eead58b6aba0796.png",
+    "static/media/user-profile.png": "/static/media/user-profile.1e3e5ede7460481ac6b8.png",
+    "static/media/logo.svg": "/static/media/logo.41384141e722e451aa345f401bccf8c0.svg",
+    "static/media/logo.png": "/static/media/logo.b5b22f505d24fba7fbc4.png",
+    "static/media/share-link.svg": "/static/media/share-link.d1106f737c2839ab24f8dccda1c51ae3.svg",
+    "static/media/ic-edit.svg": "/static/media/ic-edit.c60b1bf130d0944422ee.svg",
+    "static/media/ic-messages.svg": "/static/media/ic-messages.fade1842b3e850ff82c2496127f2a161.svg",
+    "static/media/ic-person.svg": "/static/media/ic-person.27378a23c29fb5b6e29a.svg",
+    "static/media/ic-close.svg": "/static/media/ic-close.711dea101821a8d705b8.svg",
+    "static/media/ic-more.svg": "/static/media/ic-more.9d306950a2e67d44330ebba82ebc13a5.svg",
+    "static/media/ic-rejection.svg": "/static/media/ic-rejection.c42f227969b46c50a63d.svg",
+    "static/media/share-kakao.svg": "/static/media/share-kakao.53e4db16068ccee9c22474f97f3bea5d.svg",
+    "static/media/share-facebook.svg": "/static/media/share-facebook.a07d85851c1e91be0db13981ca821557.svg",
+    "index.html": "/index.html",
+    "static/media/ic-arrow-up-copy.svg": "/static/media/ic-arrow-up-copy.e3446a4a301565edb32625f43a43f8be.svg",
+    "static/media/ic-arrow-right.svg": "/static/media/ic-arrow-right.cb5a3203e33f84d833e645f3d6771c52.svg",
+    "main.3deca26b.css.map": "/static/css/main.3deca26b.css.map",
+    "main.e5d4ffcc.js.map": "/static/js/main.e5d4ffcc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3deca26b.css",
+    "static/js/main.e5d4ffcc.js"
+  ]
+}
