@@ -1,4 +1,4 @@
-const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
+import BASE_URL from '../constants/fetchurl';
 
 export async function deleteAnswer(id) {
   const response = await fetch(`${BASE_URL}subjects/${id}/`, {
@@ -26,15 +26,12 @@ export async function deleteQuestion(id) {
   if (!response.ok) {
     throw new Error('질문을 삭제하는데 실패했습니다.');
   }
-  const data = await response.json();
-  return data;
+
+  const contentLength = response.headers.get('content-length');
+  if (contentLength && contentLength !== '0') {
+    const data = await response.json();
+    return data;
+  }
+
+  return {};
 }
-
-//   const contentLength = response.headers.get('content-length');
-//   if (contentLength && contentLength !== '0') {
-//     const data = await response.json();
-//     return data;
-//   }
-
-//   return {};
-// }

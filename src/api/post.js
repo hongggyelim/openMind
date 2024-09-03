@@ -1,4 +1,4 @@
-const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
+import BASE_URL from '../constants/fetchurl';
 
 // 질문 등록하기
 export function postQuestion(subjectId, questionValue, setFeedList) {
