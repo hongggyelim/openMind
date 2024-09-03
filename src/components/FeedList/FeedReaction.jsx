@@ -1,3 +1,4 @@
+import { postReaction } from '../../api/post';
 import styles from '../FeedList/FeedReaction.module.css';
 import { useState, useEffect } from 'react';
 
@@ -23,27 +24,21 @@ export function FeedReaction({ id, like, dislike }) {
 
   const onClickLike = () => {
     if (activeButton === 'like') {
-      setActiveButton(null);
-      setCountLike(prevCount => prevCount - 1);
+      return;
     } else {
-      if (activeButton === 'dislike') {
-        setCountDislike(prevCount => prevCount - 1);
-      }
       setActiveButton('like');
       setCountLike(prevCount => prevCount + 1);
+      postReaction(id, 'like');
     }
   };
 
   const onClickDislike = () => {
     if (activeButton === 'dislike') {
-      setActiveButton(null);
-      setCountDislike(prevCount => prevCount - 1);
+      return;
     } else {
-      if (activeButton === 'like') {
-        setCountLike(prevCount => prevCount - 1);
-      }
       setActiveButton('dislike');
       setCountDislike(prevCount => prevCount + 1);
+      postReaction(id, 'dislike');
     }
   };
 
