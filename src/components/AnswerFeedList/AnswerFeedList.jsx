@@ -7,15 +7,12 @@ import { AnswerDropdown } from './AnswerDropdown';
 import { useState } from 'react';
 import { postAnswer } from '../../api/post';
 
-export function AnswerFeedList({ id, item }) {
+export function AnswerFeedList({ id, item, userData }) {
   //question id 를 받아옴
   const [content, setContent] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
   const [answer, setAnswer] = useState(item.answer || null);
 
-  const userInfo = JSON.parse(localStorage.getItem('info'));
-
-  console.log(userInfo.name);
   const handleChangeContent = e => {
     const nextContent = e.target.value;
     setContent(nextContent);
@@ -62,7 +59,7 @@ export function AnswerFeedList({ id, item }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userInfo.imageSource}
+                  src={userData.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
@@ -70,7 +67,7 @@ export function AnswerFeedList({ id, item }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-                  {userInfo.name}
+                  {userData.name}
                   <span className={styles['user-date']}>
                     {timeAgo(answer.createdAt)}
                   </span>
@@ -89,14 +86,14 @@ export function AnswerFeedList({ id, item }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userInfo.imageSource}
+                  src={userData.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
                 />
               </span>
               <div className={styles['user-answer']}>
-                <p className={styles.nickname}>{userInfo.name}</p>
+                <p className={styles.nickname}>{userData.name}</p>
                 <AnswerForm
                   onChange={handleChangeContent}
                   onSubmit={handleSubmitAnswer}

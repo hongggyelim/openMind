@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
 import Header from '../components/Header/Header';
 import styles from './AnswerPage.module.css';
-import { getQuestion } from '../api/api';
+import { getQuestion, getUserInfo } from '../api/api';
 import { deleteAnswer } from '../api/delete';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
@@ -25,8 +25,15 @@ export function AnswerPage() {
   const limit = 8;
   const { id } = useParams(); // subject id
   const navigate = useNavigate();
+  const [userData, setUserDate] = useState();
 
-  const userInfo = JSON.parse(localStorage.getItem('info'));
+  useEffect(() => {
+    async function userInfo(id) {
+      const data = await getUserInfo(id);
+      setUserDate(data);
+    }
+    userInfo(id);
+  }, [id]);
 
   useEffect(() => {
     async function fetchList() {
@@ -107,7 +114,7 @@ export function AnswerPage() {
 
   return (
     <>
-      <Header userImg={userInfo.imageSource} userName={userInfo.name} />
+      <Header userImg={userData?.imageSource} userName={userData?.name} />
       <main className={styles.feed}>
         <div className={`wrap-inner2 ${styles['delete-btn-wrap']}`}>
           <div className={styles['btn-link']}>
@@ -130,7 +137,11 @@ export function AnswerPage() {
                   key={item.id}
                   ref={index === feedList.length - 1 ? lastElementRef : null}
                 >
-                  <AnswerFeedList id={item.id} item={item} />
+                  <AnswerFeedList
+                    id={item.id}
+                    item={item}
+                    userData={userData}
+                  />
                 </div>
               ))
             )}
