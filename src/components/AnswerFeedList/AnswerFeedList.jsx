@@ -59,7 +59,7 @@ export function AnswerFeedList({ id, item, userData }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userData.imageSource}
+                  src={userData?.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
@@ -67,7 +67,7 @@ export function AnswerFeedList({ id, item, userData }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-                  {userData.name}
+                  {userData?.name}
                   <span className={styles['user-date']}>
                     {timeAgo(answer.createdAt)}
                   </span>
@@ -86,14 +86,14 @@ export function AnswerFeedList({ id, item, userData }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userData.imageSource}
+                  src={userData?.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
                 />
               </span>
               <div className={styles['user-answer']}>
-                <p className={styles.nickname}>{userData.name}</p>
+                <p className={styles.nickname}>{userData?.name}</p>
                 <AnswerForm
                   onChange={handleChangeContent}
                   onSubmit={handleSubmitAnswer}
