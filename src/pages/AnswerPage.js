@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { EmptyFeedList } from '../components/FeedList/EmptyFeedList';
 import Header from '../components/Header/Header';
 import styles from './AnswerPage.module.css';
+
 import { getQuestion, getUserInfo } from '../api/api';
-import { deleteAnswer } from '../api/delete';
+import { deleteAnswer, deleteQuestion } from '../api/delete';
 import { ReactComponent as Message } from '../assets/icon/ic-messages.svg';
 import { AnswerFeedList } from '../components/AnswerFeedList/AnswerFeedList';
 import { useParams, useNavigate } from 'react-router';
@@ -11,6 +12,7 @@ import { AnswerLinkButton } from '../components/List/Gnb/Gnb';
 import { throttle } from '../utils/throttle';
 import { ScrollTop } from '../components/ScrollTop/ScrollTop';
 import { ReactComponent as Top } from '../assets/icon/ic-arrow-up-copy.svg';
+import Toast from '../components/ShareSNS/Toast';
 
 export function AnswerPage() {
   const [feedList, setFeedList] = useState([]);
@@ -19,6 +21,7 @@ export function AnswerPage() {
   const [totalCount, setTotalCount] = useState(0);
   const [hasMore, setHasMore] = useState(false);
   const [toTop, setToTop] = useState(false);
+  const [toast, setToast] = useState(false);
 
   const lastElementRef = useRef(null);
   const observer = useRef();
@@ -79,6 +82,7 @@ export function AnswerPage() {
     };
   }, [isLoading, hasMore]);
 
+  //subjectId 삭제
   const handleDelete = async () => {
     try {
       await deleteAnswer(id);
@@ -112,6 +116,20 @@ export function AnswerPage() {
     window.scrollTo({ top: 0 });
   };
 
+  //개별 질문 삭제
+  const handleDeleteQuestion = async id => {
+    try {
+      console.log(id);
+      await deleteQuestion(id);
+
+      setFeedList(prevList => prevList.filter(item => item.id !== id));
+    } catch (error) {
+      console.error('삭제 중 오류 발생:', error);
+    } finally {
+      setToast(true);
+    }
+  };
+
   return (
     <>
       <Header userImg={userData?.imageSource} userName={userData?.name} />
@@ -141,6 +159,7 @@ export function AnswerPage() {
                     id={item.id}
                     item={item}
                     userData={userData}
+                    onDelete={handleDeleteQuestion}
                   />
                 </div>
               ))
@@ -151,11 +170,13 @@ export function AnswerPage() {
       <span className={styles['to-list-btn']}>
         <AnswerLinkButton btnLink={'/list'}>질문하러 가기</AnswerLinkButton>
       </span>
+
       {toTop && (
         <ScrollTop onClick={handleClickTop}>
           <Top fill="#542f1a" width="36" height="36" />
         </ScrollTop>
       )}
+      {toast && <Toast setToast={setToast} text="질문이 삭제되었습니다" />}
     </>
   );
 }

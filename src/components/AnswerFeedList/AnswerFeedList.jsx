@@ -7,7 +7,7 @@ import { AnswerDropdown } from './AnswerDropdown';
 import { useState } from 'react';
 import { postAnswer } from '../../api/post';
 
-export function AnswerFeedList({ id, item, userData }) {
+export function AnswerFeedList({ id, item, userData, onDelete }) {
   //question id 를 받아옴
   const [content, setContent] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
@@ -37,10 +37,16 @@ export function AnswerFeedList({ id, item, userData }) {
   const handleAnswerUpdate = updatedAnswer => {
     setAnswer(updatedAnswer);
   };
+
   return (
     <>
       <div className={styles['feed-box']}>
-        <AnswerDropdown id={id} answer={answer} onUpdate={handleAnswerUpdate} />
+        <AnswerDropdown
+          id={id}
+          answer={answer}
+          onUpdate={handleAnswerUpdate}
+          onDelete={onDelete}
+        />
         {answer ? (
           <span className={`${styles['badge']} ${styles['answered']}`}>
             답변완료
