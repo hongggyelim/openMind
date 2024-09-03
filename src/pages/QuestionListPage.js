@@ -1,6 +1,6 @@
 import UserProfileList from '../components/List/UserProfileList/UserProfileList';
 import { Gnb } from '../components/List/Gnb/Gnb';
-import USER_KEY from '../constants/localstorage';
+import { USER_KEY } from '../constants/localstorage';
 import { getLocalstoage } from '../utils/localstorageFunc';
 
 export function QuestionListPage() {

@@ -1,25 +1,30 @@
 import { postReaction } from '../../api/post';
 import styles from '../FeedList/FeedReaction.module.css';
 import { useState, useEffect } from 'react';
+import { LOCAL_STORAGE_KEYS } from '../../constants/localstorage';
+import { getLocalstoage } from '../../utils/localstorageFunc';
+import { setLocalstorage } from '../../utils/localstorageFunc';
 
 export function FeedReaction({ id, like, dislike }) {
   const [countLike, setCountLike] = useState(() => {
-    const savedLike = localStorage.getItem(`${id}_like`);
+    const savedLike = getLocalstoage(`${id}${LOCAL_STORAGE_KEYS.like}`);
     return savedLike ? parseInt(savedLike) : like;
   });
   const [countDislike, setCountDislike] = useState(() => {
-    const savedDislike = localStorage.getItem(`${id}_dislike`);
+    const savedDislike = getLocalstoage(`${id}${LOCAL_STORAGE_KEYS.dislike}`);
     return savedDislike ? parseInt(savedDislike) : dislike;
   });
   const [activeButton, setActiveButton] = useState(() => {
-    const savedButton = localStorage.getItem(`${id}_activeButton`);
+    const savedButton = getLocalstoage(
+      `${id}${LOCAL_STORAGE_KEYS.activeButton}`,
+    );
     return savedButton ? savedButton : null;
   });
 
   useEffect(() => {
-    localStorage.setItem(`${id}_like`, countLike);
-    localStorage.setItem(`${id}_dislike`, countDislike);
-    localStorage.setItem(`${id}_activeButton`, activeButton);
+    setLocalstorage(`${id}${LOCAL_STORAGE_KEYS.like}`, countLike);
+    setLocalstorage(`${id}${LOCAL_STORAGE_KEYS.dislike}`, countDislike);
+    setLocalstorage(`${id}${LOCAL_STORAGE_KEYS.activeButton}`, activeButton);
   }, [countLike, countDislike, activeButton, id]);
 
   const onClickLike = () => {
