@@ -1,20 +1,19 @@
 .login {
-  position: absolute;
-  top: 364px;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
+  display: flex;
+  justify-content: center;
   background-color: #fff;
   width: 400px;
   height: 172px;
   padding: 32px;
   border-radius: 16px;
-  display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 30px;
+  gap: 16px;
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 40px;
+  margin: 24px 0;
 }
 
 .user-profile {
@@ -46,4 +45,14 @@
   font-weight: 400;
   line-height: 18px;
   text-align: center;
+}
+
+@media (width <= 480px) {
+  .login {
+    position: relative;
+    top: 60px;
+    margin: 24px 35px 0;
+    width: auto;
+    min-width: 339px;
+  }
 }
