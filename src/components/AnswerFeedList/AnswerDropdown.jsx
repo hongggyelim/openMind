@@ -3,8 +3,17 @@ import styles from './AnswerDropdown.module.css';
 import menu from '../../assets/icon/ic-more.svg';
 import { postAnswer } from '../../api/post';
 
+<<<<<<< HEAD
 export function AnswerDropdown({ id, answer, onUpdate, onEdit, onDelete }) {
   // 수정 함수 추가
+=======
+
+// export function AnswerDropdown({ id, answer, onUpdate, onEdit }) {
+  // 수정 함수 추가
+
+export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
+
+>>>>>>> origin/develop
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -31,16 +40,27 @@ export function AnswerDropdown({ id, answer, onUpdate, onEdit, onDelete }) {
     }
   };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/develop
   // 답변 수정 모드 활성화
   const handleEdit = () => {
     if (onEdit) {
       onEdit(true); // 수정 모드 활성화
     }
     setIsOpen(false);
+<<<<<<< HEAD
   };
 
   const handleDeleteQuestion = () => {
     onDelete(id);
+=======
+
+  const handleDeleteQuestion = () => {
+    onDelete(id);
+
+>>>>>>> origin/develop
   };
 
   return (
@@ -84,6 +104,19 @@ export function AnswerDropdown({ id, answer, onUpdate, onEdit, onDelete }) {
               </button>
             </>
           )}
+<<<<<<< HEAD
+=======
+
+
+          <button
+            type="button"
+            className={`${styles['btn-menu']} ${styles['btn-delete']}`}
+            onClick={handleDeleteQuestion}
+          >
+            삭제하기
+          </button>
+
+>>>>>>> origin/develop
         </div>
       )}
     </div>
