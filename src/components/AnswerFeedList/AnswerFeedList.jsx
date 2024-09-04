@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useState } from 'react';
 import userProfile from '../../assets/images/user-profile.png';
 import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
@@ -9,7 +8,6 @@ import { AnswerDropdown } from './AnswerDropdown';
 import { postAnswer, updateAnswer } from '../../api/post'; // updateAnswer 함수 가져오기
 
 export function AnswerFeedList({ id, item, userData, onDelete }) {
-  //question id 를 받아옴
   const [content, setContent] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
   const [answer, setAnswer] = useState(item.answer || null);
@@ -61,6 +59,12 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
         console.error('수정할 답변이 없습니다.');
         return;
       }
+  const handleUpdateAnswer = async e => {
+    e.preventDefault();
+    if (!answer) {
+      console.error('수정할 답변이 없습니다.');
+      return;
+    }
 
       try {
         const updatedAnswer = await updateAnswer(
