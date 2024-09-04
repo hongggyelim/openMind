@@ -1,6 +1,6 @@
 import userProfile from '../../assets/images/user-profile.png';
 import styles from '../FeedList/FeedList.module.css';
-import { Reaction } from '../FeedList/Reaction';
+import { FeedReaction } from '../FeedList/FeedReaction';
 import { timeAgo } from '../../utils/timeAgo';
 
 export function FeedList({ id, item, userData }) {
@@ -53,7 +53,7 @@ export function FeedList({ id, item, userData }) {
             ''
           )}
         </div>
-        <Reaction id={id} like={item.like} dislike={item.dislike} />
+        <FeedReaction id={id} like={item.like} dislike={item.dislike} />
       </div>
     </>
   );
