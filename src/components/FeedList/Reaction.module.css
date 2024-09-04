@@ -1,0 +1,53 @@
+.btn-reaction {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-top: 24px;
+  margin-top: 32px;
+  border-top: 1px solid var(--grayscale-30);
+}
+
+.btn-reaction > button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  background: transparent;
+}
+
+.btn {
+  color: var(--grayscale-40);
+  font-size: 0.875rem;
+  min-width: 80px;
+}
+
+.btn > svg,
+.btn > svg path {
+  fill: var(--grayscale-40);
+}
+
+.btn.btn-like.active {
+  color: var(--blue);
+}
+
+.btn.btn-like.active > svg,
+.btn.btn-like.active > svg path {
+  fill: var(--blue);
+}
+
+.btn.btn-dislike.active {
+  color: var(--red);
+}
+
+.btn.btn-dislike.active > svg,
+.btn.btn-dislike.active > svg path {
+  fill: var(--red);
+}
+
+/* stylelint-disable-next-line media-feature-range-notation */
+@media (max-width: 768px) {
+  .btn-reaction {
+    padding-top: 24px;
+    margin-top: 24px;
+  }
+}

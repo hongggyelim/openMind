@@ -172,7 +172,7 @@ export function FeedPage() {
                   key={index} //FeedList와 동일 id 쓰면 콘솔에서 충돌 된다고해서 수정
                   ref={index === feedList.length - 1 ? lastElementRef : null}
                 >
-                  <FeedList id={item.id} item={item} />
+                  <FeedList id={item.id} item={item} userData={userData} />
                 </div>
               ))
             )}

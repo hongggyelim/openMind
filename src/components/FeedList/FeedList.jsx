@@ -1,10 +1,11 @@
 import userProfile from '../../assets/images/user-profile.png';
 import styles from '../FeedList/FeedList.module.css';
-import { FeedReaction } from '../FeedList/FeedReaction';
+import { Reaction } from '../FeedList/Reaction';
 import { timeAgo } from '../../utils/timeAgo';
 
-export function FeedList({ id, item }) {
+export function FeedList({ id, item, userData }) {
   const answer = item.answer || '';
+  console.log(item);
   return (
     <>
       <div className={styles['feed-box']}>
@@ -26,7 +27,7 @@ export function FeedList({ id, item }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userProfile}
+                  src={userData?.imageSource}
                   width={48}
                   height={48}
                   alt={userProfile}
@@ -52,7 +53,7 @@ export function FeedList({ id, item }) {
             ''
           )}
         </div>
-        <FeedReaction id={id} like={item.like} dislike={item.dislike} />
+        <Reaction id={id} like={item.like} dislike={item.dislike} />
       </div>
     </>
   );
