@@ -3,7 +3,6 @@ import styles from './AnswerDropdown.module.css';
 import menu from '../../assets/icon/ic-more.svg';
 import { postAnswer } from '../../api/post';
 
-// export function AnswerDropdown({ id, answer, onUpdate, onEdit }) {
 // 수정 함수 추가
 
 export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
@@ -40,6 +39,7 @@ export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
     }
     setIsOpen(false);
   };
+
   const handleDeleteQuestion = () => {
     onDelete(id);
   };
@@ -68,7 +68,6 @@ export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
               답변거절
             </button>
           )}
-
           <button
             type="button"
             className={`${styles['btn-menu']} ${styles['btn-delete']}`}
