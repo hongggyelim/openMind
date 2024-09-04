@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import userProfile from '../../assets/images/user-profile.png';
 import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
@@ -8,18 +8,10 @@ import { AnswerDropdown } from './AnswerDropdown';
 import { postAnswer, updateAnswer } from '../../api/post'; // updateAnswer 함수 가져오기
 
 export function AnswerFeedList({ id, item, userData, onDelete }) {
-  //question id 를 받아옴
   const [content, setContent] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
   const [answer, setAnswer] = useState(item.answer || null);
   const [isEditing, setIsEditing] = useState(false); // 수정 모드 상태
-
-  // useEffect(() => {
-  //   const userInfoFromStorage = localStorage.getItem('info');
-  //   if (userInfoFromStorage) {
-  //     setUserInfo(JSON.parse(userInfoFromStorage));
-  //   }
-  // }, []);
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;

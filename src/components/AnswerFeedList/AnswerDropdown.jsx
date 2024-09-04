@@ -3,8 +3,7 @@ import styles from './AnswerDropdown.module.css';
 import menu from '../../assets/icon/ic-more.svg';
 import { postAnswer } from '../../api/post';
 
-export function AnswerDropdown({ id, answer, onUpdate, onEdit, onDelete }) {
-  // 수정 함수 추가
+export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
