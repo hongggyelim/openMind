@@ -44,7 +44,8 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
     }
   };
 
-  const handleUpdateAnswer = async () => {
+  const handleUpdateAnswer = async e => {
+    e.preventDefault();
     if (!answer) {
       console.error('수정할 답변이 없습니다.');
       return;
