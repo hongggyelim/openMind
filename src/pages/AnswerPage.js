@@ -13,6 +13,7 @@ import { throttle } from '../utils/throttle';
 import { ScrollTop } from '../components/ScrollTop/ScrollTop';
 import { ReactComponent as Top } from '../assets/icon/ic-arrow-up-copy.svg';
 import Toast from '../components/ShareSNS/Toast';
+import { Helmet } from 'react-helmet-async';
 
 export function AnswerPage() {
   const [feedList, setFeedList] = useState([]);
@@ -132,6 +133,9 @@ export function AnswerPage() {
 
   return (
     <>
+      <Helmet>
+        <title>OpenMind - Answer</title>
+      </Helmet>
       <Header userImg={userData?.imageSource} userName={userData?.name} />
       <main className={styles.feed}>
         <div className={`wrap-inner2 ${styles['delete-btn-wrap']}`}>

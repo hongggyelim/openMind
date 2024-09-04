@@ -6,6 +6,7 @@ import { AskForm } from '../components/AskForm/AskForm'; // AskForm 컴포넌트
 import Login from '../components/Login/Login';
 import { getLocalstoage } from '../utils/localstorageFunc';
 import { USER_KEY } from '../constants/localstorage';
+import { Helmet } from 'react-helmet-async';
 
 export default function MainPage() {
   const navigate = useNavigate();
@@ -17,34 +18,39 @@ export default function MainPage() {
   const userInfo = getLocalstoage(USER_KEY);
 
   return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-        <img
-          src={logo}
-          alt="Logo"
-          width={456}
-          height={180}
-          className={styles.logo}
-        />
-
-        {userInfo ? <Login userInfo={userInfo} /> : <AskForm />}
-      </div>
-      <div className={styles['btn-wrap']}>
-        <button
-          type="button"
-          onClick={handleQuestionListClick}
-          className={styles.questionButton}
-        >
-          질문하러 가기
+    <>
+      <Helmet>
+        <title>OpenMind - Main</title>
+      </Helmet>
+      <main className={styles.main}>
+        <div className={styles.container}>
           <img
-            src={iconRight}
-            alt="Arrow Right"
-            width={18}
-            height={18}
-            className={styles.iconRight}
+            src={logo}
+            alt="Logo"
+            width={456}
+            height={180}
+            className={styles.logo}
           />
-        </button>
-      </div>
-    </main>
+
+          {userInfo ? <Login userInfo={userInfo} /> : <AskForm />}
+        </div>
+        <div className={styles['btn-wrap']}>
+          <button
+            type="button"
+            onClick={handleQuestionListClick}
+            className={styles.questionButton}
+          >
+            질문하러 가기
+            <img
+              src={iconRight}
+              alt="Arrow Right"
+              width={18}
+              height={18}
+              className={styles.iconRight}
+            />
+          </button>
+        </div>
+      </main>
+    </>
   );
 }

@@ -53,113 +53,100 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
 
   const handleUpdateAnswer = async e => {
     e.preventDefault();
-    const handleUpdateAnswer = async e => {
-      e.preventDefault();
-      if (!answer) {
-        console.error('수정할 답변이 없습니다.');
-        return;
-      }
-  const handleUpdateAnswer = async e => {
-    e.preventDefault();
     if (!answer) {
       console.error('수정할 답변이 없습니다.');
       return;
     }
 
-      try {
-        const updatedAnswer = await updateAnswer(
-          answer.id,
-          content,
-          answer.isRejected,
-        );
-        setAnswer(updatedAnswer);
-        setIsEditing(false);
-      } catch (error) {
-        console.error('답변 수정 중 오류 발생:', error);
-      }
-    };
-
-    return (
-      <>
-        <div className={styles['feed-box']}>
-          <AnswerDropdown
-            id={id}
-            answer={answer}
-            onUpdate={handleAnswerUpdate}
-            onEdit={handleEditMode} // 수정 모드 활성화 핸들러 전달
-            onDelete={onDelete}
-          />
-          {answer ? (
-            <span className={`${styles['badge']} ${styles['answered']}`}>
-              답변완료
-            </span>
-          ) : (
-            <span className={styles['badge']}>미답변</span>
-          )}
-          <div className={styles['feed-contents']}>
-            <div className={styles['question-box']}>
-              <span className={styles['question-date']}>
-                질문 · {timeAgo(item.createdAt)}
-              </span>
-              <p className={styles['question']}>{item.content}</p>
-            </div>
-            {answer && answer.content && !isEditing ? (
-              <div className={styles['answer-box']}>
-                <span className={styles['user-img']}>
-                  <img
-                    src={userData?.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
-                    width={48}
-                    height={48}
-                    alt="User Profile"
-                  />
-                </span>
-                <div className={styles['user-answer']}>
-                  <p className={styles.nickname}>
-                    {userData?.name || 'Unknown User'}
-                    <span className={styles['user-date']}>
-                      {timeAgo(answer.createdAt)}
-                    </span>
-                  </p>
-                  {answer.isRejected === true ? (
-                    <p
-                      className={`${styles['contents']} ${styles['rejected']}`}
-                    >
-                      답변거절
-                    </p>
-                  ) : (
-                    <p className={styles.contents}>{answer.content}</p>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <div className={styles['answer-box']}>
-                <span className={styles['user-img']}>
-                  <img
-                    src={userData.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
-                    width={48}
-                    height={48}
-                    alt="User Profile"
-                  />
-                </span>
-                <div className={styles['user-answer']}>
-                  <p className={styles.nickname}>
-                    {userData.name || 'Unknown User'}
-                  </p>
-                  <AnswerForm
-                    onChange={handleChangeContent}
-                    onSubmit={
-                      isEditing ? handleUpdateAnswer : handleSubmitAnswer
-                    } // 수정 모드일 경우 업데이트 함수 호출
-                    content={content}
-                    isEmpty={isEmpty}
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-          <FeedReaction id={id} like={item.like} dislike={item.dislike} />
-        </div>
-      </>
-    );
+    try {
+      const updatedAnswer = await updateAnswer(
+        answer.id,
+        content,
+        answer.isRejected,
+      );
+      setAnswer(updatedAnswer);
+      setIsEditing(false);
+    } catch (error) {
+      console.error('답변 수정 중 오류 발생:', error);
+    }
   };
+
+  return (
+    <>
+      <div className={styles['feed-box']}>
+        <AnswerDropdown
+          id={id}
+          answer={answer}
+          onUpdate={handleAnswerUpdate}
+          onEdit={handleEditMode} // 수정 모드 활성화 핸들러 전달
+          onDelete={onDelete}
+        />
+        {answer ? (
+          <span className={`${styles['badge']} ${styles['answered']}`}>
+            답변완료
+          </span>
+        ) : (
+          <span className={styles['badge']}>미답변</span>
+        )}
+        <div className={styles['feed-contents']}>
+          <div className={styles['question-box']}>
+            <span className={styles['question-date']}>
+              질문 · {timeAgo(item.createdAt)}
+            </span>
+            <p className={styles['question']}>{item.content}</p>
+          </div>
+          {answer && answer.content && !isEditing ? (
+            <div className={styles['answer-box']}>
+              <span className={styles['user-img']}>
+                <img
+                  src={userData?.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
+                  width={48}
+                  height={48}
+                  alt="User Profile"
+                />
+              </span>
+              <div className={styles['user-answer']}>
+                <p className={styles.nickname}>
+                  {userData?.name || 'Unknown User'}
+                  <span className={styles['user-date']}>
+                    {timeAgo(answer.createdAt)}
+                  </span>
+                </p>
+                {answer.isRejected === true ? (
+                  <p className={`${styles['contents']} ${styles['rejected']}`}>
+                    답변거절
+                  </p>
+                ) : (
+                  <p className={styles.contents}>{answer.content}</p>
+                )}
+              </div>
+            </div>
+          ) : (
+            <div className={styles['answer-box']}>
+              <span className={styles['user-img']}>
+                <img
+                  src={userData.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
+                  width={48}
+                  height={48}
+                  alt="User Profile"
+                />
+              </span>
+              <div className={styles['user-answer']}>
+                <p className={styles.nickname}>
+                  {userData.name || 'Unknown User'}
+                </p>
+                <AnswerForm
+                  onChange={handleChangeContent}
+                  onSubmit={isEditing ? handleUpdateAnswer : handleSubmitAnswer} // 수정 모드일 경우 업데이트 함수 호출
+                  content={content}
+                  isEmpty={isEmpty}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+        <FeedReaction id={id} like={item.like} dislike={item.dislike} />
+      </div>
+    </>
+  );
 }
