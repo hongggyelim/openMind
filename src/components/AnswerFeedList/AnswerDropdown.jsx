@@ -50,39 +50,29 @@ export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
       {isOpen && (
         <div className={styles['dropdown-content']}>
           {hasContent ? (
-            <>
-              <button
-                type="button"
-                className={`${styles['btn-menu']} ${styles['btn-edit']}`}
-                onClick={handleEdit}
-              >
-                수정하기
-              </button>
-              <button
-                type="button"
-                className={`${styles['btn-menu']} ${styles['btn-delete']}`}
-              >
-                삭제하기
-              </button>
-            </>
+            <button
+              type="button"
+              className={`${styles['btn-menu']} ${styles['btn-edit']}`}
+              onClick={handleEdit}
+            >
+              수정하기
+            </button>
           ) : (
-            <>
-              <button
-                type="button"
-                className={`${styles['btn-menu']} ${styles['btn-rejected']}`}
-                onClick={handleReject}
-              >
-                답변거절
-              </button>
-              <button
-                type="button"
-                className={`${styles['btn-menu']} ${styles['btn-delete']}`}
-                onClick={handleDeleteQuestion}
-              >
-                삭제하기
-              </button>
-            </>
+            <button
+              type="button"
+              className={`${styles['btn-menu']} ${styles['btn-rejected']}`}
+              onClick={handleReject}
+            >
+              답변거절
+            </button>
           )}
+          <button
+            type="button"
+            className={`${styles['btn-menu']} ${styles['btn-delete']}`}
+            onClick={handleDeleteQuestion}
+          >
+            삭제하기
+          </button>
         </div>
       )}
     </div>

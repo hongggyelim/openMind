@@ -1,4 +1,4 @@
-const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
+import BASE_URL from '../constants/fetchurl';
 
 export async function deleteAnswer(id) {
   const response = await fetch(`${BASE_URL}subjects/${id}/`, {

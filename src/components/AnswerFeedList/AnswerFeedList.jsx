@@ -13,6 +13,13 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
   const [answer, setAnswer] = useState(item.answer || null);
   const [isEditing, setIsEditing] = useState(false); // 수정 모드 상태
 
+  // useEffect(() => {
+  //   const userInfoFromStorage = localStorage.getItem('info');
+  //   if (userInfoFromStorage) {
+  //     setUserInfo(JSON.parse(userInfoFromStorage));
+  //   }
+  // }, []);
+
   const handleChangeContent = e => {
     const nextContent = e.target.value;
     setContent(nextContent);
@@ -92,7 +99,7 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userData.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
+                  src={userData?.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
                   width={48}
                   height={48}
                   alt="User Profile"
@@ -100,7 +107,7 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-                  {userData.name || 'Unknown User'}
+                  {userData?.name || 'Unknown User'}
                   <span className={styles['user-date']}>
                     {timeAgo(answer.createdAt)}
                   </span>
