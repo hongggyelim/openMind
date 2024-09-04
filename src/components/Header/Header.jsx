@@ -3,7 +3,7 @@ import logo from '../../assets/images/logo.svg';
 import { Link } from 'react-router-dom';
 import ShareSNS from '../ShareSNS/ShareSNS';
 
-function Header({ userImg, userName }) {
+function Header({ userImg, userName, totalCount }) {
   return (
     <div className={styles['header-container']}>
       <div className={styles['header']}>
@@ -21,7 +21,11 @@ function Header({ userImg, userName }) {
             alt={`${userName} 프로필`}
           />
           <strong className={styles['user-nickname']}>{userName}</strong>
-          <ShareSNS />
+          <ShareSNS
+            userImg={userImg}
+            userName={userName}
+            totalCount={totalCount}
+          />
         </div>
       </div>
     </div>

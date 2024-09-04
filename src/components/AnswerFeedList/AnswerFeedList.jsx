@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useState } from 'react';
 import userProfile from '../../assets/images/user-profile.png';
 import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
@@ -52,6 +53,8 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
     }
   };
 
+  const handleUpdateAnswer = async e => {
+    e.preventDefault();
   const handleUpdateAnswer = async e => {
     e.preventDefault();
     if (!answer) {
