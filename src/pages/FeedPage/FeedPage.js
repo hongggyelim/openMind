@@ -3,14 +3,13 @@ import { FeedList } from '../../components/FeedList/FeedList';
 import { ModalWrapper } from '../../components/QuestionModal/ModalWrapper/ModalWrapper';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { postQuestion } from '../../api/post';
-import { getQuestion } from '../../api/api';
+import { getQuestion, getUserInfo } from '../../api/api';
 import { EmptyFeedList } from '../../components/FeedList/EmptyFeedList';
 import Header from '../../components/Header/Header';
 import Toast from '../../components/ShareSNS/Toast';
 import { useParams } from 'react-router';
 import { QuestionValueContext } from '../../context/QuestionValueContext';
 import { IsEmptyContext } from '../../context/IsEmptyContext';
-import { useLocation } from 'react-router';
 import { ScrollTop } from '../../components/ScrollTop/ScrollTop';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 import { ReactComponent as Top } from '../../assets/icon/ic-arrow-up-copy.svg';
@@ -26,6 +25,7 @@ export function FeedPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [toTop, setToTop] = useState(false);
+  const [userData, setUserData] = useState();
 
   const { questionValue, setQuestionValue } = useContext(QuestionValueContext);
   const { setIsEmpty } = useContext(IsEmptyContext);
@@ -50,9 +50,13 @@ export function FeedPage() {
     };
   }, [modalOpen]);
 
-  //useLocation hook
-  const location = useLocation();
-  const { imageSource, name } = location.state || {};
+  useEffect(() => {
+    async function userInfo(subjectId) {
+      const data = await getUserInfo(subjectId);
+      setUserData(data);
+    }
+    userInfo(subjectId);
+  }, [subjectId]);
 
   useEffect(() => {
     async function fetchList() {
@@ -150,7 +154,7 @@ export function FeedPage() {
 
   return (
     <>
-      <Header userImg={imageSource} userName={name} />
+      <Header userImg={userData?.imageSource} userName={userData?.name} />
       <main className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['feed-wrap']}>
@@ -168,7 +172,7 @@ export function FeedPage() {
                   key={index} //FeedList와 동일 id 쓰면 콘솔에서 충돌 된다고해서 수정
                   ref={index === feedList.length - 1 ? lastElementRef : null}
                 >
-                  <FeedList id={item.id} item={item} />
+                  <FeedList id={item.id} item={item} userData={userData} />
                 </div>
               ))
             )}
@@ -194,8 +198,8 @@ export function FeedPage() {
           onChange={handleChangeContent}
           placehorder="질문을 입력해주세요"
           btnText="질문 보내기"
-          name={name}
-          image={imageSource}
+          name={userData?.name}
+          image={userData?.imageSource}
         />
       )}
       {toast && <Toast setToast={setToast} text="질문이 등록되었습니다" />}

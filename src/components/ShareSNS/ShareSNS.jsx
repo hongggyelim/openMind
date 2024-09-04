@@ -21,7 +21,7 @@ function ShareButton({ src, alt, onClick }) {
 
 const { Kakao } = window;
 
-function ShareSNS() {
+function ShareSNS({ userImg, userName, totalCount }) {
   const resultUrl = window.location.href;
 
   const shareFacebook = () => {
@@ -46,10 +46,10 @@ function ShareSNS() {
     Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
-        title: '유저 닉네임',
-        description: '유저 닉네임의 질문지',
+        title: userName,
+        description: `${userName}님의 질문지`,
         imageUrl:
-          'https://mud-kage.kakao.com/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg',
+          'https://openmind9-1.netlify.app/static/media/logo.b5b22f505d24fba7fbc4.png',
         link: {
           mobileWebUrl: resultUrl,
           webUrl: resultUrl,
@@ -58,26 +58,15 @@ function ShareSNS() {
       itemContent: {
         profileText: 'OpenMind',
         profileImageUrl:
-          'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        titleImageUrl:
-          'https://mud-kage.kakao.com/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png',
-        titleImageText: 'User Nickname',
-        titleImageCategory: 'User',
-        items: [
-          {
-            item: 'Cake1',
-            itemOp: '1000원',
-          },
-          {
-            item: 'Cake2',
-            itemOp: '2000원',
-          },
-        ],
+          'https://openmind9-1.netlify.app/static/media/background.e2efec4a94a1d1ba10cb.png',
+        titleImageUrl: userImg,
+        titleImageText: userName,
+        titleImageCategory: 'Question Feed',
       },
       social: {
-        likeCount: 10,
-        commentCount: 20,
-        sharedCount: 30,
+        likeCount: 0,
+        commentCount: 0,
+        sharedCount: 0,
       },
       buttons: [
         {

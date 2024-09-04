@@ -1,13 +1,32 @@
 import { postReaction } from '../../api/post';
 import styles from '../FeedList/FeedReaction.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { LOCAL_STORAGE_KEYS } from '../../constants/localstorage';
+import { getLocalstoage } from '../../utils/localstorageFunc';
+import { setLocalstorage } from '../../utils/localstorageFunc';
 
 export function FeedReaction({ id, like, dislike }) {
-  const [countLike, setCountLike] = useState(like);
-  const [countDislike, setCountDislike] = useState(dislike);
-  const [activeButton, setActiveButton] = useState(null);
+  const [countLike, setCountLike] = useState(() => {
+    const savedLike = getLocalstoage(`${id}${LOCAL_STORAGE_KEYS.like}`);
+    return savedLike ? parseInt(savedLike) : like;
+  });
+  const [countDislike, setCountDislike] = useState(() => {
+    const savedDislike = getLocalstoage(`${id}${LOCAL_STORAGE_KEYS.dislike}`);
+    return savedDislike ? parseInt(savedDislike) : dislike;
+  });
+  const [activeButton, setActiveButton] = useState(() => {
+    const savedButton = getLocalstoage(
+      `${id}${LOCAL_STORAGE_KEYS.activeButton}`,
+    );
+    return savedButton ? savedButton : null;
+  });
 
-  // 낙관적 업데이트 유지 & 서버에 해당하는 question ID 에 like, dislike 추가 (POST)
+  useEffect(() => {
+    setLocalstorage(`${id}${LOCAL_STORAGE_KEYS.like}`, countLike);
+    setLocalstorage(`${id}${LOCAL_STORAGE_KEYS.dislike}`, countDislike);
+    setLocalstorage(`${id}${LOCAL_STORAGE_KEYS.activeButton}`, activeButton);
+  }, [countLike, countDislike, activeButton, id]);
+
   const onClickLike = () => {
     if (activeButton === 'like') {
       return;

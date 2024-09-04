@@ -1,4 +1,4 @@
-const BASE_URL = 'https://openmind-api.vercel.app/9-1/';
+import BASE_URL from '../constants/fetchurl';
 
 // 질문 등록하기
 export function postQuestion(subjectId, questionValue, setFeedList) {
@@ -85,6 +85,33 @@ export async function postAnswer(id, content, isRejected = false) {
     return await response.json(); // 서버에서 JSON 응답을 받음
   } catch (error) {
     console.error('Error:', error);
+    throw error;
+  }
+}
+
+export async function updateAnswer(answerId, content, isRejected = false) {
+  const payload = {
+    content: content,
+    isRejected: isRejected,
+  };
+
+  try {
+    const response = await fetch(`${BASE_URL}answers/${answerId}/`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text(); // 서버에서 반환한 오류 메시지
+      console.error('Server Error:', errorText); // 오류 메시지 출력
+      throw new Error(`서버에 답변을 수정하는 데 실패했습니다: ${errorText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error in updateAnswer function:', error);
     throw error;
   }
 }

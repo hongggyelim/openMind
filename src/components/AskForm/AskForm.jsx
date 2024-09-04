@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './AskForm.module.css';
+import { setLocalstorage } from '../../utils/localstorageFunc';
+import { USER_KEY } from '../../constants/localstorage';
 
 export function AskForm() {
   const [name, setName] = useState('');
@@ -30,14 +32,9 @@ export function AskForm() {
 
         const data = await response.json();
         const feedId = data.id; // 생성된 질문 대상의 id 사용
-        localStorage.setItem('info', JSON.stringify(data));
+        setLocalstorage(USER_KEY, data);
 
-        navigate(`/post/${feedId}/answer`, {
-          // state: {
-          //   imageSource: imageSource,
-          //   name: userName,
-          // },
-        });
+        navigate(`/post/${feedId}/answer`);
       } catch (error) {
         console.error('Error creating subject:', error);
         alert('질문 대상 생성 중 오류가 발생했습니다.');
@@ -58,7 +55,11 @@ export function AskForm() {
         onChange={handleInputChange}
         className={styles.inputField}
       />
-      <button onClick={handleAskButtonClick} className={styles.askButton}>
+      <button
+        type="button"
+        onClick={handleAskButtonClick}
+        className={styles.askButton}
+      >
         질문받기
       </button>
     </div>
