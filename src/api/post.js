@@ -27,7 +27,6 @@ export function postQuestion(subjectId, questionValue, setFeedList) {
       return response.json(); // 서버에서 JSON 응답을 받을 것으로 가정
     })
     .then(data => {
-      console.log('Success:', data); // 성공적인 요청에 대한 응답 데이터 처리
       setFeedList(prev => [data, ...prev]);
     })
     .catch(error => {
@@ -53,9 +52,6 @@ export async function postReaction(id, type) {
         throw new Error(`댓글 반응 남기기에 실패했습니다.`);
       }
       return response.json(); // 서버에서 JSON 응답을 받을 것으로 가정
-    })
-    .then(data => {
-      console.log('Success:', data); // 성공적인 요청에 대한 응답 데이터 처리
     })
     .catch(error => {
       console.error('Error:', error); // 에러 처리

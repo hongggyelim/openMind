@@ -119,7 +119,6 @@ export function AnswerPage() {
   //개별 질문 삭제
   const handleDeleteQuestion = async id => {
     try {
-      console.log(id);
       await deleteQuestion(id);
 
       setFeedList(prevList => prevList.filter(item => item.id !== id));
