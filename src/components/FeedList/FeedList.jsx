@@ -5,10 +5,6 @@ import { timeAgo } from '../../utils/timeAgo';
 
 export function FeedList({ id, item, userData }) {
   const answer = item.answer || '';
-<<<<<<< HEAD
-  // console.log(item);
-=======
->>>>>>> 9c1293ea37269897e5207b36afb943a2dc63fa28
   return (
     <>
       <div className={styles['feed-box']}>

@@ -24,8 +24,8 @@ function UserProfileList() {
   const [loadingError, setLoadingError] = useState(null);
 
   const selectOptionList = [
-    { id: 'option1', option: '최신순', onClickFunc: handleNameClick },
-    { id: 'option2', option: '이름순', onClickFunc: handleNewestClick },
+    { id: 'option1', option: '이름순', onClickFunc: handleNameClick },
+    { id: 'option2', option: '최신순', onClickFunc: handleNewestClick },
   ];
 
   function handleNameClick() {
