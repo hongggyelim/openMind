@@ -6,20 +6,21 @@ import { getLocalstoage } from '../../utils/localstorageFunc';
 import { setLocalstorage } from '../../utils/localstorageFunc';
 
 export function FeedReaction({ id, like, dislike }) {
-  const [countLike, setCountLike] = useState(() => {
+  const [countLike, setCountLike] = useState(like);
+  const [countDislike, setCountDislike] = useState(dislike);
+  const [activeButton, setActiveButton] = useState(null);
+
+  useEffect(() => {
     const savedLike = getLocalstoage(`${id}${LOCAL_STORAGE_KEYS.like}`);
-    return savedLike ? parseInt(savedLike) : like;
-  });
-  const [countDislike, setCountDislike] = useState(() => {
     const savedDislike = getLocalstoage(`${id}${LOCAL_STORAGE_KEYS.dislike}`);
-    return savedDislike ? parseInt(savedDislike) : dislike;
-  });
-  const [activeButton, setActiveButton] = useState(() => {
     const savedButton = getLocalstoage(
       `${id}${LOCAL_STORAGE_KEYS.activeButton}`,
     );
-    return savedButton ? savedButton : null;
-  });
+
+    setCountLike(savedLike ? parseInt(savedLike) : like);
+    setCountDislike(savedDislike ? parseInt(savedDislike) : dislike);
+    setActiveButton(savedButton ? savedButton : null);
+  }, [id, like, dislike]);
 
   useEffect(() => {
     setLocalstorage(`${id}${LOCAL_STORAGE_KEYS.like}`, countLike);
@@ -28,23 +29,17 @@ export function FeedReaction({ id, like, dislike }) {
   }, [countLike, countDislike, activeButton, id]);
 
   const onClickLike = () => {
-    if (activeButton === 'like') {
-      return;
-    } else {
-      setActiveButton('like');
-      setCountLike(prevCount => prevCount + 1);
-      postReaction(id, 'like');
-    }
+    if (activeButton === 'like') return;
+    setActiveButton('like');
+    setCountLike(prevCount => prevCount + 1);
+    postReaction(id, 'like');
   };
 
   const onClickDislike = () => {
-    if (activeButton === 'dislike') {
-      return;
-    } else {
-      setActiveButton('dislike');
-      setCountDislike(prevCount => prevCount + 1);
-      postReaction(id, 'dislike');
-    }
+    if (activeButton === 'dislike') return;
+    setActiveButton('dislike');
+    setCountDislike(prevCount => prevCount + 1);
+    postReaction(id, 'dislike');
   };
 
   return (
