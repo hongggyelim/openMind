@@ -150,7 +150,7 @@ export function FeedPage() {
 
   return (
     <>
-      <Header userImg={imageSource} userName={name} />
+      <Header userImg={imageSource} userName={name} totalCount={totalCount} />
       <main className={styles.feed}>
         <div className="wrap-inner2">
           <div className={styles['feed-wrap']}>
