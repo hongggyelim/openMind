@@ -52,7 +52,8 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
     }
   };
 
-  const handleUpdateAnswer = async () => {
+  const handleUpdateAnswer = async e => {
+    e.preventDefault();
     if (!answer) {
       console.error('수정할 답변이 없습니다.');
       return;
@@ -99,7 +100,7 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userData.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
+                  src={userData?.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
                   width={48}
                   height={48}
                   alt="User Profile"
@@ -107,7 +108,7 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-                  {userData.name || 'Unknown User'}
+                  {userData?.name || 'Unknown User'}
                   <span className={styles['user-date']}>
                     {timeAgo(answer.createdAt)}
                   </span>
