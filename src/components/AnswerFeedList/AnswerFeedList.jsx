@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useState } from 'react';
 import userProfile from '../../assets/images/user-profile.png';
 import styles from './AnswerFeedList.module.css';
 import { FeedReaction } from '../FeedList/FeedReaction';
@@ -8,10 +9,18 @@ import { AnswerDropdown } from './AnswerDropdown';
 import { postAnswer, updateAnswer } from '../../api/post'; // updateAnswer 함수 가져오기
 
 export function AnswerFeedList({ id, item, userData, onDelete }) {
+  //question id 를 받아옴
   const [content, setContent] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
   const [answer, setAnswer] = useState(item.answer || null);
   const [isEditing, setIsEditing] = useState(false); // 수정 모드 상태
+
+  // useEffect(() => {
+  //   const userInfoFromStorage = localStorage.getItem('info');
+  //   if (userInfoFromStorage) {
+  //     setUserInfo(JSON.parse(userInfoFromStorage));
+  //   }
+  // }, []);
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;
@@ -44,6 +53,8 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
     }
   };
 
+  const handleUpdateAnswer = async e => {
+    e.preventDefault();
   const handleUpdateAnswer = async e => {
     e.preventDefault();
     if (!answer) {
@@ -92,7 +103,7 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-                  src={userData.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
+                  src={userData?.imageSource || userProfile} // userInfo.imageSource가 없으면 기본 이미지 사용
                   width={48}
                   height={48}
                   alt="User Profile"
@@ -100,7 +111,7 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-                  {userData.name || 'Unknown User'}
+                  {userData?.name || 'Unknown User'}
                   <span className={styles['user-date']}>
                     {timeAgo(answer.createdAt)}
                   </span>

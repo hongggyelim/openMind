@@ -17,7 +17,7 @@ function Login({ userInfo }) {
         <Link to={`post/${userInfo.id}/answer`} className={styles['move-btn']}>
           답변페이지
         </Link>
-        <button className={styles['move-btn']} onClick={logout}>
+        <button type="button" className={styles['move-btn']} onClick={logout}>
           로그아웃
         </button>
       </div>
