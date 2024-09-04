@@ -3,12 +3,10 @@ import styles from './AnswerDropdown.module.css';
 import menu from '../../assets/icon/ic-more.svg';
 import { postAnswer } from '../../api/post';
 
-
 // export function AnswerDropdown({ id, answer, onUpdate, onEdit }) {
-  // 수정 함수 추가
+// 수정 함수 추가
 
 export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
-
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -35,17 +33,15 @@ export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
     }
   };
 
-
   // 답변 수정 모드 활성화
   const handleEdit = () => {
     if (onEdit) {
       onEdit(true); // 수정 모드 활성화
     }
     setIsOpen(false);
-
+  };
   const handleDeleteQuestion = () => {
     onDelete(id);
-
   };
 
   return (
@@ -56,39 +52,22 @@ export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
       {isOpen && (
         <div className={styles['dropdown-content']}>
           {hasContent ? (
-            <>
-              <button
-                type="button"
-                className={`${styles['btn-menu']} ${styles['btn-edit']}`}
-                onClick={handleEdit}
-              >
-                수정하기
-              </button>
-              <button
-                type="button"
-                className={`${styles['btn-menu']} ${styles['btn-delete']}`}
-              >
-                삭제하기
-              </button>
-            </>
+            <button
+              type="button"
+              className={`${styles['btn-menu']} ${styles['btn-edit']}`}
+              onClick={handleEdit}
+            >
+              수정하기
+            </button>
           ) : (
-            <>
-              <button
-                type="button"
-                className={`${styles['btn-menu']} ${styles['btn-rejected']}`}
-                onClick={handleReject}
-              >
-                답변거절
-              </button>
-              <button
-                type="button"
-                className={`${styles['btn-menu']} ${styles['btn-delete']}`}
-              >
-                삭제하기
-              </button>
-            </>
+            <button
+              type="button"
+              className={`${styles['btn-menu']} ${styles['btn-rejected']}`}
+              onClick={handleReject}
+            >
+              답변거절
+            </button>
           )}
-
 
           <button
             type="button"
@@ -97,7 +76,6 @@ export function AnswerDropdown({ id, answer, onUpdate, onDelete, onEdit }) {
           >
             삭제하기
           </button>
-
         </div>
       )}
     </div>

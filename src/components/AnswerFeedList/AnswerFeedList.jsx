@@ -7,7 +7,6 @@ import { AnswerForm } from './AnswerForm';
 import { AnswerDropdown } from './AnswerDropdown';
 import { postAnswer, updateAnswer } from '../../api/post'; // updateAnswer 함수 가져오기
 
-
 export function AnswerFeedList({ id, item, userData, onDelete }) {
   //question id 를 받아옴
 
@@ -19,12 +18,12 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
     JSON.parse(localStorage.getItem('info')) || {},
   );
 
-//   useEffect(() => {
-//     const userInfoFromStorage = localStorage.getItem('info');
-//     if (userInfoFromStorage) {
-//       setUserInfo(JSON.parse(userInfoFromStorage));
-//     }
-//   }, []);
+  //   useEffect(() => {
+  //     const userInfoFromStorage = localStorage.getItem('info');
+  //     if (userInfoFromStorage) {
+  //       setUserInfo(JSON.parse(userInfoFromStorage));
+  //     }
+  //   }, []);
 
   const handleChangeContent = e => {
     const nextContent = e.target.value;
@@ -48,7 +47,6 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
   const handleAnswerUpdate = updatedAnswer => {
     setAnswer(updatedAnswer);
   };
-
 
   const handleEditMode = editMode => {
     setIsEditing(editMode);
@@ -105,11 +103,8 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-
                   src={userData.imageSource || userProfile} // userData.imageSource가 없으면 기본 이미지 사용
-
                   src={userData.imageSource}
-
                   width={48}
                   height={48}
                   alt="User Profile"
@@ -117,7 +112,6 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-
                   {userData.name || 'Unknown User'}
 
                   {userData.name}
@@ -139,18 +133,14 @@ export function AnswerFeedList({ id, item, userData, onDelete }) {
             <div className={styles['answer-box']}>
               <span className={styles['user-img']}>
                 <img
-
                   src={userData.imageSource || userProfile} // userData.imageSource가 없으면 기본 이미지 사용
-
                   src={userData.imageSource}
-
                   width={48}
                   height={48}
                   alt="User Profile"
                 />
               </span>
               <div className={styles['user-answer']}>
-
                 <p className={styles.nickname}>
                   {userData.name || 'Unknown User'}
                 </p>
