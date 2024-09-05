@@ -14,6 +14,7 @@ import { ScrollTop } from '../../components/ScrollTop/ScrollTop';
 import { ReactComponent as Message } from '../../assets/icon/ic-messages.svg';
 import { ReactComponent as Top } from '../../assets/icon/ic-arrow-up-copy.svg';
 import { throttle } from '../../utils/throttle';
+import { Helmet } from 'react-helmet-async';
 
 export function FeedPage() {
   const INITIAL_VALUE = '';
@@ -154,6 +155,9 @@ export function FeedPage() {
 
   return (
     <>
+      <Helmet>
+        <title>OpenMind - Feed</title>
+      </Helmet>
       <Header userImg={userData?.imageSource} userName={userData?.name} />
       <main className={styles.feed}>
         <div className="wrap-inner2">

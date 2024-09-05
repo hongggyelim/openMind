@@ -10,25 +10,30 @@ import { QuestionValueContext } from './context/QuestionValueContext';
 import { IsEmptyContext } from './context/IsEmptyContext';
 import { useState } from 'react';
 import { NotFoundPage } from './pages/NotFound/NotFoundPage';
+import { HelmetProvider } from 'react-helmet-async';
 
 function MainRouter() {
   const [questionValue, setQuestionValue] = useState('');
   const [isEmpty, setIsEmpty] = useState(true);
 
   return (
-    <QuestionValueContext.Provider value={{ questionValue, setQuestionValue }}>
-      <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/list" element={<QuestionListPage />} />
-            <Route path="/post/:id/answer" element={<AnswerPage />} />
-            <Route path="/post/:subjectId" element={<FeedPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </BrowserRouter>
-      </IsEmptyContext.Provider>
-    </QuestionValueContext.Provider>
+    <HelmetProvider>
+      <QuestionValueContext.Provider
+        value={{ questionValue, setQuestionValue }}
+      >
+        <IsEmptyContext.Provider value={{ isEmpty, setIsEmpty }}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/list" element={<QuestionListPage />} />
+              <Route path="/post/:id/answer" element={<AnswerPage />} />
+              <Route path="/post/:subjectId" element={<FeedPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </BrowserRouter>
+        </IsEmptyContext.Provider>
+      </QuestionValueContext.Provider>
+    </HelmetProvider>
   );
 }
 

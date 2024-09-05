@@ -5,7 +5,6 @@ import { timeAgo } from '../../utils/timeAgo';
 
 export function FeedList({ id, item, userData }) {
   const answer = item.answer || '';
-  console.log(item);
   return (
     <>
       <div className={styles['feed-box']}>
@@ -35,7 +34,7 @@ export function FeedList({ id, item, userData }) {
               </span>
               <div className={styles['user-answer']}>
                 <p className={styles.nickname}>
-                  아초는고양이
+                  {userData?.name}
                   <span className={styles['user-date']}>
                     {timeAgo(answer.createdAt)}
                   </span>
